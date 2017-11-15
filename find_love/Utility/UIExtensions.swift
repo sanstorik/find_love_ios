@@ -12,17 +12,6 @@ class InsetTextField: UITextField {
 }
 
 extension UITextField {
-    func useUnderline() {
-        self.borderStyle = .none
-        self.layer.backgroundColor = UIColor.black.cgColor
-        
-        self.layer.masksToBounds = false
-        self.layer.shadowColor = UIColor.gray.cgColor
-        self.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
-        self.layer.shadowOpacity = 1.0
-        self.layer.shadowRadius = 0.0
-    }
-    
     func defaultInitilization(hint: String) {
         self.translatesAutoresizingMaskIntoConstraints = false
         self.textColor = UIColor.white
