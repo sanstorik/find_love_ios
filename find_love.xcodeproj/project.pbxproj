@@ -18,6 +18,8 @@
 		8995D9981FBB7CE80015EF61 /* find_loveUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8995D9971FBB7CE80015EF61 /* find_loveUITests.swift */; };
 		89A1F34D1FBC56DC002E870E /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A1F34C1FBC56DC002E870E /* ColorExtension.swift */; };
 		89DEC6181FBDB7DA00BA851A /* InstructionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DEC6171FBDB7DA00BA851A /* InstructionViewController.swift */; };
+		89DEC61A1FBDBFF500BA851A /* NewFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DEC6191FBDBFF500BA851A /* NewFormViewController.swift */; };
+		89DEC61C1FBDD8A100BA851A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DEC61B1FBDD8A100BA851A /* SettingsViewController.swift */; };
 		89FDB82A1FBC5E9000FD32D3 /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89FDB8291FBC5E9000FD32D3 /* UIExtensions.swift */; };
 		89FDB82D1FBC6F7600FD32D3 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89FDB82C1FBC6F7600FD32D3 /* RegistrationViewController.swift */; };
 /* End PBXBuildFile section */
@@ -57,6 +59,8 @@
 		8995D9991FBB7CE80015EF61 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		89A1F34C1FBC56DC002E870E /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		89DEC6171FBDB7DA00BA851A /* InstructionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionViewController.swift; sourceTree = "<group>"; };
+		89DEC6191FBDBFF500BA851A /* NewFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFormViewController.swift; sourceTree = "<group>"; };
+		89DEC61B1FBDD8A100BA851A /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		89FDB8291FBC5E9000FD32D3 /* UIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
 		89FDB82C1FBC6F7600FD32D3 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -163,6 +167,8 @@
 				89FDB82C1FBC6F7600FD32D3 /* RegistrationViewController.swift */,
 				896D62411FBCD78B00E264E3 /* RulesViewController.swift */,
 				89DEC6171FBDB7DA00BA851A /* InstructionViewController.swift */,
+				89DEC6191FBDBFF500BA851A /* NewFormViewController.swift */,
+				89DEC61B1FBDD8A100BA851A /* SettingsViewController.swift */,
 			);
 			path = Pages;
 			sourceTree = "<group>";
@@ -302,6 +308,7 @@
 			files = (
 				89A1F34D1FBC56DC002E870E /* ColorExtension.swift in Sources */,
 				896D623D1FBCC00700E264E3 /* UnderlinedTextField.swift in Sources */,
+				89DEC61C1FBDD8A100BA851A /* SettingsViewController.swift in Sources */,
 				8995D97A1FBB7CE80015EF61 /* LoginViewController.swift in Sources */,
 				89DEC6181FBDB7DA00BA851A /* InstructionViewController.swift in Sources */,
 				8995D9781FBB7CE80015EF61 /* AppDelegate.swift in Sources */,
@@ -309,6 +316,7 @@
 				89FDB82D1FBC6F7600FD32D3 /* RegistrationViewController.swift in Sources */,
 				896D62421FBCD78B00E264E3 /* RulesViewController.swift in Sources */,
 				896D62401FBCC58600E264E3 /* User.swift in Sources */,
+				89DEC61A1FBDBFF500BA851A /* NewFormViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
