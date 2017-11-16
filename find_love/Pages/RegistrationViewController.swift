@@ -99,12 +99,12 @@ class RegistrationViewController: UIViewController {
             areFormsFilled = false
         }
         
-        if _sex != nil {
+        if _sex == nil {
             areFormsFilled = false
         }
         
         if areFormsFilled {
-            
+            navigationController?.pushViewController(RulesViewController(), animated: true)
         }
     }
     

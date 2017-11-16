@@ -32,7 +32,7 @@ class RulesViewController: UIViewController {
     }
     
     @objc private func onAgreeClick() {
-        
+        navigationController?.pushViewController(SettingsViewController(), animated: true)
     }
     
     private func setupViews() {

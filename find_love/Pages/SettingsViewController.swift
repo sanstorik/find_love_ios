@@ -5,6 +5,7 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = UIColor.black
         setupViews()
         setupNavigationBar()
     }
@@ -13,8 +14,11 @@ class SettingsViewController: UIViewController {
     private var _buttonTitles = [String]()
     
     private func setupViews() {
-        _buttonSelectors += [#selector(changeForm), #selector(recoverPurchases)]
-        _buttonTitles += ["Изменить анкету", "Восстановить покупки"]
+        _buttonSelectors += [#selector(changeForm), #selector(recoverPurchases),
+                             #selector(termsOfUse), #selector(deleteProfile),
+                             #selector(muteSound), #selector(respondUs)]
+        _buttonTitles += ["Изменить анкету", "Восстановить покупки", "Условия использования",
+                          "Удалить профиль", "Отключить звук", "Напишите нам"]
         
         var currentTopView = self.view!
         
@@ -22,24 +26,30 @@ class SettingsViewController: UIViewController {
             currentTopView = createButton(title: _buttonTitles[i],
                                           action: _buttonSelectors[i], below: currentTopView)
         }
+        
+        currentTopView.backgroundColor = UIColor.red
     }
     
     private func setupNavigationBar() {
+        navigationController?.navigationBar.topItem?.title = " "
+        
         navigationItem.title = "Настройки"
         navigationController?.navigationBar.titleTextAttributes =
-            [NSAttributedStringKey.foregroundColor: UIColor.lightGray,
+            [NSAttributedStringKey.foregroundColor: UIColor.white,
              NSAttributedStringKey.font: UIFont.systemFont(ofSize: 28)]
         
         
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.barTintColor = UIColor.black
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationController?.navigationBar.tintColor = UIColor.white
     }
     
     private func createButton(title: String, action: Selector, below view: UIView) -> UIView {
         let button = UIButton()
-        button.filledCornerInitilization(color: UIColor.darkGray, title: title, cornerRadius: 30)
+        button.filledCornerInitilization(color: UIColor(red: 91, green: 93, blue: 84), title: title, cornerRadius: 30)
         button.addTarget(self, action: action, for: .touchUpInside)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 25, weight: UIFont.Weight(0.2))
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 23, weight: UIFont.Weight(0.15))
         button.translatesAutoresizingMaskIntoConstraints = false
         
         self.view.addSubview(button)
@@ -63,6 +73,22 @@ class SettingsViewController: UIViewController {
     }
     
     @objc private func recoverPurchases() {
+        
+    }
+    
+    @objc private func termsOfUse() {
+        
+    }
+    
+    @objc private func deleteProfile() {
+        
+    }
+    
+    @objc private func muteSound() {
+        
+    }
+    
+    @objc private func respondUs() {
         
     }
 }
