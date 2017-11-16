@@ -24,12 +24,12 @@ extension UITextField {
 }
 
 extension UIButton {
-    func filledCornerInitilization(color: UIColor, title: String) {
+    func filledCornerInitilization(color: UIColor, title: String, cornerRadius: CGFloat = 20) {
         backgroundColor = color
         setTitle(title, for: .normal)
         setTitleColor(UIColor.white, for: .normal)
         layer.borderColor = color.cgColor
-        layer.cornerRadius = 20
+        layer.cornerRadius = cornerRadius
         layer.borderWidth = 1
         
         translatesAutoresizingMaskIntoConstraints = false
