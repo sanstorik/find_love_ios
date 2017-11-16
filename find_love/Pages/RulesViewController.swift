@@ -21,7 +21,7 @@ class RulesViewController: UIViewController {
     
     private let _agreeButton: UIButton = {
         let button = UIButton()
-        button.filledCornerInitilization(color: UIColor.red, title: "Принимаю", cornerRadius: 24)
+        button.filledCornerInitilization(color: UIColor.red, title: "Принимаю", cornerRadius: 27)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 25, weight: UIFont.Weight(0.4))
         
         return button
@@ -29,6 +29,10 @@ class RulesViewController: UIViewController {
     
     private func setupNavigationBar() {
         navigationController?.isNavigationBarHidden = true
+    }
+    
+    @objc private func onAgreeClick() {
+        
     }
     
     private func setupViews() {
@@ -55,6 +59,7 @@ class RulesViewController: UIViewController {
         _agreeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25).isActive = true
         _agreeButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50).isActive = true
         _agreeButton.heightAnchor.constraint(equalToConstant: 55).isActive = true
+        _agreeButton.addTarget(self, action: #selector(onAgreeClick), for: .touchUpInside)
     }
     
     
@@ -63,26 +68,26 @@ class RulesViewController: UIViewController {
         heartImage.image = UIImage(named: "heartOne")
         heartImage.translatesAutoresizingMaskIntoConstraints = false
         
-        let secLabel = UILabel()
-        secLabel.textColor = UIColor.white
-        secLabel.translatesAutoresizingMaskIntoConstraints = false
-        secLabel.numberOfLines = numberOfLines
-        secLabel.text = text
-        secLabel.font = UIFont.systemFont(ofSize: 19, weight: UIFont.Weight(0.15))
-        secLabel.adjustsFontSizeToFitWidth = true
+        let label = UILabel()
+        label.textColor = UIColor.white
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = numberOfLines
+        label.text = text
+        label.font = UIFont.systemFont(ofSize: 19, weight: UIFont.Weight(0.15))
+        label.adjustsFontSizeToFitWidth = true
         
         view.addSubview(heartImage)
-        view.addSubview(secLabel)
+        view.addSubview(label)
         
         heartImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25).isActive = true
-        heartImage.topAnchor.constraint(equalTo: viewAbove.bottomAnchor, constant: 20).isActive = true
+        heartImage.topAnchor.constraint(equalTo: viewAbove.bottomAnchor, constant: 15).isActive = true
         heartImage.widthAnchor.constraint(equalToConstant: 40).isActive = true
         heartImage.heightAnchor.constraint(equalToConstant: 40).isActive = true
         
-        secLabel.leadingAnchor.constraint(equalTo: heartImage.trailingAnchor, constant: 5).isActive = true
-        secLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25).isActive = true
-        secLabel.topAnchor.constraint(equalTo: viewAbove.bottomAnchor, constant: 20).isActive = true
+        label.leadingAnchor.constraint(equalTo: heartImage.trailingAnchor, constant: 5).isActive = true
+        label.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25).isActive = true
+        label.topAnchor.constraint(equalTo: viewAbove.bottomAnchor, constant: 20).isActive = true
         
-        return secLabel
+        return label
     }
 }
