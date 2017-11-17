@@ -1,13 +1,16 @@
 import UIKit
  
-class LoginViewController: UIViewController {
+class LoginViewController: CommonViewController {
 
+    override func viewWillAppear(_ animated: Bool) {
+        setupNavigationBar(title: "")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor.black
         setupViews()
-        setupNavigationBar()
     }
     
     private let _userNameTextField: UITextField = {
@@ -63,11 +66,6 @@ class LoginViewController: UIViewController {
     }()
     
     private let _userNameDelegate = UsernameTextFieldDelegate()
-    
-    private func setupNavigationBar() {
-        navigationController?.navigationBar.isTranslucent = false
-        navigationController?.navigationBar.barTintColor = UIColor.black
-    }
     
     private func setupViews() {
         _userNameTextField.delegate = _userNameDelegate

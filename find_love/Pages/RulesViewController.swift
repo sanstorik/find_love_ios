@@ -1,6 +1,6 @@
 import UIKit
 
-class RulesViewController: UIViewController {
+class RulesViewController: CommonViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: false)
@@ -11,7 +11,6 @@ class RulesViewController: UIViewController {
         
         view.backgroundColor = UIColor.black
         setupViews()
-        setupNavigationBar()
     }
     
     private let _rulesLabel: UILabel = {
@@ -31,10 +30,7 @@ class RulesViewController: UIViewController {
         
         return button
     }()
-    
-    private func setupNavigationBar() {
-    }
-    
+
     @objc private func onAgreeClick() {
         navigationController?.pushViewController(SettingsViewController(), animated: true)
     }

@@ -1,6 +1,6 @@
 import UIKit
 
-class InstructionViewController: UIViewController {
+class InstructionViewController: CommonViewController {
 
 
     override func viewDidLoad() {
@@ -8,7 +8,6 @@ class InstructionViewController: UIViewController {
         
         view.backgroundColor = UIColor.black
         setupViews()
-        setupNavigationBar()
     }
     
     private let _instructionLabel: UILabel = {
@@ -28,10 +27,6 @@ class InstructionViewController: UIViewController {
         
         return button
     }()
-    
-    private func setupNavigationBar() {
-        navigationController?.isNavigationBarHidden = true
-    }
     
     @objc private func onStartClick() {
         

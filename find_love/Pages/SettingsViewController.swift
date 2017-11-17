@@ -1,48 +1,46 @@
 import UIKit
 
-class SettingsViewController: UIViewController {
+class SettingsViewController: CommonViewController {
+    
+    override func viewWillAppear(_ animated: Bool) {
+        setupNavigationBar(title: "Настройки")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor.black
         setupViews()
-        setupNavigationBar()
     }
     
     private var _buttonSelectors = [Selector]()
     private var _buttonTitles = [String]()
     
+    private var _isSoundEnabled = true
+    private var _soundButton: UIButton!
+    
     private func setupViews() {
-        _buttonSelectors += [#selector(changeForm), #selector(recoverPurchases),
-                             #selector(termsOfUse), #selector(deleteProfile),
-                             #selector(muteSound), #selector(respondUs)]
+        _buttonSelectors += [#selector(changeFormOnClick), #selector(recoverPurchasesOnClick),
+                             #selector(termsOfUseOnClick), #selector(deleteProfileOnClick),
+                             #selector(muteSoundOnClick), #selector(respondUsOnClick)]
+        
+        let soundButtonTitle = _isSoundEnabled ? "Отключить звук" : "Включить звук"
         _buttonTitles += ["Изменить анкету", "Восстановить покупки", "Условия использования",
-                          "Удалить профиль", "Отключить звук", "Напишите нам"]
+                          "Удалить профиль", soundButtonTitle, "Напишите нам"]
         
         var currentTopView = self.view!
         
         for i in 0..<_buttonSelectors.count {
-            currentTopView = createButton(title: _buttonTitles[i],
+            let button = createButton(title: _buttonTitles[i],
                                           action: _buttonSelectors[i], below: currentTopView)
+            currentTopView = button
+            
+            if i == 4 {
+                _soundButton = button as! UIButton
+            }
         }
         
         currentTopView.backgroundColor = UIColor.red
-    }
-    
-    private func setupNavigationBar() {
-        navigationController?.navigationBar.topItem?.title = " "
-        
-        navigationItem.title = "Настройки"
-        navigationController?.navigationBar.titleTextAttributes =
-            [NSAttributedStringKey.foregroundColor: UIColor.white,
-             NSAttributedStringKey.font: UIFont.systemFont(ofSize: 28)]
-        
-        
-        navigationController?.navigationBar.isTranslucent = false
-        navigationController?.navigationBar.barTintColor = UIColor.black
-        navigationController?.setNavigationBarHidden(false, animated: true)
-        navigationController?.navigationBar.tintColor = UIColor.white
     }
     
     private func createButton(title: String, action: Selector, below view: UIView) -> UIView {
@@ -68,27 +66,42 @@ class SettingsViewController: UIViewController {
         return button
     }
     
-    @objc private func changeForm() {
+    @objc private func changeFormOnClick() {
+        let formChanger = NewFormViewController()
+        formChanger.isEditingSession = true
+        
+        navigationController?.pushViewController(formChanger, animated: true)
+    }
+    
+    @objc private func recoverPurchasesOnClick() {
         
     }
     
-    @objc private func recoverPurchases() {
+    @objc private func termsOfUseOnClick() {
+        navigationController?.pushViewController(TermsOfUseViewController(), animated: true)
+    }
+    
+    @objc private func deleteProfileOnClick() {
+        let alert = UIAlertController(title: "Удалить профиль", message: "Вся информация о вашей переписке будет удалена. Продолжить?",
+                                      preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Да", style: .default, handler: { [unowned self] action -> Void in
+            self.deleteProfile()
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Нет", style: .cancel, handler: nil))
+        present(alert, animated: true)
+    }
+    
+    @objc private func muteSoundOnClick() {
+        _isSoundEnabled = !_isSoundEnabled
+       _soundButton.setTitle(_isSoundEnabled ? "Отключить звук" : "Включить звук", for: .normal)
+    }
+    
+    @objc private func respondUsOnClick() {
         
     }
     
-    @objc private func termsOfUse() {
-        
-    }
-    
-    @objc private func deleteProfile() {
-        
-    }
-    
-    @objc private func muteSound() {
-        
-    }
-    
-    @objc private func respondUs() {
+    private func deleteProfile() {
         
     }
 }

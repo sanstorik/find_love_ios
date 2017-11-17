@@ -7,13 +7,17 @@ class UsernameTextFieldDelegate: NSObject, UITextFieldDelegate {
     }
 }
 
-class RegistrationViewController: UIViewController {
+class RegistrationViewController: CommonViewController {
+    
+    override func viewWillAppear(_ animated: Bool) {
+        setupNavigationBar(title: "")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor.black
         setupViews()
-        setupNavigationBar()
     }
     
     private let _userNameTextField: UITextField = {
@@ -173,10 +177,5 @@ class RegistrationViewController: UIViewController {
         _cantRememberPassLabel.trailingAnchor.constraint(equalTo: _rememberPassLabel.trailingAnchor).isActive = true
         _cantRememberPassLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor,
                                                     constant: -10).isActive = true
-    }
-    
-    private func setupNavigationBar() {
-        navigationController?.navigationBar.isTranslucent = false
-        navigationController?.navigationBar.barTintColor = UIColor.black
     }
 }

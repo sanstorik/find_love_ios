@@ -1,13 +1,16 @@
 import UIKit
 
-class NewFormViewController: UIViewController {
+class NewFormViewController: CommonViewController {
 
+    override func viewWillAppear(_ animated: Bool) {
+        setupNavigationBar(title: isEditingSession ? "Изменить анкету" : "Новая анкета")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         view.backgroundColor = UIColor.black
         setupViews()
-        setupNavigationBar()
         setupImageTap()
     }
     
@@ -63,6 +66,8 @@ class NewFormViewController: UIViewController {
 
     private let _textDelegate = UsernameTextFieldDelegate()
     
+    var isEditingSession = false
+    
     private func setupViews() {
         _cityTextField.delegate = _textDelegate
         _countryTextField.delegate = _textDelegate
@@ -96,19 +101,7 @@ class NewFormViewController: UIViewController {
         _noGeoPositionLabel.trailingAnchor.constraint(equalTo: _avatarImageView.trailingAnchor).isActive = true
         _noGeoPositionLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20).isActive = true
     }
-    
-    
-    private func setupNavigationBar() {
-        navigationItem.title = "Новая анкета"
-        navigationController?.navigationBar.titleTextAttributes =
-            [NSAttributedStringKey.foregroundColor: UIColor.lightGray,
-             NSAttributedStringKey.font: UIFont.systemFont(ofSize: 28)]
 
-        
-        navigationController?.navigationBar.isTranslucent = false
-        navigationController?.navigationBar.barTintColor = UIColor.black
-    }
-    
     private func setupImageTap() {
         let imageTap = UITapGestureRecognizer(target: self, action: #selector(onImageTapped))
         
