@@ -1,4 +1,5 @@
 import UIKit
+import UIView_Shake
 
 class UsernameTextFieldDelegate: NSObject, UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -10,7 +11,7 @@ class UsernameTextFieldDelegate: NSObject, UITextFieldDelegate {
 class RegistrationViewController: CommonViewController {
     
     override func viewWillAppear(_ animated: Bool) {
-        setupNavigationBar(title: "")
+        setupNavigationBar()
     }
     
     override func viewDidLoad() {
@@ -18,6 +19,7 @@ class RegistrationViewController: CommonViewController {
         
         view.backgroundColor = UIColor.black
         setupViews()
+        registerKeyboardObservers()
     }
     
     private let _userNameTextField: UITextField = {
@@ -93,19 +95,22 @@ class RegistrationViewController: CommonViewController {
     @objc private func registerOnClick() {
         var areFormsFilled = true
         
-        let name = _userPasswordTextField.text
+        let name = _userNameTextField.text
         if name == nil || name!.isEmpty {
             areFormsFilled = false
-            print("!filled")
+            _userNameTextField.shake(3, withDelta: 8, speed: 0.05)
         }
         
         let password = _userPasswordTextField.text
         if password == nil || password!.isEmpty {
             areFormsFilled = false
+            _userPasswordTextField.shake(3, withDelta: 8, speed: 0.05)
         }
         
         if _sex == nil {
             areFormsFilled = false
+            _maleButton.shake(3, withDelta: 8, speed: 0.05)
+            _femaleButton.shake(3, withDelta: 8, speed: 0.05)
         }
         
         if areFormsFilled {
@@ -128,6 +133,7 @@ class RegistrationViewController: CommonViewController {
     }
     
     private func setupViews() {
+        
         _userPasswordTextField.delegate = delegate
         _userNameTextField.delegate = delegate
         

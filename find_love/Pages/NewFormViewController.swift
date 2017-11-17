@@ -12,6 +12,7 @@ class NewFormViewController: CommonViewController {
         view.backgroundColor = UIColor.black
         setupViews()
         setupImageTap()
+        registerKeyboardObservers()
     }
     
     private let _countryTextField: UITextField = {

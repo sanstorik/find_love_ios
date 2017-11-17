@@ -3,7 +3,12 @@ import UIKit
 class RulesViewController: CommonViewController {
 
     override func viewWillAppear(_ animated: Bool) {
-        navigationController?.setNavigationBarHidden(true, animated: false)
+        setupNavigationBar()
+        navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = false
     }
     
     override func viewDidLoad() {

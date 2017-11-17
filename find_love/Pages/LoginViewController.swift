@@ -3,7 +3,7 @@ import UIKit
 class LoginViewController: CommonViewController {
 
     override func viewWillAppear(_ animated: Bool) {
-        setupNavigationBar(title: "")
+        setupNavigationBar()
     }
     
     override func viewDidLoad() {

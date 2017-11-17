@@ -15,4 +15,12 @@ class UnderlinedTextField: UITextField {
         layer.addSublayer(border)
         layer.masksToBounds = true
     }
+    
+    override func textRect(forBounds bounds: CGRect) -> CGRect {
+        return bounds.insetBy(dx: 0, dy: 7)
+    }
+    
+    override func editingRect(forBounds bounds: CGRect) -> CGRect {
+        return bounds.insetBy(dx: 0, dy: 7)
+    }
 }

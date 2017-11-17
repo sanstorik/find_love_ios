@@ -1,8 +1,11 @@
 import UIKit
 
 class InstructionViewController: CommonViewController {
-
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        setupNavigationBar()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

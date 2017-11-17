@@ -13,7 +13,7 @@ class TermsOfUseViewController: CommonViewController {
         let imageView = UIImageView(image: UIImage(named: "heartOne"))
         imageView.frame = CGRect(x: 0, y: 0, width: 40, height: 100)
         
-        setupNavigationBar(imageView: imageView)
+        setupNavigationBar(withImage: imageView)
     }
     
     override func viewDidAppear(_ animated: Bool) {
