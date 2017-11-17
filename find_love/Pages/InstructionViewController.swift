@@ -6,6 +6,7 @@ class InstructionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = UIColor.black
         setupViews()
         setupNavigationBar()
     }

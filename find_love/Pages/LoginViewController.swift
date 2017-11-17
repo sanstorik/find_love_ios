@@ -5,6 +5,7 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = UIColor.black
         setupViews()
         setupNavigationBar()
     }
@@ -104,8 +105,7 @@ class LoginViewController: UIViewController {
         
         _refreshPassLabel.leadingAnchor.constraint(equalTo: _forgotPassLabel.leadingAnchor).isActive = true
         _refreshPassLabel.trailingAnchor.constraint(equalTo: _forgotPassLabel.trailingAnchor).isActive = true
-        _refreshPassLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor,
-                                                       constant: -50).isActive = true
+        _refreshPassLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50).isActive = true
     }
 }
 

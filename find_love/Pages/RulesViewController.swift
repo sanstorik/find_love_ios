@@ -2,9 +2,14 @@ import UIKit
 
 class RulesViewController: UIViewController {
 
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = UIColor.black
         setupViews()
         setupNavigationBar()
     }
@@ -28,7 +33,6 @@ class RulesViewController: UIViewController {
     }()
     
     private func setupNavigationBar() {
-        navigationController?.isNavigationBarHidden = true
     }
     
     @objc private func onAgreeClick() {
