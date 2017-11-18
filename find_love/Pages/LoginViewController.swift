@@ -1,9 +1,15 @@
 import UIKit
- 
+import UIView_Shake
+
 class LoginViewController: CommonViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         setupNavigationBar()
+        navigationController?.isNavigationBarHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        unregisterKeyboardObservers()
     }
     
     override func viewDidLoad() {
@@ -11,7 +17,16 @@ class LoginViewController: CommonViewController {
         
         view.backgroundColor = UIColor.black
         setupViews()
+        registerKeyboardObservers(offset: 50)
     }
+    
+    private let _appIconImageView: UIImageView = {
+        let imageView = UIImageView(image: UIImage(named: "app_icon"))
+        imageView.contentMode = .scaleAspectFill
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return imageView
+    }()
     
     private let _userNameTextField: UITextField = {
         let textField = UnderlinedTextField()
@@ -31,7 +46,7 @@ class LoginViewController: CommonViewController {
     private let _loginButton: UIButton = {
         let button = UIButton()
         button.filledCornerInitilization(color: UIColor.red, title: "ВХОД")
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 22)
         return button
     }()
     
@@ -39,7 +54,7 @@ class LoginViewController: CommonViewController {
         let button = UIButton()
         button.filledCornerInitilization(color: UIColor.red,
                                          title: "Я ЗАБЫЛ(А) ПАРОЛЬ")
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 22)
         
         return button
     }()
@@ -71,6 +86,7 @@ class LoginViewController: CommonViewController {
         _userNameTextField.delegate = _userNameDelegate
         _userPasswordTextField.delegate = _userNameDelegate
         
+        view.addSubview(_appIconImageView)
         view.addSubview(_userNameTextField)
         view.addSubview(_userPasswordTextField)
         view.addSubview(_loginButton)
@@ -80,6 +96,11 @@ class LoginViewController: CommonViewController {
         
         let leftOffset: CGFloat = 40
         let rightOffset: CGFloat = -40
+        
+        _appIconImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        _appIconImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 30).isActive = true
+        _appIconImageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.6).isActive = true
+        _appIconImageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.3).isActive = true
         
         _userNameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: leftOffset).isActive = true
         _userNameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: rightOffset).isActive = true
@@ -92,10 +113,12 @@ class LoginViewController: CommonViewController {
         _loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: leftOffset).isActive = true
         _loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: rightOffset).isActive = true
         _loginButton.bottomAnchor.constraint(equalTo: _resetPasswordButton.topAnchor, constant: -10).isActive = true
+        _loginButton.addTarget(self, action: #selector(loginOnClick), for: .touchUpInside)
         
         _resetPasswordButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: leftOffset).isActive = true
         _resetPasswordButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: rightOffset).isActive = true
         _resetPasswordButton.bottomAnchor.constraint(equalTo: _forgotPassLabel.topAnchor, constant: -35).isActive = true
+        _resetPasswordButton.addTarget(self, action: #selector(resetPasswordOnClick), for: .touchUpInside)
         
         _forgotPassLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: leftOffset).isActive = true
         _forgotPassLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: rightOffset).isActive = true
@@ -104,6 +127,56 @@ class LoginViewController: CommonViewController {
         _refreshPassLabel.leadingAnchor.constraint(equalTo: _forgotPassLabel.leadingAnchor).isActive = true
         _refreshPassLabel.trailingAnchor.constraint(equalTo: _forgotPassLabel.trailingAnchor).isActive = true
         _refreshPassLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50).isActive = true
+    }
+    
+    @objc private func loginOnClick() {
+        var loginAllowed = true
+
+        let login = _userNameTextField.text
+        if login == nil || login!.isEmpty {
+            loginAllowed = false
+            _userNameTextField.shake(3, withDelta: 8, speed: 0.05)
+        }
+        
+        let password = _userPasswordTextField.text
+        if password == nil || password!.isEmpty {
+            loginAllowed = false
+            _userPasswordTextField.shake(3, withDelta: 8, speed: 0.05)
+        }
+        
+        if loginAllowed {
+            view.showLoaderFullScreen()
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) { [unowned self] () -> Void in
+                self.view.removeLoader {
+                    if self.checkUserAccount() {
+                        self.validLogin()
+                    } else {
+                        self.errorLogin()
+                    }
+                }
+            }
+        }
+    }
+    
+    private func checkUserAccount() -> Bool {
+        return false
+    }
+    
+    private func validLogin() {
+        navigationController?.pushViewController(SettingsViewController(), animated: true)
+    }
+    
+    private func errorLogin() {
+        let alert = UIAlertController(title: "Ошибка", message: "Пожалуйста, перепроверьте данные и введите их снова.",
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ок", style: .default))
+        
+        present(alert, animated: true)
+    }
+    
+    @objc private func resetPasswordOnClick() {
+        navigationController?.pushViewController(RegistrationViewController(), animated: true)
     }
 }
 

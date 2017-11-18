@@ -6,6 +6,10 @@ class NewFormViewController: CommonViewController {
         setupNavigationBar(title: isEditingSession ? "Изменить анкету" : "Новая анкета")
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        unregisterKeyboardObservers()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -16,18 +20,18 @@ class NewFormViewController: CommonViewController {
     }
     
     private let _countryTextField: UITextField = {
-        let textField = UnderlinedTextField()
+        let textField = UnderlinedSearchTextField(xOffset: 0, yOffset: 7, searchHelpers:
+            ["Россия", "Украина", "Беларусь", "Казахстан", "Китай"])
         textField.defaultInitilization(hint: "Укажите страну")
-        textField.keyboardType = .asciiCapable
         textField.font = UIFont.systemFont(ofSize: 23)
         
         return textField
     }()
     
     private let _cityTextField: UITextField = {
-        let textField = UnderlinedTextField()
+        let textField = UnderlinedSearchTextField(xOffset: 0, yOffset: 7, searchHelpers:
+            ["Москва", "Киев", "Владивосток", "Ростов-на-Дону", "Петербург"])
         textField.defaultInitilization(hint: "Укажите город")
-        textField.keyboardType = .asciiCapable
         textField.font = UIFont.systemFont(ofSize: 23)
         
         return textField

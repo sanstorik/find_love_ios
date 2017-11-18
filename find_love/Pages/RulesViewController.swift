@@ -8,7 +8,7 @@ class RulesViewController: CommonViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        navigationController?.isNavigationBarHidden = false
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     override func viewDidLoad() {
@@ -37,7 +37,7 @@ class RulesViewController: CommonViewController {
     }()
 
     @objc private func onAgreeClick() {
-        navigationController?.pushViewController(SettingsViewController(), animated: true)
+        navigationController?.pushViewController(InstructionViewController(), animated: true)
     }
     
     private func setupViews() {

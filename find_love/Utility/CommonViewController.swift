@@ -39,7 +39,18 @@ extension CommonViewController {
                                                name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
-    @objc func keyboardWillShow(notification: NSNotification) {
+    final func registerKeyboardObservers(offset: CGFloat) {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWithSizeShow(offset:_:)),
+                                               name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWithSizeHide(offset:_:)),
+                                               name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    final func unregisterKeyboardObservers() {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc fileprivate func keyboardWillShow(notification: NSNotification) {
         let keyboardSize = (notification.userInfo![UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
         let offset = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size
         
@@ -59,10 +70,27 @@ extension CommonViewController {
         
         _isKeyboardShown = true
     }
+
     
-    @objc func keyboardWillHide(notification: NSNotification) {
+    @objc fileprivate func keyboardWillHide(notification: NSNotification) {
         if let keyboardSize = calculateKeyboardHeight(notification: notification) {
             view.frame.origin.y += keyboardSize.height
+            _isKeyboardShown = false
+        }
+    }
+    
+    @objc fileprivate func keyboardWithSizeShow(offset: CGFloat, _ notification: NSNotification) {
+        if let _ = calculateKeyboardHeight(notification: notification), !_isKeyboardShown {
+            UIView.animate(withDuration: 0.1, animations: { [unowned self]() -> Void in
+                self.view.frame.origin.y -= 50
+            })
+            _isKeyboardShown = true
+        }
+    }
+    
+    @objc fileprivate func keyboardWithSizeHide(offset: CGFloat, _ notification: NSNotification) {
+        if let _ = calculateKeyboardHeight(notification: notification), _isKeyboardShown {
+            self.view.frame.origin.y += 50
             _isKeyboardShown = false
         }
     }
