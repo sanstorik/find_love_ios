@@ -82,20 +82,22 @@ class NewFormViewController: CommonViewController {
         _avatarImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30).isActive = true
         _avatarImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30).isActive = true
         _avatarImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 8).isActive = true
-        _avatarImageView.heightAnchor.constraint(equalToConstant: 320).isActive = true
+        _avatarImageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.48).isActive = true
         
         _countryTextField.leadingAnchor.constraint(equalTo: _avatarImageView.leadingAnchor).isActive = true
         _countryTextField.trailingAnchor.constraint(equalTo: _avatarImageView.trailingAnchor).isActive = true
-        _countryTextField.topAnchor.constraint(equalTo: _avatarImageView.bottomAnchor, constant: 20).isActive = true
+        _countryTextField.topAnchor
+            .constraintLessThanOrEqualToSystemSpacingBelow(_avatarImageView.bottomAnchor, multiplier: 2).isActive = true
         
         _cityTextField.leadingAnchor.constraint(equalTo: _avatarImageView.leadingAnchor).isActive = true
         _cityTextField.trailingAnchor.constraint(equalTo: _avatarImageView.trailingAnchor).isActive = true
-        _cityTextField.topAnchor.constraint(equalTo: _countryTextField.bottomAnchor, constant: 30).isActive = true
+        _cityTextField.topAnchor
+            .constraintLessThanOrEqualToSystemSpacingBelow(_countryTextField.bottomAnchor, multiplier: 2).isActive = true
         
         _createButton.leadingAnchor.constraint(equalTo: _avatarImageView.leadingAnchor).isActive = true
         _createButton.trailingAnchor.constraint(equalTo: _avatarImageView.trailingAnchor).isActive = true
         _createButton.topAnchor.constraint(equalTo: _cityTextField.bottomAnchor, constant: 30).isActive = true
-        _createButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        _createButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.1).isActive = true
         _createButton.addTarget(self, action: #selector(createOnClick), for: .touchUpInside)
         
         _noGeoPositionLabel.leadingAnchor.constraint(equalTo: _avatarImageView.leadingAnchor).isActive = true

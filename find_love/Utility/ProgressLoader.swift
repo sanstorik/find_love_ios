@@ -16,7 +16,7 @@ extension UIView {
         
         let container = UIView()
         container.tag = UIView.loaderTag
-        container.backgroundColor = UIColor.black
+        container.backgroundColor = UIColor.clear
         isUserInteractionEnabled = false
         container.translatesAutoresizingMaskIntoConstraints = false
         addSubview(container)
@@ -51,11 +51,50 @@ extension UIView {
         bringSubview(toFront: container)
     }
     
-    func removeLoader() {
+    func showLoaderFullScreen() {
+        loaderView?.removeFromSuperview()
+        
+        let container = UIView()
+        container.tag = UIView.loaderTag
+        container.backgroundColor = UIColor.black
+        isUserInteractionEnabled = false
+        container.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(container)
+        
+        let indicatorConrainer = UIView()
+        indicatorConrainer.backgroundColor = UIColor.black
+        indicatorConrainer.layer.cornerRadius = 5
+        indicatorConrainer.translatesAutoresizingMaskIntoConstraints = false
+        container.addSubview(indicatorConrainer)
+        
+        let image = UIImage(named: "hearts")
+        let heartsImageView = UIImageView(image: image)
+        heartsImageView.translatesAutoresizingMaskIntoConstraints = false
+        heartsImageView.contentMode = .scaleAspectFill
+        heartsImageView.startScaleAnimation(scaleX: 1.3, scaleY: 1.3)
+        
+        indicatorConrainer.addSubview(heartsImageView)
+
+        container.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        container.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        container.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        container.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        
+        heartsImageView.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 5).isActive = true
+        heartsImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        heartsImageView.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        heartsImageView.heightAnchor.constraint(equalToConstant: 140).isActive = true
+        
+        setNeedsLayout()
+        bringSubview(toFront: container)
+    }
+    
+    func removeLoader(_ completionHandler: (() -> ())? = nil) {
         isUserInteractionEnabled = true
         UIView.animate(withDuration: 0.3, animations: {
             self.loaderView?.alpha = 0
         }) { _ in
+            completionHandler?()
             self.loaderView?.removeFromSuperview()
         }
     }

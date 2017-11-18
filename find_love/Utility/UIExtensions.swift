@@ -24,3 +24,16 @@ extension UIButton {
         translatesAutoresizingMaskIntoConstraints = false
     }
 }
+
+extension UIImageView {
+    func startScaleAnimation(scaleX: CGFloat, scaleY: CGFloat) {
+        UIView.animate(withDuration: 0.5, delay: 0.1, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [.repeat, .autoreverse],
+                       animations: {
+                  self.transform = CGAffineTransform(scaleX: scaleX, y: scaleY)
+        })
+    }
+    
+    func stopAnimations() {
+        layer.removeAllAnimations()
+    }
+}

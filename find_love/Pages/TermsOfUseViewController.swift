@@ -21,11 +21,12 @@ class TermsOfUseViewController: CommonViewController {
     }
     
     override func viewDidLayoutSubviews() {
-        _textView.setContentOffset(.zero, animated: true)
+        _textView.setContentOffset(.zero, animated: false)
     }
     
     private let _textView: UITextView = {
         let view = UITextView()
+        view.isEditable = false
         view.text = """
         1. ОБЩИЕ ПОЛОЖЕНИЯ
         

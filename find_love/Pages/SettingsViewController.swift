@@ -1,4 +1,5 @@
 import UIKit
+import MessageUI
 
 class SettingsViewController: CommonViewController {
     
@@ -74,7 +75,18 @@ class SettingsViewController: CommonViewController {
     }
     
     @objc private func recoverPurchasesOnClick() {
+        navigationController?.setNavigationBarHidden(true, animated: true)
+        view.showLoaderFullScreen()
         
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3)) { [unowned self] () -> Void in
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
+            self.view.removeLoader {
+                let alert = UIAlertController(title: nil, message: "Активность вашей подписки подтверджена", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Oк", style: .default, handler: nil))
+                
+                self.present(alert, animated: true)
+            }
+        }
     }
     
     @objc private func termsOfUseOnClick() {
@@ -98,10 +110,24 @@ class SettingsViewController: CommonViewController {
     }
     
     @objc private func respondUsOnClick() {
+        let mail = MFMailComposeViewController()
+        mail.setSubject("Feedback love search")
+        mail.setToRecipients(["our staff"])
+        mail.delegate = self
         
+        if MFMailComposeViewController.canSendMail() {
+            present(mail, animated: true, completion: nil)
+        } else {
+            print("cant send mails")
+        }
     }
     
     private func deleteProfile() {
-        
+    }
+}
+
+extension SettingsViewController: MFMailComposeViewControllerDelegate, UINavigationControllerDelegate {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true)
     }
 }
