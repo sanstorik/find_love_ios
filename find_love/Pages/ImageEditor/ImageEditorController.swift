@@ -1,4 +1,5 @@
 import UIKit
+import DynamicStickers
 
 class ImageEditorController: CommonViewController {
     override func viewWillAppear(_ animated: Bool) {

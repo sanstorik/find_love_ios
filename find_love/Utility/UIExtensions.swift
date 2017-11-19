@@ -36,15 +36,4 @@ extension UIImageView {
     func stopAnimations() {
         layer.removeAllAnimations()
     }
-    
-    func makeDashedBorder(color: UIColor, width: NSNumber) {
-        let yourViewBorder = CAShapeLayer()
-        yourViewBorder.strokeColor = color.cgColor
-        yourViewBorder.lineDashPattern = [width, width]
-        yourViewBorder.frame = bounds
-        yourViewBorder.fillColor = nil
-        yourViewBorder.path = UIBezierPath(rect: bounds).cgPath
-        
-        layer.addSublayer(yourViewBorder)
-    }
 }
