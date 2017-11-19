@@ -4,6 +4,9 @@ class NewFormViewController: CommonViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         setupNavigationBar(title: isEditingSession ? "Изменить анкету" : "Новая анкета")
+        navigationItem.hidesBackButton = true
+        
+        registerKeyboardObservers()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -16,7 +19,6 @@ class NewFormViewController: CommonViewController {
         view.backgroundColor = UIColor.black
         setupViews()
         setupImageTap()
-        registerKeyboardObservers()
     }
     
     private let _countryTextField: UITextField = {
@@ -72,7 +74,7 @@ class NewFormViewController: CommonViewController {
     private let _textDelegate = UsernameTextFieldDelegate()
     
     var isEditingSession = false
-    
+
     private func setupViews() {
         _cityTextField.delegate = _textDelegate
         _countryTextField.delegate = _textDelegate
@@ -86,7 +88,7 @@ class NewFormViewController: CommonViewController {
         _avatarImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30).isActive = true
         _avatarImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30).isActive = true
         _avatarImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 8).isActive = true
-        _avatarImageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.48).isActive = true
+        _avatarImageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.52).isActive = true
         
         _countryTextField.leadingAnchor.constraint(equalTo: _avatarImageView.leadingAnchor).isActive = true
         _countryTextField.trailingAnchor.constraint(equalTo: _avatarImageView.trailingAnchor).isActive = true
@@ -107,6 +109,10 @@ class NewFormViewController: CommonViewController {
         _noGeoPositionLabel.leadingAnchor.constraint(equalTo: _avatarImageView.leadingAnchor).isActive = true
         _noGeoPositionLabel.trailingAnchor.constraint(equalTo: _avatarImageView.trailingAnchor).isActive = true
         _noGeoPositionLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20).isActive = true
+    }
+    
+    public func setEditedImage(image: UIImage?) {
+        _avatarImageView.image = image
     }
 
     private func setupImageTap() {
@@ -166,6 +172,11 @@ extension NewFormViewController: UIImagePickerControllerDelegate, UINavigationCo
         }
         
         _avatarImageView.image = image
-        dismiss(animated: true)
+        
+        dismiss(animated: true) { [unowned self] () -> Void in
+            let imageEditor = ImageEditorController()
+            imageEditor.avatarImage = image
+            self.navigationController?.pushViewController(imageEditor, animated: true)
+        }
     }
 }

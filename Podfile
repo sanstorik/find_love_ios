@@ -5,6 +5,6 @@ target 'find_love' do
   use_frameworks!
 
   pod ‘UIView+Shake’
-  pod ‘SearchTextField’
+  pod ‘SearchTextField’, :inhibit_warnings=>true
 
 end

@@ -1,6 +1,5 @@
 import UIKit
 import UIView_Shake
-import SearchTextField
 
 class UsernameTextFieldDelegate: NSObject, UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

@@ -11,6 +11,7 @@
 		896D623D1FBCC00700E264E3 /* UnderlinedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896D623C1FBCC00700E264E3 /* UnderlinedTextField.swift */; };
 		896D62401FBCC58600E264E3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896D623F1FBCC58600E264E3 /* User.swift */; };
 		896D62421FBCD78B00E264E3 /* RulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896D62411FBCD78B00E264E3 /* RulesViewController.swift */; };
+		89815E031FC1E22700CB42DD /* DynamicGestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89815E021FC1E22700CB42DD /* DynamicGestures.swift */; };
 		8995D9781FBB7CE80015EF61 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8995D9771FBB7CE80015EF61 /* AppDelegate.swift */; };
 		8995D97A1FBB7CE80015EF61 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8995D9791FBB7CE80015EF61 /* LoginViewController.swift */; };
 		8995D97F1FBB7CE80015EF61 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8995D97E1FBB7CE80015EF61 /* Assets.xcassets */; };
@@ -24,6 +25,9 @@
 		89DEC61A1FBDBFF500BA851A /* NewFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DEC6191FBDBFF500BA851A /* NewFormViewController.swift */; };
 		89DEC61C1FBDD8A100BA851A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DEC61B1FBDD8A100BA851A /* SettingsViewController.swift */; };
 		89E33E421FBF690F00FA9065 /* ProgressLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E33E411FBF690F00FA9065 /* ProgressLoader.swift */; };
+		89F98E3A1FC1AB9D002F9F2E /* ImageEditorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F98E391FC1AB9D002F9F2E /* ImageEditorController.swift */; };
+		89F98E3E1FC1B4E0002F9F2E /* StickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F98E3D1FC1B4E0002F9F2E /* StickerCell.swift */; };
+		89F98E411FC1D781002F9F2E /* DynamicStickersHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F98E401FC1D781002F9F2E /* DynamicStickersHandler.swift */; };
 		89FDB82A1FBC5E9000FD32D3 /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89FDB8291FBC5E9000FD32D3 /* UIExtensions.swift */; };
 		89FDB82D1FBC6F7600FD32D3 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89FDB82C1FBC6F7600FD32D3 /* RegistrationViewController.swift */; };
 /* End PBXBuildFile section */
@@ -51,6 +55,7 @@
 		896D623C1FBCC00700E264E3 /* UnderlinedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlinedTextField.swift; sourceTree = "<group>"; };
 		896D623F1FBCC58600E264E3 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		896D62411FBCD78B00E264E3 /* RulesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesViewController.swift; sourceTree = "<group>"; };
+		89815E021FC1E22700CB42DD /* DynamicGestures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicGestures.swift; sourceTree = "<group>"; };
 		8995D9741FBB7CE80015EF61 /* find_love.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = find_love.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8995D9771FBB7CE80015EF61 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8995D9791FBB7CE80015EF61 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -70,6 +75,9 @@
 		89DEC6191FBDBFF500BA851A /* NewFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFormViewController.swift; sourceTree = "<group>"; };
 		89DEC61B1FBDD8A100BA851A /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		89E33E411FBF690F00FA9065 /* ProgressLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressLoader.swift; sourceTree = "<group>"; };
+		89F98E391FC1AB9D002F9F2E /* ImageEditorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageEditorController.swift; sourceTree = "<group>"; };
+		89F98E3D1FC1B4E0002F9F2E /* StickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickerCell.swift; sourceTree = "<group>"; };
+		89F98E401FC1D781002F9F2E /* DynamicStickersHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicStickersHandler.swift; sourceTree = "<group>"; };
 		89FDB8291FBC5E9000FD32D3 /* UIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
 		89FDB82C1FBC6F7600FD32D3 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		AFFEA22A2E0D85482FFFBF03 /* Pods-find_love.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-find_love.release.xcconfig"; path = "Pods/Target Support Files/Pods-find_love/Pods-find_love.release.xcconfig"; sourceTree = "<group>"; };
@@ -192,9 +200,29 @@
 			path = Utility;
 			sourceTree = "<group>";
 		};
+		89F98E381FC1AB6A002F9F2E /* ImageEditor */ = {
+			isa = PBXGroup;
+			children = (
+				89F98E3F1FC1D6C7002F9F2E /* StickersLibrary */,
+				89F98E391FC1AB9D002F9F2E /* ImageEditorController.swift */,
+				89F98E3D1FC1B4E0002F9F2E /* StickerCell.swift */,
+			);
+			path = ImageEditor;
+			sourceTree = "<group>";
+		};
+		89F98E3F1FC1D6C7002F9F2E /* StickersLibrary */ = {
+			isa = PBXGroup;
+			children = (
+				89F98E401FC1D781002F9F2E /* DynamicStickersHandler.swift */,
+				89815E021FC1E22700CB42DD /* DynamicGestures.swift */,
+			);
+			path = StickersLibrary;
+			sourceTree = "<group>";
+		};
 		89FDB82B1FBC6F3C00FD32D3 /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				89F98E381FC1AB6A002F9F2E /* ImageEditor */,
 				8995D9791FBB7CE80015EF61 /* LoginViewController.swift */,
 				89FDB82C1FBC6F7600FD32D3 /* RegistrationViewController.swift */,
 				896D62411FBCD78B00E264E3 /* RulesViewController.swift */,
@@ -401,14 +429,18 @@
 				89A1F34D1FBC56DC002E870E /* ColorExtension.swift in Sources */,
 				896D623D1FBCC00700E264E3 /* UnderlinedTextField.swift in Sources */,
 				89DEC61C1FBDD8A100BA851A /* SettingsViewController.swift in Sources */,
+				89815E031FC1E22700CB42DD /* DynamicGestures.swift in Sources */,
 				89E33E421FBF690F00FA9065 /* ProgressLoader.swift in Sources */,
 				8995D97A1FBB7CE80015EF61 /* LoginViewController.swift in Sources */,
 				89BFDEAD1FBF23D2003F9601 /* CommonViewController.swift in Sources */,
+				89F98E411FC1D781002F9F2E /* DynamicStickersHandler.swift in Sources */,
 				89DEC6181FBDB7DA00BA851A /* InstructionViewController.swift in Sources */,
 				8995D9781FBB7CE80015EF61 /* AppDelegate.swift in Sources */,
 				89FDB82A1FBC5E9000FD32D3 /* UIExtensions.swift in Sources */,
 				89FDB82D1FBC6F7600FD32D3 /* RegistrationViewController.swift in Sources */,
+				89F98E3A1FC1AB9D002F9F2E /* ImageEditorController.swift in Sources */,
 				896D62421FBCD78B00E264E3 /* RulesViewController.swift in Sources */,
+				89F98E3E1FC1B4E0002F9F2E /* StickerCell.swift in Sources */,
 				89BFDEAB1FBF08FB003F9601 /* TermsOfUseViewController.swift in Sources */,
 				896D62401FBCC58600E264E3 /* User.swift in Sources */,
 				89DEC61A1FBDBFF500BA851A /* NewFormViewController.swift in Sources */,
