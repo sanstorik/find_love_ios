@@ -78,8 +78,8 @@ class NewFormViewController: CommonViewController {
     private func setupViews() {
         _cityTextField.delegate = _textDelegate
         _countryTextField.delegate = _textDelegate
-        _cityTextField.font = _cityTextField.font?.withSize(view.frame.height * 0.024)
-        _countryTextField.font = _countryTextField.font?.withSize(view.frame.height * 0.024)
+        _cityTextField.font = _cityTextField.font?.withSize(view.frame.height * 0.033)
+        _countryTextField.font = _countryTextField.font?.withSize(view.frame.height * 0.033)
         
         view.addSubview(_avatarImageView)
         view.addSubview(_countryTextField)
