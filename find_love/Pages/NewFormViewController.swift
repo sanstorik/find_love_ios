@@ -78,6 +78,8 @@ class NewFormViewController: CommonViewController {
     private func setupViews() {
         _cityTextField.delegate = _textDelegate
         _countryTextField.delegate = _textDelegate
+        _cityTextField.font = _cityTextField.font?.withSize(view.frame.height * 0.024)
+        _countryTextField.font = _countryTextField.font?.withSize(view.frame.height * 0.024)
         
         view.addSubview(_avatarImageView)
         view.addSubview(_countryTextField)
@@ -92,13 +94,11 @@ class NewFormViewController: CommonViewController {
         
         _countryTextField.leadingAnchor.constraint(equalTo: _avatarImageView.leadingAnchor).isActive = true
         _countryTextField.trailingAnchor.constraint(equalTo: _avatarImageView.trailingAnchor).isActive = true
-        _countryTextField.topAnchor
-            .constraintLessThanOrEqualToSystemSpacingBelow(_avatarImageView.bottomAnchor, multiplier: 2).isActive = true
+        _countryTextField.topAnchor.constraint(equalTo: _avatarImageView.bottomAnchor, constant: 20).isActive = true
         
         _cityTextField.leadingAnchor.constraint(equalTo: _avatarImageView.leadingAnchor).isActive = true
         _cityTextField.trailingAnchor.constraint(equalTo: _avatarImageView.trailingAnchor).isActive = true
-        _cityTextField.topAnchor
-            .constraintLessThanOrEqualToSystemSpacingBelow(_countryTextField.bottomAnchor, multiplier: 2).isActive = true
+        _cityTextField.topAnchor.constraint(equalTo: _countryTextField.bottomAnchor, constant: 20).isActive = true
         
         _createButton.leadingAnchor.constraint(equalTo: _avatarImageView.leadingAnchor).isActive = true
         _createButton.trailingAnchor.constraint(equalTo: _avatarImageView.trailingAnchor).isActive = true
@@ -108,7 +108,7 @@ class NewFormViewController: CommonViewController {
         
         _noGeoPositionLabel.leadingAnchor.constraint(equalTo: _avatarImageView.leadingAnchor).isActive = true
         _noGeoPositionLabel.trailingAnchor.constraint(equalTo: _avatarImageView.trailingAnchor).isActive = true
-        _noGeoPositionLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20).isActive = true
+        _noGeoPositionLabel.topAnchor.constraint(equalTo: _createButton.bottomAnchor, constant: 10).isActive = true
     }
     
     public func setEditedImage(image: UIImage?) {

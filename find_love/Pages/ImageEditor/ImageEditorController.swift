@@ -104,7 +104,7 @@ class ImageEditorController: CommonViewController {
         _avatarImageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.51).isActive = true
         
         _chooseEffectLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        _chooseEffectLabel.topAnchor.constraint(equalTo: _avatarImageView.bottomAnchor, constant: 25).isActive = true
+        _chooseEffectLabel.topAnchor.constraint(equalTo: _avatarImageView.bottomAnchor, constant: view.frame.height * 0.020).isActive = true
         
         _stickersViewCollection.topAnchor.constraint(equalTo: _chooseEffectLabel.bottomAnchor, constant: 10).isActive = true
         _stickersViewCollection.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25).isActive = true
@@ -114,13 +114,15 @@ class ImageEditorController: CommonViewController {
         _stickersViewCollection.delegate = self
         _stickersViewCollection.dataSource = self
         
-        _clearButton.topAnchor.constraint(equalTo: _stickersViewCollection.bottomAnchor, constant: 30).isActive = true
+        _clearButton.topAnchor.constraint(equalTo: _stickersViewCollection.bottomAnchor,
+                                          constant: view.frame.height * 0.020).isActive = true
         _clearButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 18).isActive = true
         _clearButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.43).isActive = true
         _clearButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.1).isActive = true
         _clearButton.addTarget(self, action: #selector(clearButtonOnClick), for: .touchUpInside)
         
-        _acceptButton.topAnchor.constraint(equalTo: _stickersViewCollection.bottomAnchor, constant: 30).isActive = true
+        _acceptButton.topAnchor.constraint(equalTo: _stickersViewCollection.bottomAnchor,
+                                           constant: view.frame.height * 0.020).isActive = true
         _acceptButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -18).isActive = true
         _acceptButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.43).isActive = true
         _acceptButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.1).isActive = true
@@ -135,13 +137,12 @@ class ImageEditorController: CommonViewController {
     @objc private func acceptButtonOnClick() {
         let editedImage = saveEditedImageFrom(rootImageView: _avatarImageView) ?? _avatarImageView.image
         
-        let previousController = navigationController?.viewControllers[navigationController!.viewControllers.count - 2]
-        if (editionSession) {
-            print("editing form")
-        } else {
-            (previousController as? NewFormViewController)?.setEditedImage(image: editedImage)
+        guard let previousController = navigationController?.viewControllers[navigationController!.viewControllers.count - 2]
+            as? NewFormViewController else {
+                fatalError("no previous controller")
         }
         
+        previousController.setEditedImage(image: editedImage)
         navigationController?.popViewController(animated: true)
     }
 }
