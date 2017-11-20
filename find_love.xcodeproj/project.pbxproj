@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		200667374C2C345C84D21940 /* Pods_find_love.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18345522F58EEA04A393FBF8 /* Pods_find_love.framework */; };
+		8955E8001FC30EDE008AC8CA /* FormImagePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8955E7FF1FC30EDE008AC8CA /* FormImagePage.swift */; };
 		896D623D1FBCC00700E264E3 /* UnderlinedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896D623C1FBCC00700E264E3 /* UnderlinedTextField.swift */; };
 		896D62401FBCC58600E264E3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896D623F1FBCC58600E264E3 /* User.swift */; };
 		896D62421FBCD78B00E264E3 /* RulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896D62411FBCD78B00E264E3 /* RulesViewController.swift */; };
@@ -18,6 +19,7 @@
 		8995D98D1FBB7CE80015EF61 /* find_loveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8995D98C1FBB7CE80015EF61 /* find_loveTests.swift */; };
 		8995D9981FBB7CE80015EF61 /* find_loveUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8995D9971FBB7CE80015EF61 /* find_loveUITests.swift */; };
 		89A1F34D1FBC56DC002E870E /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A1F34C1FBC56DC002E870E /* ColorExtension.swift */; };
+		89A42ECD1FC2D3D600B7C2F4 /* FormListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A42ECC1FC2D3D600B7C2F4 /* FormListViewController.swift */; };
 		89BFDEAB1FBF08FB003F9601 /* TermsOfUseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BFDEAA1FBF08FB003F9601 /* TermsOfUseViewController.swift */; };
 		89BFDEAD1FBF23D2003F9601 /* CommonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BFDEAC1FBF23D2003F9601 /* CommonViewController.swift */; };
 		89DEC6181FBDB7DA00BA851A /* InstructionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DEC6171FBDB7DA00BA851A /* InstructionViewController.swift */; };
@@ -50,6 +52,7 @@
 /* Begin PBXFileReference section */
 		18345522F58EEA04A393FBF8 /* Pods_find_love.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_find_love.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C4EA931D9D8A552B83AC1F4 /* Pods-find_love.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-find_love.debug.xcconfig"; path = "Pods/Target Support Files/Pods-find_love/Pods-find_love.debug.xcconfig"; sourceTree = "<group>"; };
+		8955E7FF1FC30EDE008AC8CA /* FormImagePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormImagePage.swift; sourceTree = "<group>"; };
 		896D623C1FBCC00700E264E3 /* UnderlinedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlinedTextField.swift; sourceTree = "<group>"; };
 		896D623F1FBCC58600E264E3 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		896D62411FBCD78B00E264E3 /* RulesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesViewController.swift; sourceTree = "<group>"; };
@@ -66,6 +69,7 @@
 		8995D9971FBB7CE80015EF61 /* find_loveUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = find_loveUITests.swift; sourceTree = "<group>"; };
 		8995D9991FBB7CE80015EF61 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		89A1F34C1FBC56DC002E870E /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
+		89A42ECC1FC2D3D600B7C2F4 /* FormListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormListViewController.swift; sourceTree = "<group>"; };
 		89BFDEAA1FBF08FB003F9601 /* TermsOfUseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsOfUseViewController.swift; sourceTree = "<group>"; };
 		89BFDEAC1FBF23D2003F9601 /* CommonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonViewController.swift; sourceTree = "<group>"; };
 		89DEC6171FBDB7DA00BA851A /* InstructionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionViewController.swift; sourceTree = "<group>"; };
@@ -196,6 +200,15 @@
 			path = Utility;
 			sourceTree = "<group>";
 		};
+		89BB50C61FC30AF000F69FEE /* FormsList */ = {
+			isa = PBXGroup;
+			children = (
+				89A42ECC1FC2D3D600B7C2F4 /* FormListViewController.swift */,
+				8955E7FF1FC30EDE008AC8CA /* FormImagePage.swift */,
+			);
+			path = FormsList;
+			sourceTree = "<group>";
+		};
 		89F98E381FC1AB6A002F9F2E /* ImageEditor */ = {
 			isa = PBXGroup;
 			children = (
@@ -208,6 +221,7 @@
 		89FDB82B1FBC6F3C00FD32D3 /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				89BB50C61FC30AF000F69FEE /* FormsList */,
 				89F98E381FC1AB6A002F9F2E /* ImageEditor */,
 				8995D9791FBB7CE80015EF61 /* LoginViewController.swift */,
 				89FDB82C1FBC6F7600FD32D3 /* RegistrationViewController.swift */,
@@ -359,12 +373,18 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-find_love/Pods-find_love-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/DynamicStickers/DynamicStickers.framework",
+				"${BUILT_PRODUCTS_DIR}/Pages/Pages.framework",
 				"${BUILT_PRODUCTS_DIR}/SearchTextField/SearchTextField.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/UIView+Shake/UIView_Shake.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DynamicStickers.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Pages.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SearchTextField.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIView_Shake.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -414,6 +434,8 @@
 			files = (
 				89A1F34D1FBC56DC002E870E /* ColorExtension.swift in Sources */,
 				896D623D1FBCC00700E264E3 /* UnderlinedTextField.swift in Sources */,
+				8955E8001FC30EDE008AC8CA /* FormImagePage.swift in Sources */,
+				89A42ECD1FC2D3D600B7C2F4 /* FormListViewController.swift in Sources */,
 				89DEC61C1FBDD8A100BA851A /* SettingsViewController.swift in Sources */,
 				89E33E421FBF690F00FA9065 /* ProgressLoader.swift in Sources */,
 				8995D97A1FBB7CE80015EF61 /* LoginViewController.swift in Sources */,

@@ -1,18 +1,24 @@
 PODS:
   - DynamicStickers (0.1.0)
+  - Pages (2.0.2)
   - SearchTextField (1.2.0)
+  - SwiftyJSON (4.0.0)
   - UIView+Shake (1.4.0)
 
 DEPENDENCIES:
   - DynamicStickers
+  - Pages
   - SearchTextField
+  - SwiftyJSON
   - UIView+Shake
 
 SPEC CHECKSUMS:
   DynamicStickers: 607eb8ea0b9a9aed400565fcfd3752b8775fc646
+  Pages: 5564ac6035c48fef7a837049314f57507d263b11
   SearchTextField: a5bb7e4c33affadb115afdbe8100d84ef10a8024
+  SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
   UIView+Shake: 055ad67721de1f74d29c0a1d464697e505dfc62f
 
-PODFILE CHECKSUM: 484f9202ad69cacfb0f1397d64d618b9d323fee7
+PODFILE CHECKSUM: 8253779255754f3bd56d9f61239a1d3f03eb2af3
 
 COCOAPODS: 1.3.1

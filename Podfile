@@ -7,5 +7,7 @@ target 'find_love' do
   pod ‘UIView+Shake’
   pod ‘SearchTextField’, :inhibit_warnings=>true
   pod 'DynamicStickers'
+  pod 'SwiftyJSON'
+  pod 'Pages'
 
 end
