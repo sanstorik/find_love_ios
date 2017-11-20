@@ -111,7 +111,7 @@ class FormListViewController: CommonViewController {
         
         _pageView.view.translatesAutoresizingMaskIntoConstraints = false
         _pageView.view.topAnchor.constraint(equalTo: _appIconImageView.bottomAnchor).isActive = true
-        _pageView.view.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.63).isActive = true
+        _pageView.view.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.6).isActive = true
         _pageView.view.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         _pageView.view.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         

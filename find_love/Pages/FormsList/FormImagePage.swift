@@ -4,7 +4,7 @@ class FormImagePage: UIViewController {
     
     let avatarImage: UIImageView = {
         let image = UIImageView()
-        image.contentMode = .scaleAspectFill
+        image.contentMode = .scaleToFill
         image.translatesAutoresizingMaskIntoConstraints = false
         
         return image

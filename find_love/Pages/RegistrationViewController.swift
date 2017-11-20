@@ -24,7 +24,7 @@ class RegistrationViewController: CommonViewController {
         
         view.backgroundColor = UIColor.black
         setupViews()
-        registerKeyboardObservers(offset: 100)
+        registerKeyboardObserversWith(offset: 50)
     }
     
     private let _appIconImageView: UIImageView = {

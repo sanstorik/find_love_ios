@@ -37,3 +37,11 @@ extension UIImageView {
         layer.removeAllAnimations()
     }
 }
+
+extension UIView {
+    func fadeAnimation(toAlpha: CGFloat, duration: Double) {
+        UIView.animate(withDuration: duration) { [unowned self] () -> Void in
+            self.alpha = toAlpha
+        }
+    }
+}

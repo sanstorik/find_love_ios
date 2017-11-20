@@ -6,7 +6,13 @@ class NewFormViewController: CommonViewController {
         setupNavigationBar(title: isEditingSession ? "Изменить анкету" : "Новая анкета")
         navigationItem.hidesBackButton = true
         
-        registerKeyboardObservers()
+        registerKeyboardObservers(keyboardShowEvent: { [unowned self] _ -> Void in
+            self._avatarImageView.fadeAnimation(toAlpha: 0, duration: 1)
+            self.animateTitleColor(UIColor.white.withAlphaComponent(0))
+        }, keyboardHideEvent: { [unowned self] _ -> Void in
+            self._avatarImageView.fadeAnimation(toAlpha: 1, duration: 1)
+            self.animateTitleColor(UIColor.white.withAlphaComponent(1))
+        })
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -20,6 +26,7 @@ class NewFormViewController: CommonViewController {
         setupViews()
         setupImageTap()
     }
+    
     
     private let _countryTextField: UITextField = {
         let textField = UnderlinedSearchTextField(xOffset: 0, yOffset: 7, searchHelpers:

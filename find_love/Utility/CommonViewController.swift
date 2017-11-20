@@ -12,6 +12,14 @@ extension NavigationBar where Self: UIViewController {
         navigationItem.titleView = imageView
     }
     
+    func animateTitleColor(_ color: UIColor, duration: Double = 1) {
+        UIView.animate(withDuration: duration) { [unowned self] () -> Void in
+            self.navigationController?.navigationBar.titleTextAttributes =
+                [NSAttributedStringKey.foregroundColor: color,
+                 NSAttributedStringKey.font: UIFont.systemFont(ofSize: 28)]
+        }
+    }
+    
     fileprivate func navigationBar(title: String) {
         navigationItem.title = title
         navigationController?.navigationBar.titleTextAttributes =
@@ -29,26 +37,37 @@ extension NavigationBar where Self: UIViewController {
 }
 
 
+typealias KeyboardEvent = (_ :NSNotification) -> Void
 /** Keyboard observer for pushing view up
  */
 extension CommonViewController {
-    final func registerKeyboardObservers() {
+    final func registerKeyboardObservers(keyboardShowEvent: KeyboardEvent? = nil,
+                                         keyboardHideEvent: KeyboardEvent? = nil) {
+        _onKeyboardHideEvent = keyboardHideEvent
+        _onKeyboardShownEvent = keyboardShowEvent
+        
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow),
                                                name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide),
                                                name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
-    final func registerKeyboardObservers(offset: CGFloat) {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWithSizeShow(offset:_:)),
+    final func registerKeyboardObserversWith(offset: CGFloat, keyboardShowEvent: KeyboardEvent? = nil,
+                                                   keyboardHideEvent: KeyboardEvent? = nil) {
+        _onKeyboardHideEvent = keyboardHideEvent
+        _onKeyboardShownEvent = keyboardShowEvent
+        _keyboardOffset = 50
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWithSizeShow),
                                                name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWithSizeHide(offset:_:)),
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWithSizeHide),
                                                name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
     final func unregisterKeyboardObservers() {
         NotificationCenter.default.removeObserver(self)
     }
+    
     
     @objc fileprivate func keyboardWillShow(notification: NSNotification) {
         let keyboardSize = (notification.userInfo![UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
@@ -69,30 +88,36 @@ extension CommonViewController {
         }
         
         _isKeyboardShown = true
+        _onKeyboardShownEvent?(notification)
     }
-
     
     @objc fileprivate func keyboardWillHide(notification: NSNotification) {
         if let keyboardSize = calculateKeyboardHeight(notification: notification) {
             view.frame.origin.y += keyboardSize.height
             _isKeyboardShown = false
         }
+        
+        _onKeyboardHideEvent?(notification)
     }
     
-    @objc fileprivate func keyboardWithSizeShow(offset: CGFloat, _ notification: NSNotification) {
+    @objc fileprivate func keyboardWithSizeShow(_ notification: NSNotification) {
         if let _ = calculateKeyboardHeight(notification: notification), !_isKeyboardShown {
             UIView.animate(withDuration: 0.1, animations: { [unowned self]() -> Void in
-                self.view.frame.origin.y -= 50
+                self.view.frame.origin.y -= self._keyboardOffset
             })
             _isKeyboardShown = true
         }
+        
+        _onKeyboardShownEvent?(notification)
     }
     
-    @objc fileprivate func keyboardWithSizeHide(offset: CGFloat, _ notification: NSNotification) {
+    @objc fileprivate func keyboardWithSizeHide( _ notification: NSNotification) {
         if let _ = calculateKeyboardHeight(notification: notification), _isKeyboardShown {
-            self.view.frame.origin.y += 50
+            self.view.frame.origin.y += self._keyboardOffset
             _isKeyboardShown = false
         }
+        
+        _onKeyboardHideEvent?(notification)
     }
     
     fileprivate func calculateKeyboardHeight(notification: NSNotification) -> CGRect? {
@@ -102,4 +127,7 @@ extension CommonViewController {
 
 class CommonViewController: UIViewController, NavigationBar {
     fileprivate var _isKeyboardShown = false
+    fileprivate var _onKeyboardShownEvent: KeyboardEvent?
+    fileprivate var _onKeyboardHideEvent: KeyboardEvent?
+    fileprivate var _keyboardOffset: CGFloat = 50
 }
