@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+ platform :ios, '9.0'
 
 target 'find_love' do
   use_frameworks!
@@ -9,5 +9,7 @@ target 'find_love' do
   pod 'DynamicStickers'
   pod 'SwiftyJSON'
   pod 'Pages'
-
+  pod 'SCPageViewController'
+  pod 'Pageboy'
+ 
 end
