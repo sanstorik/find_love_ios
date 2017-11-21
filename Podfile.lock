@@ -1,7 +1,5 @@
 PODS:
   - DynamicStickers (0.1.0)
-  - Pageboy (2.0.4)
-  - Pages (2.0.2)
   - SCPageViewController (2.0.11):
     - SCScrollView (~> 1.1)
   - SCScrollView (1.1.8)
@@ -11,8 +9,6 @@ PODS:
 
 DEPENDENCIES:
   - DynamicStickers
-  - Pageboy
-  - Pages
   - SCPageViewController
   - SearchTextField
   - SwiftyJSON
@@ -20,14 +16,12 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   DynamicStickers: 607eb8ea0b9a9aed400565fcfd3752b8775fc646
-  Pageboy: 5970f6138b035380fd633b1813b7cc056784b784
-  Pages: 5564ac6035c48fef7a837049314f57507d263b11
   SCPageViewController: 8d0f81e14c4e7c05119563eeb983df18b8739347
   SCScrollView: 247186f377f0b3b8eb4c0a96a2c742b322414f9f
   SearchTextField: a5bb7e4c33affadb115afdbe8100d84ef10a8024
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
   UIView+Shake: 055ad67721de1f74d29c0a1d464697e505dfc62f
 
-PODFILE CHECKSUM: 3c520d050d613ff6dfc9db691bc529d976c53877
+PODFILE CHECKSUM: 0124ec7500e6c402bab55ee14b834a22558b4e9a
 
 COCOAPODS: 1.3.1

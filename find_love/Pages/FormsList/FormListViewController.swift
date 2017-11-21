@@ -1,15 +1,6 @@
 import UIKit
-import Pages
-
-class MyPageView: PagesController {
-    var currentPageIndex = 0
-    
-    override func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-        guard completed else { return }
-        currentPageIndex = (pageViewController.viewControllers!.first! as! FormImagePage).id
-    }
-}
-
+import SCPageViewController
+import SCScrollView
 
 class FormListViewController: CommonViewController {
     override func viewWillAppear(_ animated: Bool) {
@@ -63,12 +54,12 @@ class FormListViewController: CommonViewController {
         return button
     }()
     
-    private let _pageView: MyPageView = {
+    private let _controllers: [UIViewController] = {
         var pages = [UIViewController]()
-        let _stickersNames = ["settings", "app_icon", "mask_3",
-                                      "mask_4", "mask_5", "mask_6",
-                                      "mask_7", "mask_8", "mask_9",
-                                      "mask_10"]
+        let _stickersNames = ["settings", "app_icon", "settings",
+                              "app_icon", "settings", "app_icon",
+                              "mask_7", "mask_8", "mask_9",
+                              "mask_10"]
         
         var i = 1
         for image in _stickersNames {
@@ -79,13 +70,21 @@ class FormListViewController: CommonViewController {
             i += 1
         }
         
-        let pagesController = MyPageView(pages)
-        pagesController.showPageControl = false
+        return pages
+    }()
+    
+    private let _pageView: SCPageViewController = {
+        let pagesController = SCPageViewController()
+        pagesController.setLayouter(SCSlidingPageLayouter(), animated: false, completion: nil)
+        pagesController.easingFunction = SCEasingFunction(type: .bounceEaseIn)
         
         return pagesController
     }()
     
     private func setupViews() {
+        _pageView.delegate = self
+        _pageView.dataSource = self
+        
         view.addSubview(_appIconImageView)
         view.addSubview(_messageButton)
         view.addSubview(_settingsButton)
@@ -125,7 +124,6 @@ class FormListViewController: CommonViewController {
     }
     
     @objc private func messagesOnClick() {
-        print(_pageView.currentIndex)
     }
     
     @objc private func settingsOnClick() {
@@ -133,6 +131,20 @@ class FormListViewController: CommonViewController {
     }
     
     @objc private func likeOnClick() {
-        print(_pageView.currentPageIndex)
+        print((_pageView.viewControllerForPage(at: _pageView.currentPage) as! FormImagePage).id)
+    }
+}
+
+extension FormListViewController: SCPageViewControllerDataSource, SCPageViewControllerDelegate {
+    func numberOfPages(in pageViewController: SCPageViewController!) -> UInt {
+        return UInt(_controllers.count)
+    }
+    
+    func pageViewController(_ pageViewController: SCPageViewController!, viewControllerForPageAt pageIndex: UInt) -> UIViewController! {
+        return _controllers[Int(pageIndex)]
+    }
+    
+    func pageViewController(_ pageViewController: SCPageViewController!, didNavigateToPageAt pageIndex: UInt) {
+        print(pageIndex)
     }
 }

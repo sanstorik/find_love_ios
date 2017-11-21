@@ -374,8 +374,6 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-find_love/Pods-find_love-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/DynamicStickers/DynamicStickers.framework",
-				"${BUILT_PRODUCTS_DIR}/Pageboy/Pageboy.framework",
-				"${BUILT_PRODUCTS_DIR}/Pages/Pages.framework",
 				"${BUILT_PRODUCTS_DIR}/SCPageViewController/SCPageViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/SCScrollView/SCScrollView.framework",
 				"${BUILT_PRODUCTS_DIR}/SearchTextField/SearchTextField.framework",
@@ -385,8 +383,6 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DynamicStickers.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Pageboy.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Pages.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SCPageViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SCScrollView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SearchTextField.framework",

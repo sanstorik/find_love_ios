@@ -8,8 +8,6 @@ target 'find_love' do
   pod ‘SearchTextField’, :inhibit_warnings=>true
   pod 'DynamicStickers'
   pod 'SwiftyJSON'
-  pod 'Pages'
   pod 'SCPageViewController'
-  pod 'Pageboy'
  
 end
