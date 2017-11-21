@@ -10,6 +10,7 @@ class LoginViewController: CommonViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         unregisterKeyboardObservers()
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     override func viewDidLoad() {
@@ -169,7 +170,8 @@ class LoginViewController: CommonViewController {
     }
     
     private func validLogin() {
-        navigationController?.pushViewController(SettingsViewController(), animated: true)
+        let listController = FormListViewController()
+        navigationController?.pushViewController(listController, animated: true)
     }
     
     private func errorLogin() {

@@ -136,13 +136,13 @@ class NewFormViewController: CommonViewController {
     }
     
     @objc private func createOnClick() {
-        
+        if isEditingSession {
+            navigationController?.popViewController(animated: true)
+        } else {
+            navigationController?.pushViewController(FormListViewController(), animated: true)
+        }
     }
-    
-    @objc private func settingsOnClick() {
-        
-    }
-    
+
     @objc private func onImageTapped() {
         let alert = UIAlertController(title: nil, message: "От качества вашего фото зависит количество положительных откликов", preferredStyle: .actionSheet)
         

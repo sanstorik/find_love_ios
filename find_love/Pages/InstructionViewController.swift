@@ -49,7 +49,7 @@ class InstructionViewController: CommonViewController {
     }()
     
     @objc private func onStartClick() {
-        navigationController?.pushViewController(FormListViewController(), animated: true)
+        navigationController?.pushViewController(NewFormViewController(),  animated: true)
     }
     
     private func setupViews() {

@@ -12,7 +12,6 @@ class RegistrationViewController: CommonViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         setupNavigationBar()
-        navigationController?.isNavigationBarHidden = true
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -74,7 +73,7 @@ class RegistrationViewController: CommonViewController {
     
     private let _maleButton: UIButton = {
         let button = UIButton()
-        button.filledCornerInitilization(color: UIColor.darkGray, title: "♂M", cornerRadius: 25)
+        button.filledCornerInitilization(color: UIColor.darkGray, title: "♂M", cornerRadius: 20)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: UIFont.Weight(0.2))
         
         return button
@@ -82,7 +81,7 @@ class RegistrationViewController: CommonViewController {
     
     private let _femaleButton: UIButton = {
         let button = UIButton()
-        button.filledCornerInitilization(color: UIColor.darkGray, title: "♀Ж", cornerRadius: 25)
+        button.filledCornerInitilization(color: UIColor.darkGray, title: "♀Ж", cornerRadius: 20)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: UIFont.Weight(0.2))
         
         return button
@@ -92,7 +91,7 @@ class RegistrationViewController: CommonViewController {
         let button = UIButton()
         button.filledCornerInitilization(color: UIColor.darkGray,
                                          title: "Зарегистрироваться",
-                                         cornerRadius: 35)
+                                         cornerRadius: 30)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 25, weight: UIFont.Weight(0.2))
         button.titleLabel?.adjustsFontSizeToFitWidth = true
         
@@ -191,7 +190,7 @@ class RegistrationViewController: CommonViewController {
         let rightOffset: CGFloat = -40
         
         _appIconImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        _appIconImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 30).isActive = true
+        _appIconImageView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         _appIconImageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.6).isActive = true
         _appIconImageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.3).isActive = true
         

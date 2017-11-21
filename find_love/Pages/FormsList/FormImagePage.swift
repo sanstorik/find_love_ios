@@ -85,5 +85,18 @@ class FormImagePage: UIViewController {
         _reportButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
         _reportButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
         _reportButton.centerYAnchor.constraint(equalTo: _bottomLine.centerYAnchor).isActive = true
+        _reportButton.addTarget(self, action: #selector(reportOnClick), for: .touchUpInside)
+    }
+    
+    @objc private func reportOnClick() {
+        let alert = UIAlertController(title: nil, message: "Вы действительно хотите сообщить, что этот пользователь нарушает правила?"
+            , preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Нет", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Да", style: .default, handler: { _ -> Void in
+            
+        }))
+        
+        present(alert, animated: true)
     }
 }
