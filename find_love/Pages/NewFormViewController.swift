@@ -4,7 +4,10 @@ class NewFormViewController: CommonViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         setupNavigationBar(title: isEditingSession ? "Изменить анкету" : "Новая анкета")
-        navigationItem.hidesBackButton = true
+        
+        if !isEditingSession {
+            navigationItem.hidesBackButton = true
+        }
         
         registerKeyboardObservers(keyboardShowEvent: { [unowned self] _ -> Void in
             self._avatarImageView.fadeAnimation(toAlpha: 0, duration: 1)

@@ -97,11 +97,13 @@ class FormListViewController: CommonViewController {
         _messageButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25).isActive = true
         _messageButton.widthAnchor.constraint(equalToConstant: 55).isActive = true
         _messageButton.heightAnchor.constraint(equalToConstant: 55).isActive = true
+        _messageButton.addTarget(self, action: #selector(messagesOnClick), for: .touchUpInside)
         
         _settingsButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 30).isActive = true
         _settingsButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25).isActive = true
         _settingsButton.widthAnchor.constraint(equalToConstant: 55).isActive = true
         _settingsButton.heightAnchor.constraint(equalToConstant: 55).isActive = true
+        _settingsButton.addTarget(self, action: #selector(settingsOnClick), for: .touchUpInside)
         
         _appIconImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         _appIconImageView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
@@ -124,10 +126,13 @@ class FormListViewController: CommonViewController {
     }
     
     @objc private func messagesOnClick() {
+        let messagesView = MessageLikesViewController()
+        navigationController?.pushViewController(messagesView, animated: true)
     }
     
     @objc private func settingsOnClick() {
-        
+        let settings = SettingsViewController()
+        navigationController?.pushViewController(settings, animated: true)
     }
     
     @objc private func likeOnClick() {

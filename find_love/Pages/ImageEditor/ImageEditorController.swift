@@ -190,7 +190,7 @@ extension ImageEditorController: UICollectionViewDelegate, UICollectionViewDataS
             let sticker = cell.stickerImage {
             if doesStickerExist {
                 pushStickerAndRegisterGestures(rootImageView: _avatarImageView, sticker: sticker,
-                                               shouldBeSingleSticker: true, dashedBorder: false)
+                                               shouldBeSingleSticker: true, dashedBorder: true)
             } else {
                 swapImage(sticker: sticker)
             }
