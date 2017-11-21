@@ -1,5 +1,5 @@
 PODS:
-  - DynamicStickers (0.1.0)
+  - DynamicStickers (0.1.1)
   - PagingMenuController (2.2.0)
   - SCPageViewController (2.0.11):
     - SCScrollView (~> 1.1)
@@ -17,7 +17,7 @@ DEPENDENCIES:
   - UIView+Shake
 
 SPEC CHECKSUMS:
-  DynamicStickers: 607eb8ea0b9a9aed400565fcfd3752b8775fc646
+  DynamicStickers: 23a1a5bcca3d6b494a0faa121c7bf58b3dec179e
   PagingMenuController: 6176618987bb170096664f2da097313e45ed9c31
   SCPageViewController: 8d0f81e14c4e7c05119563eeb983df18b8739347
   SCScrollView: 247186f377f0b3b8eb4c0a96a2c742b322414f9f
