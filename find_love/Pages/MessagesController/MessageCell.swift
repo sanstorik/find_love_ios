@@ -9,10 +9,11 @@ class MessageCell: UICollectionViewCell {
     
     private let _avatarImageView: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(named: "settings_1")
-        //image.aspectra
+        image.image = UIImage(named: "image_placeholder")
         image.contentMode = .scaleAspectFill
         image.translatesAutoresizingMaskIntoConstraints = false
+        image.layer.cornerRadius = 20
+        image.layer.masksToBounds = true
         
         return image
     }()
@@ -51,6 +52,17 @@ class MessageCell: UICollectionViewCell {
         return label
     }()
     
+    
+    private let _deleteMessageButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "delete")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        button.contentMode = .scaleToFill
+        button.tintColor = UIColor.white
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        return button
+    }()
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setupViews()
@@ -63,12 +75,13 @@ class MessageCell: UICollectionViewCell {
         addSubview(_userNameLabel)
         addSubview(_timeLabel)
         addSubview(_messageLabel)
+        addSubview(_deleteMessageButton)
         
         _avatarImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20).isActive = true
         _avatarImageView.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
         _avatarImageView.widthAnchor.constraint(equalToConstant: 100).isActive = true
         
-        _userNameLabel.leadingAnchor.constraint(equalTo: _avatarImageView.trailingAnchor, constant: 10).isActive = true
+        _userNameLabel.leadingAnchor.constraint(equalTo: _avatarImageView.trailingAnchor, constant: 15).isActive = true
         _userNameLabel.topAnchor.constraint(equalTo: _avatarImageView.topAnchor).isActive = true
         
         _timeLabel.leadingAnchor.constraint(equalTo: _userNameLabel.leadingAnchor).isActive = true
@@ -77,5 +90,10 @@ class MessageCell: UICollectionViewCell {
         _messageLabel.leadingAnchor.constraint(equalTo: _userNameLabel.leadingAnchor).isActive = true
         _messageLabel.topAnchor.constraint(equalTo: _timeLabel.bottomAnchor, constant: 10).isActive = true
         _messageLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20).isActive = true
+        
+        _deleteMessageButton.trailingAnchor.constraint(equalTo: _messageLabel.trailingAnchor).isActive = true
+        _deleteMessageButton.topAnchor.constraint(equalTo: _userNameLabel.topAnchor).isActive = true
+        _deleteMessageButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        _deleteMessageButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
     }
 }

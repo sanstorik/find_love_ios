@@ -5,9 +5,7 @@ class NewFormViewController: CommonViewController {
     override func viewWillAppear(_ animated: Bool) {
         setupNavigationBar(title: isEditingSession ? "Изменить анкету" : "Новая анкета")
         
-        if !isEditingSession {
-            navigationItem.hidesBackButton = true
-        }
+        navigationItem.hidesBackButton = !isEditingSession
         
         registerKeyboardObservers(keyboardShowEvent: { [unowned self] _ -> Void in
             self._avatarImageView.fadeAnimation(toAlpha: 0, duration: 1)
@@ -86,6 +84,10 @@ class NewFormViewController: CommonViewController {
     var isEditingSession = false
 
     private func setupViews() {
+        if isEditingSession {
+            _createButton.setTitle("Изменить", for: .normal)
+        }
+        
         _cityTextField.delegate = _textDelegate
         _countryTextField.delegate = _textDelegate
         _cityTextField.font = _cityTextField.font?.withSize(view.frame.height * 0.033)
@@ -128,7 +130,7 @@ class NewFormViewController: CommonViewController {
     private func setupImageTap() {
         let imageTap = UITapGestureRecognizer(target: self, action: #selector(onImageTapped))
         
-        _avatarImageView.image = UIImage(named: "settings")
+        _avatarImageView.image = UIImage(named: "image_placeholder")
         _avatarImageView.addGestureRecognizer(imageTap)
         _avatarImageView.isUserInteractionEnabled = true
     }

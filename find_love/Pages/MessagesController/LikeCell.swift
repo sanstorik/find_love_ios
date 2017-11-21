@@ -9,9 +9,11 @@ class LikeCell: UICollectionViewCell {
     
     private let _avatarImageView: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(named: "settings_1")
+        image.image = UIImage(named: "image_placeholder")
         image.contentMode = .scaleAspectFill
         image.translatesAutoresizingMaskIntoConstraints = false
+        image.layer.cornerRadius = 20
+        image.layer.masksToBounds = true
         
         return image
     }()
@@ -66,10 +68,10 @@ class LikeCell: UICollectionViewCell {
         _avatarImageView.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
         _avatarImageView.widthAnchor.constraint(equalToConstant: 100).isActive = true
         
-        _userNameLabel.leadingAnchor.constraint(equalTo: _avatarImageView.trailingAnchor, constant: 10).isActive = true
+        _userNameLabel.leadingAnchor.constraint(equalTo: _avatarImageView.trailingAnchor, constant: 15).isActive = true
         _userNameLabel.topAnchor.constraint(equalTo: _avatarImageView.topAnchor).isActive = true
         
-        _heartImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -25).isActive = true
+        _heartImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -35).isActive = true
         _heartImageView.topAnchor.constraint(equalTo: _userNameLabel.bottomAnchor).isActive = true
         _heartImageView.heightAnchor.constraint(equalToConstant: 40).isActive = true
         _heartImageView.widthAnchor.constraint(equalToConstant: 40).isActive = true

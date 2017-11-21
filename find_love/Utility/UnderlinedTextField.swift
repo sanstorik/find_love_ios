@@ -3,6 +3,15 @@ import SearchTextField
 
 class UnderlinedTextField: UITextField {
     
+    fileprivate var _xOffset: CGFloat = 0
+    fileprivate var _yOffset: CGFloat = 0
+    
+    convenience init(xOffset: CGFloat, yOffset: CGFloat) {
+        self.init()
+        _xOffset = xOffset
+        _yOffset = yOffset
+    }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         
@@ -10,11 +19,11 @@ class UnderlinedTextField: UITextField {
     }
     
     override func textRect(forBounds bounds: CGRect) -> CGRect {
-        return bounds.insetBy(dx: 0, dy: 7)
+        return bounds.insetBy(dx: _xOffset, dy: _yOffset)
     }
     
     override func editingRect(forBounds bounds: CGRect) -> CGRect {
-        return bounds.insetBy(dx: 0, dy: 7)
+        return bounds.insetBy(dx: _xOffset, dy: _yOffset)
     }
 }
 

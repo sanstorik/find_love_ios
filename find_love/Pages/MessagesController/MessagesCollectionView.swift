@@ -12,6 +12,7 @@ class MessagesCollectionView: UICollectionViewController, UICollectionViewDelega
         
         collectionView?.delegate = self
         collectionView?.dataSource = self
+        collectionView?.alwaysBounceVertical = true
         collectionView?.register(MessageCell.self, forCellWithReuseIdentifier: _cellId)
     }
     

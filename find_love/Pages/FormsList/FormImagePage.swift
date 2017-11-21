@@ -5,6 +5,7 @@ class FormImagePage: UIViewController {
     let avatarImage: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleToFill
+        image.image = UIImage(named: "image_placeholder")
         image.translatesAutoresizingMaskIntoConstraints = false
         
         return image
@@ -42,7 +43,8 @@ class FormImagePage: UIViewController {
     
     private let _reportButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "settings_1"), for: .normal)
+        button.setImage(UIImage(named: "info")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        button.tintColor = UIColor.white
         button.translatesAutoresizingMaskIntoConstraints = false
         
         return button
@@ -79,7 +81,7 @@ class FormImagePage: UIViewController {
         _onlineLabel.leadingAnchor.constraint(equalTo: _userName.trailingAnchor, constant: 20).isActive = true
         _onlineLabel.centerYAnchor.constraint(equalTo: _bottomLine.centerYAnchor).isActive = true
         
-        _reportButton.trailingAnchor.constraint(equalTo: _bottomLine.trailingAnchor, constant: -5).isActive = true
+        _reportButton.trailingAnchor.constraint(equalTo: _bottomLine.trailingAnchor, constant: -15).isActive = true
         _reportButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
         _reportButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
         _reportButton.centerYAnchor.constraint(equalTo: _bottomLine.centerYAnchor).isActive = true

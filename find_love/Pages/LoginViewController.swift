@@ -28,16 +28,18 @@ class LoginViewController: CommonViewController {
         return imageView
     }()
     
-    private let _userNameTextField: UITextField = {
-        let textField = UnderlinedTextField()
-        textField.defaultInitilization(hint: "Ваше имя")
+    private let _emailTextField: UITextField = {
+        let textField = UnderlinedTextField(xOffset: 0, yOffset: 7)
+        textField.defaultInitilization(hint: "Ваш email")
+        textField.font = UIFont.systemFont(ofSize: 22, weight: UIFont.Weight(0.2))
         
         return textField
     }()
     
     private let _userPasswordTextField: UITextField = {
-        let textField = UnderlinedTextField()
+        let textField = UnderlinedTextField(xOffset: 0, yOffset: 7)
         textField.defaultInitilization(hint: "Ваш пароль")
+        textField.font = UIFont.systemFont(ofSize: 22, weight: UIFont.Weight(0.2))
         textField.isSecureTextEntry = true
         
         return textField
@@ -46,7 +48,7 @@ class LoginViewController: CommonViewController {
     private let _loginButton: UIButton = {
         let button = UIButton()
         button.filledCornerInitilization(color: UIColor.red, title: "ВХОД")
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 22)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 24, weight: UIFont.Weight(0.2))
         return button
     }()
     
@@ -54,7 +56,8 @@ class LoginViewController: CommonViewController {
         let button = UIButton()
         button.filledCornerInitilization(color: UIColor.red,
                                          title: "Я ЗАБЫЛ(А) ПАРОЛЬ")
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 22)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 24, weight: UIFont.Weight(0.2))
+        button.titleLabel?.adjustsFontSizeToFitWidth = true
         
         return button
     }()
@@ -83,11 +86,13 @@ class LoginViewController: CommonViewController {
     private let _userNameDelegate = UsernameTextFieldDelegate()
     
     private func setupViews() {
-        _userNameTextField.delegate = _userNameDelegate
+        _resetPasswordButton.titleLabel?.font = _resetPasswordButton.titleLabel?.font.withSize(0.034 * view.frame.height)
+        
+        _emailTextField.delegate = _userNameDelegate
         _userPasswordTextField.delegate = _userNameDelegate
         
         view.addSubview(_appIconImageView)
-        view.addSubview(_userNameTextField)
+        view.addSubview(_emailTextField)
         view.addSubview(_userPasswordTextField)
         view.addSubview(_loginButton)
         view.addSubview(_resetPasswordButton)
@@ -102,9 +107,9 @@ class LoginViewController: CommonViewController {
         _appIconImageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.6).isActive = true
         _appIconImageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.3).isActive = true
         
-        _userNameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: leftOffset).isActive = true
-        _userNameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: rightOffset).isActive = true
-        _userNameTextField.bottomAnchor.constraint(equalTo: _userPasswordTextField.topAnchor, constant: -30).isActive = true
+        _emailTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: leftOffset).isActive = true
+        _emailTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: rightOffset).isActive = true
+        _emailTextField.bottomAnchor.constraint(equalTo: _userPasswordTextField.topAnchor, constant: -30).isActive = true
         
         _userPasswordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: leftOffset).isActive = true
         _userPasswordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: rightOffset).isActive = true
@@ -132,10 +137,10 @@ class LoginViewController: CommonViewController {
     @objc private func loginOnClick() {
         var loginAllowed = true
 
-        let login = _userNameTextField.text
+        let login = _emailTextField.text
         if login == nil || login!.isEmpty {
             loginAllowed = false
-            _userNameTextField.shake(3, withDelta: 8, speed: 0.05)
+            _emailTextField.shake(3, withDelta: 8, speed: 0.05)
         }
         
         let password = _userPasswordTextField.text

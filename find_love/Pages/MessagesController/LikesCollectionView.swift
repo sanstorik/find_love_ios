@@ -12,6 +12,7 @@ class LikesCollectionView: UICollectionViewController, UICollectionViewDelegateF
         
         collectionView?.delegate = self
         collectionView?.dataSource = self
+        collectionView?.alwaysBounceVertical = true
         collectionView?.register(LikeCell.self, forCellWithReuseIdentifier: _cellId)
     }
     

@@ -7,12 +7,19 @@ class FormListViewController: CommonViewController {
         super.viewWillAppear(animated)
         setupNavigationBar(title: "Анкеты")
         
-        navigationController?.setNavigationBarHidden(true, animated: true)
+        let message = UIBarButtonItem(image: UIImage(named: "message"), style: .plain,
+                                     target: self, action: #selector(messagesOnClick))
+        
+        let settings = UIBarButtonItem(image: UIImage(named: "settings"), style: .plain,
+                                      target: self, action: #selector(settingsOnClick))
+        navigationItem.leftBarButtonItem = message
+        navigationItem.rightBarButtonItem = settings
+        //navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: true)
+        //navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     override func viewDidLoad() {
@@ -38,17 +45,18 @@ class FormListViewController: CommonViewController {
         return imageView
     }()
     
-    private let _messageButton: UIButton = {
+    private let _settingsButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "message"), for: .normal)
+        button.setImage(UIImage(named: "settings"), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         
         return button
     }()
     
-    private let _settingsButton: UIButton = {
+    private let _messageButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "settings_1"), for: .normal)
+        button.setImage(UIImage(named: "message"), for: .normal)
+        button.contentMode = .scaleToFill
         button.translatesAutoresizingMaskIntoConstraints = false
         
         return button
@@ -56,8 +64,8 @@ class FormListViewController: CommonViewController {
     
     private let _controllers: [UIViewController] = {
         var pages = [UIViewController]()
-        let _stickersNames = ["settings", "app_icon", "settings",
-                              "app_icon", "settings", "app_icon",
+        let _stickersNames = ["image_placeholder", "app_icon", "image_placeholder",
+                              "app_icon", "image_placeholder", "app_icon",
                               "mask_7", "mask_8", "mask_9",
                               "mask_10"]
         
@@ -85,15 +93,15 @@ class FormListViewController: CommonViewController {
         _pageView.delegate = self
         _pageView.dataSource = self
         
-        view.addSubview(_appIconImageView)
-        view.addSubview(_messageButton)
-        view.addSubview(_settingsButton)
+        //view.addSubview(_appIconImageView)
+        //view.addSubview(_messageButton)
+        //view.addSubview(_settingsButton)
         view.addSubview(_likeButton)
         
         self.addChildViewController(_pageView)
         self.view.addSubview(_pageView.view)
         
-        _messageButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 30).isActive = true
+        /*_messageButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 30).isActive = true
         _messageButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25).isActive = true
         _messageButton.widthAnchor.constraint(equalToConstant: 55).isActive = true
         _messageButton.heightAnchor.constraint(equalToConstant: 55).isActive = true
@@ -108,18 +116,18 @@ class FormListViewController: CommonViewController {
         _appIconImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         _appIconImageView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         _appIconImageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.2).isActive = true
-        _appIconImageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.12).isActive = true
+        _appIconImageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.12).isActive = true*/
         
         _pageView.view.translatesAutoresizingMaskIntoConstraints = false
-        _pageView.view.topAnchor.constraint(equalTo: _appIconImageView.bottomAnchor).isActive = true
-        _pageView.view.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.6).isActive = true
+        _pageView.view.topAnchor.constraint(equalTo: view.topAnchor, constant: 40).isActive = true
+        _pageView.view.bottomAnchor.constraint(equalTo: _likeButton.topAnchor, constant: -40).isActive = true
         _pageView.view.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         _pageView.view.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         
         _likeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 35).isActive = true
         _likeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -35).isActive = true
-        _likeButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30).isActive = true
-        _likeButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.1).isActive = true
+        _likeButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40).isActive = true
+        _likeButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.12).isActive = true
         _likeButton.addTarget(self, action: #selector(likeOnClick), for: .touchUpInside)
         
         _pageView.didMove(toParentViewController: self)

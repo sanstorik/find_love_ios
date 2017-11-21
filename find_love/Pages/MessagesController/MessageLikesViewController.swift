@@ -5,6 +5,11 @@ class MessageLikesViewController: CommonViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupNavigationBar(title: "Information")
+        
+        let settings = UIBarButtonItem(image: UIImage(named: "settings"), style: .plain,
+                                       target: self, action: #selector(settingsOnClick))
+        
+        navigationItem.rightBarButtonItem = settings
     }
     
     override func viewDidLoad() {
@@ -27,8 +32,12 @@ class MessageLikesViewController: CommonViewController {
         
         _pageView.view.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         _pageView.view.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        _pageView.view.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        _pageView.view.topAnchor.constraint(equalTo: view.topAnchor, constant: 7).isActive = true
         _pageView.view.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+    }
+    
+    @objc private func settingsOnClick() {
+        navigationController?.pushViewController(SettingsViewController(), animated: true)
     }
 }
 
@@ -49,7 +58,8 @@ fileprivate struct MenuOptions: MenuViewCustomizable {
     }
     
     var displayMode: MenuDisplayMode {
-        return .standard(widthMode: .fixed(width: UIScreen.main.bounds.width / 2.5), centerItem: false, scrollingMode: MenuScrollingMode.pagingEnabled)
+        return .standard(widthMode: .fixed(width: UIScreen.main.bounds.width / 2.5), centerItem: false, 
+                         scrollingMode: MenuScrollingMode.pagingEnabled)
     }
 }
 

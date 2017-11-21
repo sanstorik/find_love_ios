@@ -24,7 +24,7 @@ class RegistrationViewController: CommonViewController {
         
         view.backgroundColor = UIColor.black
         setupViews()
-        registerKeyboardObserversWith(offset: 50)
+        registerKeyboardObserversWith(offset: 60)
     }
     
     private let _appIconImageView: UIImageView = {
@@ -35,17 +35,26 @@ class RegistrationViewController: CommonViewController {
         return imageView
     }()
     
-    private let _userNameTextField: UITextField = {
-        let textField = UnderlinedTextField()
+    private let _emailTextField: UITextField = {
+        let textField = UnderlinedTextField(xOffset: 0, yOffset: 7)
         
-        textField.defaultInitilization(hint: "Ваше имя")
+        textField.defaultInitilization(hint: "Ваш email")
+        textField.font = UIFont.systemFont(ofSize: 20)
+        
+        return textField
+    }()
+    
+    private let _nameTextField: UITextField = {
+        let textField = UnderlinedTextField(xOffset: 0, yOffset: 7)
+        
+        textField.defaultInitilization(hint: "Укажите имя")
         textField.font = UIFont.systemFont(ofSize: 20)
         
         return textField
     }()
     
     private let _userPasswordTextField: UITextField = {
-        let textField = UnderlinedTextField()
+        let textField = UnderlinedTextField(xOffset: 0, yOffset: 7)
         
         textField.defaultInitilization(hint: "Придумайте пароль")
         textField.font = UIFont.systemFont(ofSize: 20)
@@ -85,6 +94,7 @@ class RegistrationViewController: CommonViewController {
                                          title: "Зарегистрироваться",
                                          cornerRadius: 35)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 25, weight: UIFont.Weight(0.2))
+        button.titleLabel?.adjustsFontSizeToFitWidth = true
         
         return button
     }()
@@ -116,16 +126,22 @@ class RegistrationViewController: CommonViewController {
     @objc private func registerOnClick() {
         var areFormsFilled = true
         
-        let name = _userNameTextField.text
-        if name == nil || name!.isEmpty {
+        let email = _emailTextField.text
+        if email == nil || email!.isEmpty {
             areFormsFilled = false
-            _userNameTextField.shake(3, withDelta: 8, speed: 0.05)
+            _emailTextField.shake(3, withDelta: 8, speed: 0.05)
         }
         
         let password = _userPasswordTextField.text
         if password == nil || password!.isEmpty {
             areFormsFilled = false
             _userPasswordTextField.shake(3, withDelta: 8, speed: 0.05)
+        }
+        
+        let userName = _nameTextField.text
+        if userName == nil || userName!.isEmpty {
+            areFormsFilled = false
+            _nameTextField.shake(3, withDelta: 8, speed: 0.05)
         }
         
         if _sex == nil {
@@ -154,19 +170,22 @@ class RegistrationViewController: CommonViewController {
     }
     
     private func setupViews() {
+        _registrationButton.titleLabel?.font = _registrationButton.titleLabel?.font.withSize(0.034 * view.frame.height)
         
         _userPasswordTextField.delegate = delegate
-        _userNameTextField.delegate = delegate
+        _emailTextField.delegate = delegate
+        _nameTextField.delegate = delegate
         
         view.addSubview(_appIconImageView)
-        view.addSubview(_userNameTextField)
+        view.addSubview(_emailTextField)
         view.addSubview(_userPasswordTextField)
+        view.addSubview(_nameTextField)
         view.addSubview(_sexLabel)
         view.addSubview(_maleButton)
         view.addSubview(_femaleButton)
         view.addSubview(_registrationButton)
-        view.addSubview(_rememberPassLabel)
-        view.addSubview(_cantRememberPassLabel)
+        //view.addSubview(_rememberPassLabel)
+        //view.addSubview(_cantRememberPassLabel)
         
         let leftOffset: CGFloat = 40
         let rightOffset: CGFloat = -40
@@ -176,13 +195,17 @@ class RegistrationViewController: CommonViewController {
         _appIconImageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.6).isActive = true
         _appIconImageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.3).isActive = true
         
-        _userNameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: leftOffset).isActive = true
-        _userNameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: rightOffset).isActive = true
-        _userNameTextField.bottomAnchor.constraint(equalTo: _userPasswordTextField.topAnchor, constant: -30).isActive = true
+        _emailTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: leftOffset).isActive = true
+        _emailTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: rightOffset).isActive = true
+        _emailTextField.bottomAnchor.constraint(equalTo: _userPasswordTextField.topAnchor, constant: -25).isActive = true
         
         _userPasswordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: leftOffset).isActive = true
         _userPasswordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: rightOffset).isActive = true
-        _userPasswordTextField.bottomAnchor.constraint(equalTo: _sexLabel.topAnchor, constant: -30).isActive = true
+        _userPasswordTextField.bottomAnchor.constraint(equalTo: _nameTextField.topAnchor, constant: -25).isActive = true
+        
+        _nameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: leftOffset).isActive = true
+        _nameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: rightOffset).isActive = true
+        _nameTextField.bottomAnchor.constraint(equalTo: _sexLabel.topAnchor, constant: -40).isActive = true
         
         _sexLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         _sexLabel.bottomAnchor.constraint(equalTo: _maleButton.topAnchor, constant: -15).isActive = true
@@ -201,16 +224,16 @@ class RegistrationViewController: CommonViewController {
         
         _registrationButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: leftOffset).isActive = true
         _registrationButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: rightOffset).isActive = true
-        _registrationButton.bottomAnchor.constraint(equalTo: _rememberPassLabel.topAnchor, constant: -15).isActive = true
+        _registrationButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -15).isActive = true
         _registrationButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.1).isActive = true
         _registrationButton.addTarget(self, action: #selector(registerOnClick), for: .touchUpInside)
         
-        _rememberPassLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: leftOffset).isActive = true
+       /* _rememberPassLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: leftOffset).isActive = true
         _rememberPassLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: rightOffset).isActive = true
         _rememberPassLabel.bottomAnchor.constraint(equalTo: _cantRememberPassLabel.topAnchor, constant: -5).isActive = true
         
         _cantRememberPassLabel.leadingAnchor.constraint(equalTo: _rememberPassLabel.leadingAnchor).isActive = true
         _cantRememberPassLabel.trailingAnchor.constraint(equalTo: _rememberPassLabel.trailingAnchor).isActive = true
-        _cantRememberPassLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20).isActive = true
+        _cantRememberPassLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20).isActive = true */
     }
 }

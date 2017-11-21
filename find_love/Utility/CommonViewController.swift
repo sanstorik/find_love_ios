@@ -56,7 +56,7 @@ extension CommonViewController {
                                                    keyboardHideEvent: KeyboardEvent? = nil) {
         _onKeyboardHideEvent = keyboardHideEvent
         _onKeyboardShownEvent = keyboardShowEvent
-        _keyboardOffset = 50
+        _keyboardOffset = offset
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWithSizeShow),
                                                name: NSNotification.Name.UIKeyboardWillShow, object: nil)
