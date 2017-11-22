@@ -31,25 +31,34 @@ class UnderlinedSearchTextField: SearchTextField {
     fileprivate var _xOffset: CGFloat = 0
     fileprivate var _yOffset: CGFloat = 0
     
-    convenience init(xOffset: CGFloat, yOffset: CGFloat, searchHelpers: [String]) {
+    var searchHelpers: [String]? {
+        didSet {
+            if let search = searchHelpers {
+                filterStrings(search)
+            }
+        }
+    }
+    
+    convenience init(xOffset: CGFloat, yOffset: CGFloat, searchHelpers: [String]? = nil) {
         self.init()
         
         _yOffset = yOffset
         _xOffset = xOffset
         
-        setupDefaultSearch(searchHelpers)
+        setupDefaultSearch()
+        self.searchHelpers = searchHelpers
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        setupDefaultSearch(nil)
+        setupDefaultSearch()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        setupDefaultSearch(nil)
+        setupDefaultSearch()
     }
     
     override func layoutSubviews() {
@@ -66,7 +75,7 @@ class UnderlinedSearchTextField: SearchTextField {
         return bounds.insetBy(dx: _xOffset, dy: _yOffset)
     }
     
-    fileprivate func setupDefaultSearch(_ search: [String]?) {
+    fileprivate func setupDefaultSearch() {
         comparisonOptions = [.caseInsensitive]
         highlightAttributes = [NSAttributedStringKey.backgroundColor: UIColor.lightGray,
                                NSAttributedStringKey.font:UIFont.systemFont(ofSize: 25)]
@@ -76,10 +85,6 @@ class UnderlinedSearchTextField: SearchTextField {
         theme.borderColor = UIColor.black
         theme.separatorColor = UIColor (red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
         theme.cellHeight = 40
-        
-        if let search = search {
-            filterStrings(search)
-        }
     }
 }
 

@@ -48,6 +48,7 @@ final class RegistrationPresenter {
             break;
         case "network":
             message = "Ошибка подключения к интернету."
+            break;
         default:
             message = "Повторите попытку снова попозже."
             break;

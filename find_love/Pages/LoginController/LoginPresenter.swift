@@ -15,7 +15,7 @@ final class LoginPresenter {
         
         Alamofire.request(_loginURL, method: .post, parameters: params).responseJSON { [unowned self] response -> Void in
             guard let json = response.result.value as? [String: Any] else {
-                if let network =  NetworkReachabilityManager(), !network.isReachable {
+                if let network = NetworkReachabilityManager(), !network.isReachable {
                     self.errorLoginAsync("Ошибка подключения к интернету.")
                 } else {
                     self.errorLoginAsync("Повторите попытку позже.")

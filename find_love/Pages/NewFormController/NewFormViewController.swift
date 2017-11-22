@@ -1,4 +1,5 @@
 import UIKit
+import UIView_Shake
 
 class NewFormViewController: CommonViewController {
 
@@ -24,6 +25,7 @@ class NewFormViewController: CommonViewController {
         super.viewDidLoad()
 
         view.backgroundColor = UIColor.black
+        _presenter.loadCities()
         setupViews()
         setupImageTap()
     }
@@ -38,9 +40,8 @@ class NewFormViewController: CommonViewController {
         return textField
     }()
     
-    private let _cityTextField: UITextField = {
-        let textField = UnderlinedSearchTextField(xOffset: 0, yOffset: 7, searchHelpers:
-            ["Москва", "Киев", "Владивосток", "Ростов-на-Дону", "Петербург"])
+    private let _cityTextField: UnderlinedSearchTextField = {
+        let textField = UnderlinedSearchTextField(xOffset: 0, yOffset: 7)
         textField.defaultInitilization(hint: "Укажите город")
         textField.font = UIFont.systemFont(ofSize: 23)
         
@@ -80,6 +81,16 @@ class NewFormViewController: CommonViewController {
     }()
 
     private let _textDelegate = UsernameTextFieldDelegate()
+    private lazy var _presenter = NewFormPresenter(view: self)
+    
+    var cities = [City]() {
+        didSet {
+            var citiesNames = [String]()
+            
+            cities.forEach({ citiesNames.append($0.name) })
+            _cityTextField.searchHelpers = citiesNames
+        }
+    }
     
     var isEditingSession = false
 
@@ -136,10 +147,26 @@ class NewFormViewController: CommonViewController {
     }
     
     @objc private func createOnClick() {
-        if isEditingSession {
-            navigationController?.popViewController(animated: true)
-        } else {
-            navigationController?.pushViewController(FormListViewController(), animated: true)
+        var isRegistrationAllowed = false
+        
+        let city = _cityTextField.text
+        if city == nil || city!.isEmpty {
+            isRegistrationAllowed = false
+            _cityTextField.shake(3, withDelta: 8, speed: 0.05)
+        }
+        
+        let county = _countryTextField.text
+        if county == nil || county!.isEmpty {
+            isRegistrationAllowed = false
+            _countryTextField.shake(3, withDelta: 8, speed: 0.05)
+        }
+        
+        if isRegistrationAllowed {
+            if isEditingSession {
+                navigationController?.popViewController(animated: true)
+            } else {
+                navigationController?.pushViewController(FormListViewController(), animated: true)
+            }
         }
     }
 
