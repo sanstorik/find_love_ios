@@ -98,29 +98,10 @@ class RegistrationViewController: CommonViewController {
         return button
     }()
     
-    private let _rememberPassLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = UIColor.white
-        label.text = "Запомните пароль!"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        
-        return label
-    }()
-    
-    private let _cantRememberPassLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = UIColor.lightGray
-        label.text = "Его невозможно восстановить в целях безопасности!"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 12)
-        
-        label.adjustsFontSizeToFitWidth = true
-        
-        return label
-    }()
     
     private var _sex: Sex?
     private let delegate = UsernameTextFieldDelegate()
+    private lazy var _presenter = RegistrationPresenter(view: self)
     
     @objc private func registerOnClick() {
         var areFormsFilled = true
@@ -150,8 +131,21 @@ class RegistrationViewController: CommonViewController {
         }
         
         if areFormsFilled {
-            navigationController?.pushViewController(RulesViewController(), animated: true)
+            _presenter.registerUser(email: email!, password: password!, name: userName!)
         }
+        
+    }
+    
+    func validLogin() {
+        navigationController?.pushViewController(RulesViewController(), animated: true)
+    }
+    
+    func invalidLogin(message: String) {
+        let alert = UIAlertController(title: "Ошибка", message: message,
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ок", style: .default))
+        
+        present(alert, animated: true)
     }
     
     @objc private func maleButtonOnClick() {
@@ -183,9 +177,7 @@ class RegistrationViewController: CommonViewController {
         view.addSubview(_maleButton)
         view.addSubview(_femaleButton)
         view.addSubview(_registrationButton)
-        //view.addSubview(_rememberPassLabel)
-        //view.addSubview(_cantRememberPassLabel)
-        
+
         let leftOffset: CGFloat = 40
         let rightOffset: CGFloat = -40
         
@@ -226,13 +218,5 @@ class RegistrationViewController: CommonViewController {
         _registrationButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -15).isActive = true
         _registrationButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.1).isActive = true
         _registrationButton.addTarget(self, action: #selector(registerOnClick), for: .touchUpInside)
-        
-       /* _rememberPassLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: leftOffset).isActive = true
-        _rememberPassLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: rightOffset).isActive = true
-        _rememberPassLabel.bottomAnchor.constraint(equalTo: _cantRememberPassLabel.topAnchor, constant: -5).isActive = true
-        
-        _cantRememberPassLabel.leadingAnchor.constraint(equalTo: _rememberPassLabel.leadingAnchor).isActive = true
-        _cantRememberPassLabel.trailingAnchor.constraint(equalTo: _rememberPassLabel.trailingAnchor).isActive = true
-        _cantRememberPassLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20).isActive = true */
     }
 }

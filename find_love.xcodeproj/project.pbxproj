@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		10E86BECBCD02BA69BB0A4D8 /* Pods_find_love.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A340B95D34C307AD6A53C92 /* Pods_find_love.framework */; };
 		8955E8001FC30EDE008AC8CA /* FormImagePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8955E7FF1FC30EDE008AC8CA /* FormImagePage.swift */; };
+		896C92BE1FC5A8F200F70506 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896C92BD1FC5A8F200F70506 /* LoginPresenter.swift */; };
+		896C92C11FC5BDF800F70506 /* RegistrationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896C92C01FC5BDF800F70506 /* RegistrationPresenter.swift */; };
 		896D623D1FBCC00700E264E3 /* UnderlinedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896D623C1FBCC00700E264E3 /* UnderlinedTextField.swift */; };
 		896D62401FBCC58600E264E3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896D623F1FBCC58600E264E3 /* User.swift */; };
 		896D62421FBCD78B00E264E3 /* RulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896D62411FBCD78B00E264E3 /* RulesViewController.swift */; };
@@ -58,6 +60,8 @@
 		64EA2A919A5EA48554196C02 /* Pods-find_love.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-find_love.release.xcconfig"; path = "Pods/Target Support Files/Pods-find_love/Pods-find_love.release.xcconfig"; sourceTree = "<group>"; };
 		6A340B95D34C307AD6A53C92 /* Pods_find_love.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_find_love.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8955E7FF1FC30EDE008AC8CA /* FormImagePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormImagePage.swift; sourceTree = "<group>"; };
+		896C92BD1FC5A8F200F70506 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
+		896C92C01FC5BDF800F70506 /* RegistrationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationPresenter.swift; sourceTree = "<group>"; };
 		896D623C1FBCC00700E264E3 /* UnderlinedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlinedTextField.swift; sourceTree = "<group>"; };
 		896D623F1FBCC58600E264E3 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		896D62411FBCD78B00E264E3 /* RulesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesViewController.swift; sourceTree = "<group>"; };
@@ -134,6 +138,24 @@
 				6A340B95D34C307AD6A53C92 /* Pods_find_love.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		896C92BC1FC5A8BE00F70506 /* LoginController */ = {
+			isa = PBXGroup;
+			children = (
+				8995D9791FBB7CE80015EF61 /* LoginViewController.swift */,
+				896C92BD1FC5A8F200F70506 /* LoginPresenter.swift */,
+			);
+			path = LoginController;
+			sourceTree = "<group>";
+		};
+		896C92BF1FC5BDDD00F70506 /* RegistrationController */ = {
+			isa = PBXGroup;
+			children = (
+				89FDB82C1FBC6F7600FD32D3 /* RegistrationViewController.swift */,
+				896C92C01FC5BDF800F70506 /* RegistrationPresenter.swift */,
+			);
+			path = RegistrationController;
 			sourceTree = "<group>";
 		};
 		896D623E1FBCC57700E264E3 /* Clients */ = {
@@ -243,11 +265,11 @@
 		89FDB82B1FBC6F3C00FD32D3 /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				896C92BF1FC5BDDD00F70506 /* RegistrationController */,
+				896C92BC1FC5A8BE00F70506 /* LoginController */,
 				89DEB8561FC44AF500A851B4 /* MessagesController */,
 				89BB50C61FC30AF000F69FEE /* FormsList */,
 				89F98E381FC1AB6A002F9F2E /* ImageEditor */,
-				8995D9791FBB7CE80015EF61 /* LoginViewController.swift */,
-				89FDB82C1FBC6F7600FD32D3 /* RegistrationViewController.swift */,
 				896D62411FBCD78B00E264E3 /* RulesViewController.swift */,
 				89DEC6171FBDB7DA00BA851A /* InstructionViewController.swift */,
 				89DEC6191FBDBFF500BA851A /* NewFormViewController.swift */,
@@ -429,6 +451,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-find_love/Pods-find_love-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/DynamicStickers/DynamicStickers.framework",
 				"${BUILT_PRODUCTS_DIR}/PagingMenuController/PagingMenuController.framework",
 				"${BUILT_PRODUCTS_DIR}/SCPageViewController/SCPageViewController.framework",
@@ -439,6 +462,7 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DynamicStickers.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PagingMenuController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SCPageViewController.framework",
@@ -459,6 +483,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				896C92BE1FC5A8F200F70506 /* LoginPresenter.swift in Sources */,
 				89A1F34D1FBC56DC002E870E /* ColorExtension.swift in Sources */,
 				89DEB85A1FC44DF900A851B4 /* MessageCell.swift in Sources */,
 				896D623D1FBCC00700E264E3 /* UnderlinedTextField.swift in Sources */,
@@ -479,6 +504,7 @@
 				89F98E3E1FC1B4E0002F9F2E /* StickerCell.swift in Sources */,
 				89BFDEAB1FBF08FB003F9601 /* TermsOfUseViewController.swift in Sources */,
 				89DEB8611FC4652000A851B4 /* LikeCell.swift in Sources */,
+				896C92C11FC5BDF800F70506 /* RegistrationPresenter.swift in Sources */,
 				896D62401FBCC58600E264E3 /* User.swift in Sources */,
 				89DEC61A1FBDBFF500BA851A /* NewFormViewController.swift in Sources */,
 				89DEB85F1FC4643D00A851B4 /* LikesCollectionView.swift in Sources */,

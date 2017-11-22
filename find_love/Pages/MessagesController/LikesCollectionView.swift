@@ -7,8 +7,6 @@ class LikesCollectionView: UICollectionViewController, UICollectionViewDelegateF
         super.viewDidLoad()
         
         view.backgroundColor = UIColor.black
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
         
         collectionView?.delegate = self
         collectionView?.dataSource = self

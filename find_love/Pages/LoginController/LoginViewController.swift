@@ -85,6 +85,7 @@ class LoginViewController: CommonViewController {
     }()
     
     private let _userNameDelegate = UsernameTextFieldDelegate()
+    private lazy var _presenter = LoginPresenter(view: self)
     
     private func setupViews() {
         _resetPasswordButton.titleLabel?.font = _resetPasswordButton.titleLabel?.font.withSize(0.034 * view.frame.height)
@@ -138,8 +139,8 @@ class LoginViewController: CommonViewController {
     @objc private func loginOnClick() {
         var loginAllowed = true
 
-        let login = _emailTextField.text
-        if login == nil || login!.isEmpty {
+        let loginEmail = _emailTextField.text
+        if loginEmail == nil || loginEmail!.isEmpty {
             loginAllowed = false
             _emailTextField.shake(3, withDelta: 8, speed: 0.05)
         }
@@ -151,31 +152,18 @@ class LoginViewController: CommonViewController {
         }
         
         if loginAllowed {
-            view.showLoaderFullScreen()
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) { [unowned self] () -> Void in
-                self.view.removeLoader {
-                    if self.checkUserAccount() {
-                        self.validLogin()
-                    } else {
-                        self.errorLogin()
-                    }
-                }
-            }
+            _presenter.checkAccount(email: loginEmail!, password: password!)
         }
     }
+
     
-    private func checkUserAccount() -> Bool {
-        return false
-    }
-    
-    private func validLogin() {
+    func validLogin() {
         let listController = FormListViewController()
         navigationController?.pushViewController(listController, animated: true)
     }
     
-    private func errorLogin() {
-        let alert = UIAlertController(title: "Ошибка", message: "Пожалуйста, перепроверьте данные и введите их снова.",
+    func errorLogin(message: String) {
+        let alert = UIAlertController(title: "Ошибка", message: message,
                                       preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ок", style: .default))
         

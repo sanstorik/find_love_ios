@@ -41,12 +41,12 @@ class MessageLikesViewController: CommonViewController {
     }
 }
 
-fileprivate struct MenuItem1: MenuItemViewCustomizable {
+fileprivate struct MessagesMenuItem: MenuItemViewCustomizable {
     var displayMode: MenuItemDisplayMode {
         return .text(title: MenuItemText(text: "Сообщения"))
     }
 }
-fileprivate struct MenuItem2: MenuItemViewCustomizable {
+fileprivate struct LikesMenuItem: MenuItemViewCustomizable {
     var displayMode: MenuItemDisplayMode {
         return .text(title: MenuItemText(text: "Я нравлюсь"))
     }
@@ -54,7 +54,7 @@ fileprivate struct MenuItem2: MenuItemViewCustomizable {
 
 fileprivate struct MenuOptions: MenuViewCustomizable {
     var itemsOptions: [MenuItemViewCustomizable] {
-        return [MenuItem1(), MenuItem2()]
+        return [MessagesMenuItem(), LikesMenuItem()]
     }
     
     var displayMode: MenuDisplayMode {

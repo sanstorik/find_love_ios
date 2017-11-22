@@ -10,6 +10,7 @@ target 'find_love' do
   pod 'SwiftyJSON'
   pod 'SCPageViewController'
   pod 'PagingMenuController'
+  pod 'Alamofire'
  
 end
 
