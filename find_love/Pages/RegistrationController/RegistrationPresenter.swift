@@ -60,6 +60,8 @@ final class RegistrationPresenter {
     }
     
     private func validLogin(token: String) {
+        User.token = token
+        
         DispatchQueue.main.async { [unowned self] () -> Void in
             self._view.validLogin()
         }

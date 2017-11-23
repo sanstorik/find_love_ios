@@ -47,6 +47,10 @@ class UnderlinedSearchTextField: SearchTextField {
         
         setupDefaultSearch()
         self.searchHelpers = searchHelpers
+        
+        if let search = searchHelpers {
+            filterStrings(search)
+        }
     }
     
     override init(frame: CGRect) {

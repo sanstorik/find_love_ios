@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		10E86BECBCD02BA69BB0A4D8 /* Pods_find_love.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A340B95D34C307AD6A53C92 /* Pods_find_love.framework */; };
+		891E85441FC75DA200FB5FD4 /* Avatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891E85431FC75DA200FB5FD4 /* Avatar.swift */; };
 		8955E8001FC30EDE008AC8CA /* FormImagePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8955E7FF1FC30EDE008AC8CA /* FormImagePage.swift */; };
 		89629E631FC613A4001B172C /* NewFormPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89629E621FC613A4001B172C /* NewFormPresenter.swift */; };
 		89629E651FC616DD001B172C /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89629E641FC616DD001B172C /* City.swift */; };
@@ -61,6 +62,7 @@
 /* Begin PBXFileReference section */
 		64EA2A919A5EA48554196C02 /* Pods-find_love.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-find_love.release.xcconfig"; path = "Pods/Target Support Files/Pods-find_love/Pods-find_love.release.xcconfig"; sourceTree = "<group>"; };
 		6A340B95D34C307AD6A53C92 /* Pods_find_love.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_find_love.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		891E85431FC75DA200FB5FD4 /* Avatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Avatar.swift; sourceTree = "<group>"; };
 		8955E7FF1FC30EDE008AC8CA /* FormImagePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormImagePage.swift; sourceTree = "<group>"; };
 		89629E621FC613A4001B172C /* NewFormPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFormPresenter.swift; sourceTree = "<group>"; };
 		89629E641FC616DD001B172C /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 			children = (
 				896D623F1FBCC58600E264E3 /* User.swift */,
 				89629E641FC616DD001B172C /* City.swift */,
+				891E85431FC75DA200FB5FD4 /* Avatar.swift */,
 			);
 			path = Clients;
 			sourceTree = "<group>";
@@ -515,6 +518,7 @@
 				8995D9781FBB7CE80015EF61 /* AppDelegate.swift in Sources */,
 				89FDB82A1FBC5E9000FD32D3 /* UIExtensions.swift in Sources */,
 				89FDB82D1FBC6F7600FD32D3 /* RegistrationViewController.swift in Sources */,
+				891E85441FC75DA200FB5FD4 /* Avatar.swift in Sources */,
 				89F98E3A1FC1AB9D002F9F2E /* ImageEditorController.swift in Sources */,
 				896D62421FBCD78B00E264E3 /* RulesViewController.swift in Sources */,
 				89F98E3E1FC1B4E0002F9F2E /* StickerCell.swift in Sources */,

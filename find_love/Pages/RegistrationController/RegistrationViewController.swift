@@ -137,7 +137,12 @@ class RegistrationViewController: CommonViewController {
     }
     
     func validLogin() {
-        navigationController?.pushViewController(RulesViewController(), animated: true)
+        let rules = RulesViewController()
+        rules.userName = _nameTextField.text
+        rules.userEmail = _nameTextField.text
+        rules.userSex = _sex
+        
+        navigationController?.pushViewController(rules, animated: true)
     }
     
     func invalidLogin(message: String) {

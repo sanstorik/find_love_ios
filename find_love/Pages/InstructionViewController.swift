@@ -48,8 +48,17 @@ class InstructionViewController: CommonViewController {
         return imageView
     }()
     
+    var userName: String?
+    var userEmail: String?
+    var userSex: Sex?
+    
     @objc private func onStartClick() {
-        navigationController?.pushViewController(NewFormViewController(),  animated: true)
+        let form = NewFormViewController()
+        form.userName = userName ?? "default"
+        form.userEmail = userEmail ?? "default"
+        form.userSex = userSex ?? .male
+        
+        navigationController?.pushViewController(form,  animated: true)
     }
     
     private func setupViews() {

@@ -9,10 +9,10 @@ class NewFormViewController: CommonViewController {
         navigationItem.hidesBackButton = !isEditingSession
         
         registerKeyboardObservers(keyboardShowEvent: { [unowned self] _ -> Void in
-            self._avatarImageView.fadeAnimation(toAlpha: 0, duration: 1)
+            self.avatarImageView.fadeAnimation(toAlpha: 0, duration: 1)
             self.animateTitleColor(UIColor.white.withAlphaComponent(0))
         }, keyboardHideEvent: { [unowned self] _ -> Void in
-            self._avatarImageView.fadeAnimation(toAlpha: 1, duration: 1)
+            self.avatarImageView.fadeAnimation(toAlpha: 1, duration: 1)
             self.animateTitleColor(UIColor.white.withAlphaComponent(1))
         })
     }
@@ -25,7 +25,7 @@ class NewFormViewController: CommonViewController {
         super.viewDidLoad()
 
         view.backgroundColor = UIColor.black
-        _presenter.loadCities()
+        _presenter.loadCities(updateView: true)
         setupViews()
         setupImageTap()
     }
@@ -40,7 +40,7 @@ class NewFormViewController: CommonViewController {
         return textField
     }()
     
-    private let _cityTextField: UnderlinedSearchTextField = {
+    let cityTextField: UnderlinedSearchTextField = {
         let textField = UnderlinedSearchTextField(xOffset: 0, yOffset: 7)
         textField.defaultInitilization(hint: "Укажите город")
         textField.font = UIFont.systemFont(ofSize: 23)
@@ -48,7 +48,7 @@ class NewFormViewController: CommonViewController {
         return textField
     }()
     
-    private let _avatarImageView: UIImageView = {
+    let avatarImageView: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.layer.borderWidth = 2
@@ -83,76 +83,88 @@ class NewFormViewController: CommonViewController {
     private let _textDelegate = UsernameTextFieldDelegate()
     private lazy var _presenter = NewFormPresenter(view: self)
     
-    var cities = [City]() {
-        didSet {
-            var citiesNames = [String]()
-            
-            cities.forEach({ citiesNames.append($0.name) })
-            _cityTextField.searchHelpers = citiesNames
-        }
-    }
-    
     var isEditingSession = false
+    
+    var userName: String = ""
+    var userEmail: String = ""
+    var userSex: Sex = .male
 
     private func setupViews() {
         if isEditingSession {
             _createButton.setTitle("Изменить", for: .normal)
         }
         
-        _cityTextField.delegate = _textDelegate
+        cityTextField.delegate = _textDelegate
         _countryTextField.delegate = _textDelegate
-        _cityTextField.font = _cityTextField.font?.withSize(view.frame.height * 0.033)
+        cityTextField.font = cityTextField.font?.withSize(view.frame.height * 0.033)
         _countryTextField.font = _countryTextField.font?.withSize(view.frame.height * 0.033)
         
-        view.addSubview(_avatarImageView)
+        view.addSubview(avatarImageView)
         view.addSubview(_countryTextField)
-        view.addSubview(_cityTextField)
+        view.addSubview(cityTextField)
         view.addSubview(_createButton)
         view.addSubview(_noGeoPositionLabel)
         
-        _avatarImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30).isActive = true
-        _avatarImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30).isActive = true
-        _avatarImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 8).isActive = true
-        _avatarImageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.52).isActive = true
+        avatarImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30).isActive = true
+        avatarImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30).isActive = true
+        avatarImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 8).isActive = true
+        avatarImageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.52).isActive = true
         
-        _countryTextField.leadingAnchor.constraint(equalTo: _avatarImageView.leadingAnchor).isActive = true
-        _countryTextField.trailingAnchor.constraint(equalTo: _avatarImageView.trailingAnchor).isActive = true
-        _countryTextField.topAnchor.constraint(equalTo: _avatarImageView.bottomAnchor, constant: 20).isActive = true
+        _countryTextField.leadingAnchor.constraint(equalTo: avatarImageView.leadingAnchor).isActive = true
+        _countryTextField.trailingAnchor.constraint(equalTo: avatarImageView.trailingAnchor).isActive = true
+        _countryTextField.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 20).isActive = true
         
-        _cityTextField.leadingAnchor.constraint(equalTo: _avatarImageView.leadingAnchor).isActive = true
-        _cityTextField.trailingAnchor.constraint(equalTo: _avatarImageView.trailingAnchor).isActive = true
-        _cityTextField.topAnchor.constraint(equalTo: _countryTextField.bottomAnchor, constant: 20).isActive = true
+        cityTextField.leadingAnchor.constraint(equalTo: avatarImageView.leadingAnchor).isActive = true
+        cityTextField.trailingAnchor.constraint(equalTo: avatarImageView.trailingAnchor).isActive = true
+        cityTextField.topAnchor.constraint(equalTo: _countryTextField.bottomAnchor, constant: 20).isActive = true
         
-        _createButton.leadingAnchor.constraint(equalTo: _avatarImageView.leadingAnchor).isActive = true
-        _createButton.trailingAnchor.constraint(equalTo: _avatarImageView.trailingAnchor).isActive = true
-        _createButton.topAnchor.constraint(equalTo: _cityTextField.bottomAnchor, constant: 30).isActive = true
+        _createButton.leadingAnchor.constraint(equalTo: avatarImageView.leadingAnchor).isActive = true
+        _createButton.trailingAnchor.constraint(equalTo: avatarImageView.trailingAnchor).isActive = true
+        _createButton.topAnchor.constraint(equalTo: cityTextField.bottomAnchor, constant: 30).isActive = true
         _createButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.1).isActive = true
         _createButton.addTarget(self, action: #selector(createOnClick), for: .touchUpInside)
         
-        _noGeoPositionLabel.leadingAnchor.constraint(equalTo: _avatarImageView.leadingAnchor).isActive = true
-        _noGeoPositionLabel.trailingAnchor.constraint(equalTo: _avatarImageView.trailingAnchor).isActive = true
+        _noGeoPositionLabel.leadingAnchor.constraint(equalTo: avatarImageView.leadingAnchor).isActive = true
+        _noGeoPositionLabel.trailingAnchor.constraint(equalTo: avatarImageView.trailingAnchor).isActive = true
         _noGeoPositionLabel.topAnchor.constraint(equalTo: _createButton.bottomAnchor, constant: 10).isActive = true
     }
     
-    public func setEditedImage(image: UIImage?) {
-        _avatarImageView.image = image
+    func setEditedImage(image: UIImage?) {
+        avatarImageView.image = image
+    }
+    
+    func errorRegister() {
+        let alert = UIAlertController(title: "Ошибка", message: "Не удалось зарегистрировать. Проверьте подключение к интернету.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "ОК", style: .cancel))
+        
+        present(alert, animated: true);
+    }
+    
+    func validRegister() {
+        if isEditingSession {
+            navigationController?.popViewController(animated: true)
+        } else {
+            let formList = FormListViewController()
+            
+            navigationController?.pushViewController(formList, animated: true)
+        }
     }
 
     private func setupImageTap() {
         let imageTap = UITapGestureRecognizer(target: self, action: #selector(onImageTapped))
         
-        _avatarImageView.image = UIImage(named: "image_placeholder")
-        _avatarImageView.addGestureRecognizer(imageTap)
-        _avatarImageView.isUserInteractionEnabled = true
+        avatarImageView.image = UIImage(named: "image_placeholder")
+        avatarImageView.addGestureRecognizer(imageTap)
+        avatarImageView.isUserInteractionEnabled = true
     }
     
     @objc private func createOnClick() {
-        var isRegistrationAllowed = false
+        var isRegistrationAllowed = true
         
-        let city = _cityTextField.text
+        let city = cityTextField.text
         if city == nil || city!.isEmpty {
             isRegistrationAllowed = false
-            _cityTextField.shake(3, withDelta: 8, speed: 0.05)
+            cityTextField.shake(3, withDelta: 8, speed: 0.05)
         }
         
         let county = _countryTextField.text
@@ -163,9 +175,9 @@ class NewFormViewController: CommonViewController {
         
         if isRegistrationAllowed {
             if isEditingSession {
-                navigationController?.popViewController(animated: true)
+                _presenter.updateProfile()
             } else {
-                navigationController?.pushViewController(FormListViewController(), animated: true)
+                _presenter.createProfile()
             }
         }
     }
@@ -210,7 +222,7 @@ extension NewFormViewController: UIImagePickerControllerDelegate, UINavigationCo
             return
         }
         
-        _avatarImageView.image = image
+        avatarImageView.image = image
         
         dismiss(animated: true) { [unowned self] () -> Void in
             let imageEditor = ImageEditorController()

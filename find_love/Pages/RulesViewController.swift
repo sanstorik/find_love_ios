@@ -35,9 +35,18 @@ class RulesViewController: CommonViewController {
         
         return button
     }()
+    
+    var userName: String?
+    var userEmail: String?
+    var userSex: Sex?
 
     @objc private func onAgreeClick() {
-        navigationController?.pushViewController(InstructionViewController(), animated: true)
+        let instruction = InstructionViewController()
+        instruction.userName = userName
+        instruction.userEmail = userEmail
+        instruction.userSex = userSex
+        
+        navigationController?.pushViewController(instruction, animated: true)
     }
     
     private func setupViews() {
