@@ -1,10 +1,10 @@
 import Foundation
 
 class City {
-    let id: String
+    let id: Int
     let name: String
     
-    required init(id: String, name: String) {
+    required init(id: Int, name: String) {
         self.id = id
         self.name = name
     }

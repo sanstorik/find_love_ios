@@ -39,6 +39,8 @@ final class LoginPresenter {
     }
     
     private func loginAsync(token: String) {
+        User.token = token
+        
         DispatchQueue.main.async { [unowned self] () -> Void in
             self._login.validLogin()
         }

@@ -25,7 +25,12 @@ class NewFormViewController: CommonViewController {
         super.viewDidLoad()
 
         view.backgroundColor = UIColor.black
+        
         _presenter.loadCities(updateView: true)
+        if isEditingSession {
+            _presenter.getUserOnEditSession()
+        }
+        
         setupViews()
         setupImageTap()
     }
@@ -137,7 +142,7 @@ class NewFormViewController: CommonViewController {
         let alert = UIAlertController(title: "Ошибка", message: "Не удалось зарегистрировать. Проверьте подключение к интернету.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "ОК", style: .cancel))
         
-        present(alert, animated: true);
+        present(alert, animated: true)
     }
     
     func validRegister() {
@@ -148,6 +153,16 @@ class NewFormViewController: CommonViewController {
             
             navigationController?.pushViewController(formList, animated: true)
         }
+    }
+    
+    func errorLoadingData() {
+        let alert = UIAlertController(title: "Ошибка", message: "Не удалось получить данные. Проверьте подключение к интернету и попробуйте снова.", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "ОК", style: .default, handler:  { [unowned self] _ -> Void in
+            self.navigationController?.popViewController(animated: true)
+        }))
+        
+        present(alert, animated: true)
     }
 
     private func setupImageTap() {

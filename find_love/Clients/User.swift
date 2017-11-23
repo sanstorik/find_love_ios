@@ -6,9 +6,18 @@ enum Sex {
     var asString: String {
         switch self {
         case .male:
-            return "male"
+            return "man"
         case .female:
-            return "female"
+            return "woman"
+        }
+    }
+    
+    var asInt: Int {
+        switch self {
+        case .male:
+            return 1
+        case .female:
+            return 2
         }
     }
     
@@ -18,6 +27,17 @@ enum Sex {
             return .female
         case .female:
             return .male
+        }
+    }
+    
+    static func intToSex(_ sex: Int) -> Sex {
+        switch sex {
+        case 1:
+            return Sex.male
+        case 2:
+            return Sex.female
+        default:
+            return Sex.male
         }
     }
 }

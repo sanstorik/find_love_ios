@@ -139,7 +139,7 @@ class RegistrationViewController: CommonViewController {
     func validLogin() {
         let rules = RulesViewController()
         rules.userName = _nameTextField.text
-        rules.userEmail = _nameTextField.text
+        rules.userEmail = _emailTextField.text
         rules.userSex = _sex
         
         navigationController?.pushViewController(rules, animated: true)
