@@ -13,6 +13,7 @@ class NewFormPresenter {
         _view = view
     }
     
+    
     func getUserOnEditSession() {
         let token = "Bearer " + User.token
         
@@ -34,14 +35,6 @@ class NewFormPresenter {
                                 age: Int(userDict["age"] as? String ?? "0") ?? 0,
                                 sex: Sex.intToSex(userDict["sex"] as? Int ?? 1)
                 )
-                
-                print(user.age)
-                print(user.city.id)
-                print(user.city.name)
-                print(user.name)
-                print(user.email)
-                print(user.avatar.url)
-                print(user.sex)
 
                 DispatchQueue.main.async { [unowned self] () -> Void in
                     self._view.cityTextField.text = user.city.name
@@ -67,6 +60,7 @@ class NewFormPresenter {
         print("create")
     }
     
+    
     func updateProfile() {
         if _cities.isEmpty {
             createForm()
@@ -77,6 +71,7 @@ class NewFormPresenter {
         
         print("update")
     }
+    
     
     func loadCities(updateView: Bool, avatar: UIImage? = nil) {
         Alamofire.request(_citiesURL, method: .get).responseJSON { [unowned self] response -> Void in
@@ -112,6 +107,7 @@ class NewFormPresenter {
         }
     }
     
+    
     private func uploadImage(_ image: UIImage) {
         guard let data = UIImagePNGRepresentation(image) else {
             print("no image")
@@ -141,10 +137,10 @@ class NewFormPresenter {
         })
     }
     
+    
     private func createForm() {
         var city: City?
         
-        print("form")
         for tempCity in _cities {
             if tempCity.name == _view.cityTextField.text {
                 city = City(id: tempCity.id, name: tempCity.name)
@@ -152,14 +148,10 @@ class NewFormPresenter {
             }
         }
         
-        print(_view.userName)
-        print(_view.userEmail)
-        
         let user = User(name: _view.userName, email: _view.userEmail,
                         avatar: Avatar(url: "test"), city: city ?? City(id: 0, name: "none selected"),
                         age: 0, sex: _view.userSex)
         
-        print(user.sex.asInt)
         let params: Parameters = ["name": user.name, "email": user.email, "avatar": user.avatar.url,
                                   "city_id": user.city.id, "age": String(describing: user.age), "sex": 2]
         
@@ -169,13 +161,12 @@ class NewFormPresenter {
                                     "Authorization": token]
 
         Alamofire.request(_profileURL, method: .post, parameters: params, headers: headers).responseJSON { [unowned self] response -> Void in
-            guard let json = response.result.value as? [String: Any] else {
+            guard let _ = response.result.value as? [String: Any] else {
                 self.errorRegisterAsync()
                 return
             }
             
-            print(response.result.value)
-
+            print(response.result.value as Any)
             print(response.result, "create Form")
             
             
@@ -208,19 +199,19 @@ class NewFormPresenter {
     private func updateUserFormSearch(user: User) {
         let token = "Bearer " + User.token
         
-        let params: Parameters = ["age_from": "0", "age_to": "0",
+        let params: Parameters = ["age_from": 0, "age_to": 0,
                                   "sex": user.sex.opposite.asInt,
                                   "city_id": user.city.id]
         let headers: HTTPHeaders = ["Accept": "application/json",
                                     "Authorization": token]
         
         Alamofire.request(_filterURL, method: .post, parameters: params, headers: headers).responseJSON { [unowned self] response -> Void in
-            guard let json = response.result.value as? [String: Any] else {
+            guard let _ = response.result.value as? [String: Any] else {
                 self.errorRegisterAsync()
                 return
             }
             
-            print(response.result.value)
+            print(response.result.value as Any)
             
             self.validLoginAsync()
         }
