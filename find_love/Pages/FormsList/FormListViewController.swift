@@ -59,31 +59,6 @@ class FormListViewController: CommonViewController {
         return label
     }()
     
-    private let _appIconImageView: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "app_icon"))
-        imageView.contentMode = .scaleAspectFill
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        
-        return imageView
-    }()
-    
-    private let _settingsButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(named: "settings"), for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        
-        return button
-    }()
-    
-    private let _messageButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(named: "message"), for: .normal)
-        button.contentMode = .scaleToFill
-        button.translatesAutoresizingMaskIntoConstraints = false
-        
-        return button
-    }()
-    
     let pageView: SCPageViewController = {
         let pagesController = SCPageViewController()
         pagesController.setLayouter(SCSlidingPageLayouter(), animated: false, completion: nil)

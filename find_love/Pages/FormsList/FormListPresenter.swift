@@ -13,6 +13,7 @@ class FormListPresenter {
         _view = view
     }
     
+    
     func initialLoadForms() {
         controllers.removeAll()
         _currentPage = _startingPage
@@ -36,40 +37,45 @@ class FormListPresenter {
         }
     }
     
+    
     func loadAdditionalForms() {
         _currentPage += 1
         
         loadFormsAt(page: _currentPage, perPage: _perPage) { [unowned self] forms -> Void in
-            let formsCountBefore = self.controllers.count
-            
             forms.forEach { userForm in
-                let imagePage = FormImagePage()
-                imagePage.user = userForm
-                
-                self.controllers.append(imagePage)
+                if !self.isUserReported(user: userForm) {
+                    let imagePage = FormImagePage()
+                    imagePage.user = userForm
+                    
+                    self.controllers.append(imagePage)
+                }
             }
             
-            self._view.isUploadingImagesAllowed = (self.controllers.count - formsCountBefore) >= self._perPage
+            self._view.isUploadingImagesAllowed = forms.count >= self._perPage
             self.reloadPageView()
         }
-
     }
+    
     
     private func isUserReported(user: User) -> Bool {
         return UserDefaults.standard.bool(forKey: "reported_\(String(describing: user.id))")
     }
     
+    
     func didUserLike(user: User) -> Bool {
         return UserDefaults.standard.bool(forKey: "liked_\(String(describing: user.id))")
     }
+    
     
     func like(user: User) {
         UserDefaults.standard.set(true, forKey: "liked_\(String(describing: user.id))")
     }
     
+    
     func report(user: User) {
         UserDefaults.standard.set(true, forKey: "reported_\(String(describing: user.id))")
     }
+    
     
     private func loadFormsAt(page: Int, perPage: Int, completionHandler: (([User]) -> Void)? = nil) {
         let token = "Bearer " + User.token
