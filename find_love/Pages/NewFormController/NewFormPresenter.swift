@@ -167,8 +167,8 @@ class NewFormPresenter {
                         avatar: Avatar(url: url), city: city ?? City(id: 0, name: "none selected"),
                         age: 0, sex: _view.userSex)
         
-        let params: Parameters = ["name": user.name, "email": user.email, "avatar": user.avatar.url,
-                                  "city_id": user.city.id, "age": user.age, "sex": 2]
+        let params: Parameters = ["name": user.name, "email": user.email, "avatar": url,
+                                  "city_id": user.city.id, "age": user.age, "sex": user.sex.asInt]
         
 
         let token = "Bearer " + User.token
