@@ -26,6 +26,7 @@
 		89A1F34D1FBC56DC002E870E /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A1F34C1FBC56DC002E870E /* ColorExtension.swift */; };
 		89A42ECD1FC2D3D600B7C2F4 /* FormListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A42ECC1FC2D3D600B7C2F4 /* FormListViewController.swift */; };
 		89BE4E3C1FC83B52004D8385 /* FormListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BE4E3B1FC83B52004D8385 /* FormListPresenter.swift */; };
+		89BE4E3E1FC8C7BB004D8385 /* SubscribeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BE4E3D1FC8C7BB004D8385 /* SubscribeViewController.swift */; };
 		89BFDEAB1FBF08FB003F9601 /* TermsOfUseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BFDEAA1FBF08FB003F9601 /* TermsOfUseViewController.swift */; };
 		89BFDEAD1FBF23D2003F9601 /* CommonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BFDEAC1FBF23D2003F9601 /* CommonViewController.swift */; };
 		89DEB8581FC44B7C00A851B4 /* MessagesCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DEB8571FC44B7C00A851B4 /* MessagesCollectionView.swift */; };
@@ -87,6 +88,7 @@
 		89A1F34C1FBC56DC002E870E /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		89A42ECC1FC2D3D600B7C2F4 /* FormListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormListViewController.swift; sourceTree = "<group>"; };
 		89BE4E3B1FC83B52004D8385 /* FormListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormListPresenter.swift; sourceTree = "<group>"; };
+		89BE4E3D1FC8C7BB004D8385 /* SubscribeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribeViewController.swift; sourceTree = "<group>"; };
 		89BFDEAA1FBF08FB003F9601 /* TermsOfUseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsOfUseViewController.swift; sourceTree = "<group>"; };
 		89BFDEAC1FBF23D2003F9601 /* CommonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonViewController.swift; sourceTree = "<group>"; };
 		89DEB8571FC44B7C00A851B4 /* MessagesCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesCollectionView.swift; sourceTree = "<group>"; };
@@ -261,6 +263,14 @@
 			path = FormsList;
 			sourceTree = "<group>";
 		};
+		89BE4E3F1FC8D067004D8385 /* SubscribeControllers */ = {
+			isa = PBXGroup;
+			children = (
+				89BE4E3D1FC8C7BB004D8385 /* SubscribeViewController.swift */,
+			);
+			path = SubscribeControllers;
+			sourceTree = "<group>";
+		};
 		89DEB8561FC44AF500A851B4 /* MessagesController */ = {
 			isa = PBXGroup;
 			children = (
@@ -285,6 +295,7 @@
 		89FDB82B1FBC6F3C00FD32D3 /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				89BE4E3F1FC8D067004D8385 /* SubscribeControllers */,
 				89629E611FC61371001B172C /* NewFormController */,
 				896C92BF1FC5BDDD00F70506 /* RegistrationController */,
 				896C92BC1FC5A8BE00F70506 /* LoginController */,
@@ -477,7 +488,6 @@
 				"${BUILT_PRODUCTS_DIR}/SCPageViewController/SCPageViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/SCScrollView/SCScrollView.framework",
 				"${BUILT_PRODUCTS_DIR}/SearchTextField/SearchTextField.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/UIView+Shake/UIView_Shake.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -488,7 +498,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SCPageViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SCScrollView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SearchTextField.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIView_Shake.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -512,6 +521,7 @@
 				896D623D1FBCC00700E264E3 /* UnderlinedTextField.swift in Sources */,
 				8955E8001FC30EDE008AC8CA /* FormImagePage.swift in Sources */,
 				89DEB8581FC44B7C00A851B4 /* MessagesCollectionView.swift in Sources */,
+				89BE4E3E1FC8C7BB004D8385 /* SubscribeViewController.swift in Sources */,
 				89A42ECD1FC2D3D600B7C2F4 /* FormListViewController.swift in Sources */,
 				89DEC61C1FBDD8A100BA851A /* SettingsViewController.swift in Sources */,
 				89E33E421FBF690F00FA9065 /* ProgressLoader.swift in Sources */,

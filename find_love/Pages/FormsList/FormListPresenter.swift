@@ -101,8 +101,6 @@ class FormListPresenter {
                         }
                     }
                     
-                    print(forms.count, "forms count")
-                    
                     DispatchQueue.main.async {
                         completionHandler?(forms)
                     }

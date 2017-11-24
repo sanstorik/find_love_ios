@@ -2,11 +2,10 @@ PODS:
   - Alamofire (4.5.1)
   - DynamicStickers (0.1.1)
   - PagingMenuController (2.2.0)
-  - SCPageViewController (2.0.11):
+  - SCPageViewController (2.0.12):
     - SCScrollView (~> 1.1)
   - SCScrollView (1.1.8)
   - SearchTextField (1.2.0)
-  - SwiftyJSON (4.0.0)
   - UIView+Shake (1.4.0)
 
 DEPENDENCIES:
@@ -15,19 +14,17 @@ DEPENDENCIES:
   - PagingMenuController
   - SCPageViewController
   - SearchTextField
-  - SwiftyJSON
   - UIView+Shake
 
 SPEC CHECKSUMS:
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
   DynamicStickers: 23a1a5bcca3d6b494a0faa121c7bf58b3dec179e
   PagingMenuController: 6176618987bb170096664f2da097313e45ed9c31
-  SCPageViewController: 8d0f81e14c4e7c05119563eeb983df18b8739347
+  SCPageViewController: a0687325929f8730b344506ec104037b8b0184d8
   SCScrollView: 247186f377f0b3b8eb4c0a96a2c742b322414f9f
   SearchTextField: a5bb7e4c33affadb115afdbe8100d84ef10a8024
-  SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
   UIView+Shake: 055ad67721de1f74d29c0a1d464697e505dfc62f
 
-PODFILE CHECKSUM: 108e3c044458e13fe22138d9b42ad8bf511883cc
+PODFILE CHECKSUM: f7b35ded317b228bcabc312f5f074ac05a53e700
 
 COCOAPODS: 1.3.1

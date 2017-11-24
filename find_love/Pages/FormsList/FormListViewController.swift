@@ -199,6 +199,7 @@ extension FormListViewController: SCPageViewControllerDataSource, SCPageViewCont
         if (pageIndex == _presenter.controllers.count - 2 && isUploadingImagesAllowed) {
             _presenter.loadAdditionalForms()
         }
+        
         let controller = _presenter.controllers[Int(pageIndex)] as! FormImagePage
         controller.reportOnClickEvent = { [unowned self] user -> Void in
             self._presenter.report(user: user)
