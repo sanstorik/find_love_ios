@@ -59,6 +59,8 @@ class FormImagePage: UIViewController {
         }
     }
     
+    var reportOnClickEvent: ((User) -> Void)?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -100,8 +102,10 @@ class FormImagePage: UIViewController {
             , preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: "Нет", style: .cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "Да", style: .default, handler: { _ -> Void in
-            
+        alert.addAction(UIAlertAction(title: "Да", style: .default, handler: { [unowned self] _ -> Void in
+            if let user = self.user {
+                self.reportOnClickEvent?(user)
+            }
         }))
         
         present(alert, animated: true)
