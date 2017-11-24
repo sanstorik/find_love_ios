@@ -5,14 +5,30 @@ class NewFormPresenter {
     private let _view: NewFormViewController
     private let _citiesURL = "http://boobs.hd2be.com/api/cities"
     private let _profileURL = "http://boobs.hd2be.com/api/profile"
-    private let _imageURL = "http://boobs.hd2be.com/api/upload"
+    private let _imageURL = "http://boobs.hd2be.com/api/uploads"
     private let _filterURL = "http://boobs.hd2be.com/api/profile/filter-update"
     private var _cities = [City]()
+    
+    var citiesAreEmpty: Bool {
+        return _cities.isEmpty
+    }
     
     required init(view: NewFormViewController) {
         _view = view
     }
     
+    func isValidCity() -> Bool {
+        var isValid = false
+        
+        for tempCity in _cities {
+            if tempCity.name == _view.cityTextField.text {
+                isValid = true
+                break;
+            }
+        }
+        
+        return isValid
+    }
     
     func getUserOnEditSession() {
         let token = "Bearer " + User.token
@@ -51,25 +67,19 @@ class NewFormPresenter {
     
     func createProfile() {
         if _cities.isEmpty {
-            createForm()
-            //uploadImage(_view.avatarImageView.image!)
+            uploadImage(_view.avatarImageView.image!)
         } else {
             loadCities(updateView: false, avatar: _view.avatarImageView.image)
         }
-        
-        print("create")
     }
     
     
     func updateProfile() {
         if _cities.isEmpty {
-            createForm()
-            //uploadImage(_view.avatarImageView.image!)
+            uploadImage(_view.avatarImageView.image!)
         } else {
             loadCities(updateView: false, avatar: _view.avatarImageView.image)
         }
-        
-        print("update")
     }
     
     
@@ -101,8 +111,7 @@ class NewFormPresenter {
                     self._view.cityTextField.searchHelpers = helpers
                 }
             } else {
-                self.createForm()
-                //self.uploadImage(avatar!)
+                self.uploadImage(avatar!)
             }
         }
     }
@@ -116,29 +125,35 @@ class NewFormPresenter {
         
         let headers: HTTPHeaders = ["Content-Type": "application/x-www-form-urlencoded"]
         
-        Alamofire.upload(multipartFormData: { form in
-            form.append(data, withName: "file", fileName: "avatar.png", mimeType: "image/png")
-        }, to: _imageURL, headers: headers, encodingCompletion: { result in
+        Alamofire.upload(multipartFormData: { multipartFormData in
+            multipartFormData.append(data, withName: "file",fileName: "file.png", mimeType: "image/png")
+        }, to: _imageURL, method: .post, headers: headers)
+        { (result) in
             switch result {
             case .success(let upload, _, _):
-                upload.responseJSON { response in
-                    debugPrint(response)
-                    print(response.value as Any)
-                    print(response.result)
-                }
-                
-                upload.responseString { response in
-                    debugPrint(response)
+                upload.responseJSON { response -> Void in
+                    guard let json = response.result.value as? [String: Any] else {
+                        self.errorRegisterAsync()
+                        return
+                    }
+                    
+                    if let url = json["data"] as? String {
+                        print(url)
+                        self.createForm(url: url)
+                    } else {
+                        self.errorRegisterAsync()
+                    }
                 }
                 
             case .failure(let encodingError):
                 print(encodingError)
+                self.errorRegisterAsync()
             }
-        })
+        }
     }
     
     
-    private func createForm() {
+    private func createForm(url: String) {
         var city: City?
         
         for tempCity in _cities {
@@ -149,11 +164,11 @@ class NewFormPresenter {
         }
         
         let user = User(name: _view.userName, email: _view.userEmail,
-                        avatar: Avatar(url: "test"), city: city ?? City(id: 0, name: "none selected"),
+                        avatar: Avatar(url: url), city: city ?? City(id: 0, name: "none selected"),
                         age: 0, sex: _view.userSex)
         
         let params: Parameters = ["name": user.name, "email": user.email, "avatar": user.avatar.url,
-                                  "city_id": user.city.id, "age": String(describing: user.age), "sex": 2]
+                                  "city_id": user.city.id, "age": user.age, "sex": 2]
         
 
         let token = "Bearer " + User.token
@@ -178,11 +193,13 @@ class NewFormPresenter {
         }
     }
     
+    
     private func errorRegisterAsync() {
         DispatchQueue.main.async { [unowned self] () -> Void in
             self._view.errorRegister()
         }
     }
+    
     
     private func validLoginAsync() {
         DispatchQueue.main.async { [unowned self] () -> Void in
@@ -190,11 +207,13 @@ class NewFormPresenter {
         }
     }
     
+    
     private func errorLoadingDataAsync() {
         DispatchQueue.main.async { [unowned self] () -> Void in
             self._view.errorLoadingData()
         }
     }
+    
     
     private func updateUserFormSearch(user: User) {
         let token = "Bearer " + User.token

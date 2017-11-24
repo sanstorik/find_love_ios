@@ -37,8 +37,7 @@ class NewFormViewController: CommonViewController {
     
     
     private let _countryTextField: UITextField = {
-        let textField = UnderlinedSearchTextField(xOffset: 0, yOffset: 7, searchHelpers:
-            ["Россия", "Украина", "Беларусь", "Казахстан", "Китай"])
+        let textField = UnderlinedSearchTextField(xOffset: 0, yOffset: 7, searchHelpers: ["Россия"])
         textField.defaultInitilization(hint: "Укажите страну")
         textField.font = UIFont.systemFont(ofSize: 23)
         
@@ -87,16 +86,18 @@ class NewFormViewController: CommonViewController {
 
     private let _textDelegate = UsernameTextFieldDelegate()
     private lazy var _presenter = NewFormPresenter(view: self)
+    private var _isImageSet = false
     
     var isEditingSession = false
     
-    var userName: String = ""
-    var userEmail: String = ""
+    var userName: String = "аноним"
+    var userEmail: String = "аноним"
     var userSex: Sex = .male
 
     private func setupViews() {
         if isEditingSession {
             _createButton.setTitle("Изменить", for: .normal)
+            _countryTextField.text = "Россия"
         }
         
         cityTextField.delegate = _textDelegate
@@ -174,18 +175,28 @@ class NewFormViewController: CommonViewController {
     }
     
     @objc private func createOnClick() {
+        if _presenter.citiesAreEmpty {
+            alertTurnInternetOn()
+            return;
+        }
+        
         var isRegistrationAllowed = true
         
         let city = cityTextField.text
-        if city == nil || city!.isEmpty {
+        if city == nil || city!.isEmpty || !_presenter.isValidCity() {
             isRegistrationAllowed = false
             cityTextField.shake(3, withDelta: 8, speed: 0.05)
         }
         
-        let county = _countryTextField.text
-        if county == nil || county!.isEmpty {
+        let country = _countryTextField.text
+        if country == nil || country!.isEmpty || country != "Россия" {
             isRegistrationAllowed = false
             _countryTextField.shake(3, withDelta: 8, speed: 0.05)
+        }
+        
+        if !_isImageSet {
+            isRegistrationAllowed = false
+            avatarImageView.shake(3, withDelta: 8, speed: 0.05)
         }
         
         if isRegistrationAllowed {
@@ -227,6 +238,16 @@ class NewFormViewController: CommonViewController {
         
         present(imagePicker, animated: true)
     }
+    
+    private func alertTurnInternetOn() {
+        let alert = UIAlertController(title: "Ошибка", message: "Подключите интернет и нажмите на кнопку продолжить.", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Продолжить", style: .default, handler:  { [unowned self] _ -> Void in
+            self._presenter.loadCities(updateView: true)
+        }))
+        
+        present(alert, animated: true)
+    }
 }
 
 
@@ -242,6 +263,8 @@ extension NewFormViewController: UIImagePickerControllerDelegate, UINavigationCo
         dismiss(animated: true) { [unowned self] () -> Void in
             let imageEditor = ImageEditorController()
             imageEditor.avatarImage = image
+            self._isImageSet = true
+            
             self.navigationController?.pushViewController(imageEditor, animated: true)
         }
     }
