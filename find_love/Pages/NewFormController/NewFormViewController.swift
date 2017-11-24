@@ -98,6 +98,7 @@ class NewFormViewController: CommonViewController {
         if isEditingSession {
             _createButton.setTitle("Изменить", for: .normal)
             _countryTextField.text = "Россия"
+            _isImageSet = true
         }
         
         cityTextField.delegate = _textDelegate
@@ -148,6 +149,7 @@ class NewFormViewController: CommonViewController {
     
     func validRegister() {
         if isEditingSession {
+            FormListViewController.forceResetForms = true
             navigationController?.popViewController(animated: true)
         } else {
             let formList = FormListViewController()

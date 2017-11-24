@@ -16,7 +16,7 @@ extension UIView {
         
         let container = UIView()
         container.tag = UIView.loaderTag
-        container.backgroundColor = UIColor.clear
+        container.backgroundColor = UIColor.lightGray
         isUserInteractionEnabled = false
         container.translatesAutoresizingMaskIntoConstraints = false
         addSubview(container)

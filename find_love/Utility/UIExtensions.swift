@@ -1,4 +1,5 @@
 import UIKit
+import Alamofire
 
 extension UITextField {
     func defaultInitilization(hint: String) {
@@ -25,6 +26,10 @@ extension UIButton {
     }
 }
 
+
+
+fileprivate var _imageCache = NSCache<NSString, UIImage>()
+
 extension UIImageView {
     func startScaleAnimation(scaleX: CGFloat, scaleY: CGFloat) {
         UIView.animate(withDuration: 0.5, delay: 0.1, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [.repeat, .autoreverse],
@@ -36,7 +41,32 @@ extension UIImageView {
     func stopAnimations() {
         layer.removeAllAnimations()
     }
+    
+    func downloadImageFrom(url: String) {
+        if let cachedImage = _imageCache.object(forKey: NSString(string: url)) {
+            self.image = cachedImage
+            return
+        }
+        
+        showLoader()
+        
+        Alamofire.request(url).responseData { [unowned self] response -> Void in
+            if let data = response.result.value,
+                let image = UIImage(data: data),
+                response.error == nil {
+                
+                DispatchQueue.main.async { [unowned self] () -> Void in
+                    self.image = image
+                    _imageCache.setObject(image, forKey: NSString(string: url))
+                    self.removeLoader()
+                }
+            } else {
+                self.removeLoader()
+            }
+        }
+    }
 }
+
 
 extension UIView {
     func fadeAnimation(toAlpha: CGFloat, duration: Double) {

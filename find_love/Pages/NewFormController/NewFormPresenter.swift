@@ -54,6 +54,7 @@ class NewFormPresenter {
 
                 DispatchQueue.main.async { [unowned self] () -> Void in
                     self._view.cityTextField.text = user.city.name
+                    self._view.avatarImageView.downloadImageFrom(url: user.avatar.completeURL)
                     self._view.userName = user.name
                     self._view.userEmail = user.email
                     self._view.userSex = user.sex

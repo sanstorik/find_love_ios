@@ -40,6 +40,17 @@ enum Sex {
             return Sex.male
         }
     }
+    
+    static func stringToSex(_ sex: String) -> Sex {
+        switch sex {
+        case "man":
+            return Sex.male
+        case "woman":
+            return Sex.female
+        default:
+            return Sex.male
+        }
+    }
 }
 
 class User {
@@ -54,13 +65,15 @@ class User {
     var biography: String?
     var weight: Int?
     var height: Int?
+    var id: Int?
     
-    init(name: String, email: String, avatar: Avatar, city: City, age: Int, sex: Sex) {
+    init(name: String, email: String, avatar: Avatar, city: City, age: Int, sex: Sex, id: Int? = nil) {
         self.name = name
         self.email = email
         self.avatar = avatar
         self.city = city
         self.age = age
         self.sex = sex
+        self.id = id
     }
 }

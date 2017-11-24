@@ -2,7 +2,7 @@ import UIKit
 
 class FormImagePage: UIViewController {
     
-    let avatarImage: UIImageView = {
+    private let _avatarImage: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleToFill
         image.image = UIImage(named: "image_placeholder")
@@ -50,7 +50,14 @@ class FormImagePage: UIViewController {
         return button
     }()
     
-    var id: Int = 0
+    var user: User? {
+        didSet {
+            if let user = self.user {
+                _userName.text = user.name
+                _avatarImage.downloadImageFrom(url: user.avatar.completeURL)
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,16 +66,16 @@ class FormImagePage: UIViewController {
     }
     
     private func setupViews() {
-        view.addSubview(avatarImage)
+        view.addSubview(_avatarImage)
         view.addSubview(_bottomLine)
         _bottomLine.addSubview(_userName)
         _bottomLine.addSubview(_onlineLabel)
         _bottomLine.addSubview(_reportButton)
         
-        avatarImage.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        avatarImage.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        avatarImage.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        avatarImage.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        _avatarImage.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        _avatarImage.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        _avatarImage.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        _avatarImage.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         
         _bottomLine.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         _bottomLine.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true

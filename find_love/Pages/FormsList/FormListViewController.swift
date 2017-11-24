@@ -14,18 +14,24 @@ class FormListViewController: CommonViewController {
                                       target: self, action: #selector(settingsOnClick))
         navigationItem.leftBarButtonItem = message
         navigationItem.rightBarButtonItem = settings
-        //navigationController?.setNavigationBarHidden(true, animated: true)
+        
+        if FormListViewController.forceResetForms {
+            isUploadingImagesAllowed = true
+            _presenter.initialLoadForms()
+            
+            FormListViewController.forceResetForms = false
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        //navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor.black
+        _presenter.initialLoadForms()
         setupViews()
     }
     
@@ -35,6 +41,20 @@ class FormListViewController: CommonViewController {
         button.titleLabel?.font = UIFont.systemFont(ofSize: 25, weight: UIFont.Weight(0.5))
         
         return button
+    }()
+    
+    private let _likeLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Пока на вашу симпатию не ответят взаимностью, вы не сможете отправлять сообщения."
+        label.font = UIFont.systemFont(ofSize: 28, weight: UIFont.Weight(0.2))
+        label.textAlignment = .center
+        label.textColor = UIColor.white
+        label.alpha = 0
+        label.numberOfLines = 3
+        label.adjustsFontSizeToFitWidth = true
+        
+        return label
     }()
     
     private let _appIconImageView: UIImageView = {
@@ -62,26 +82,7 @@ class FormListViewController: CommonViewController {
         return button
     }()
     
-    private let _controllers: [UIViewController] = {
-        var pages = [UIViewController]()
-        let _stickersNames = ["image_placeholder", "app_icon", "image_placeholder",
-                              "app_icon", "image_placeholder", "app_icon",
-                              "mask_7", "mask_8", "mask_9",
-                              "mask_10"]
-        
-        var i = 1
-        for image in _stickersNames {
-            let page = FormImagePage()
-            page.avatarImage.image = UIImage(named: image)
-            page.id = i
-            pages.append(page)
-            i += 1
-        }
-        
-        return pages
-    }()
-    
-    private let _pageView: SCPageViewController = {
+    let pageView: SCPageViewController = {
         let pagesController = SCPageViewController()
         pagesController.setLayouter(SCSlidingPageLayouter(), animated: false, completion: nil)
         pagesController.easingFunction = SCEasingFunction(type: .bounceEaseIn)
@@ -89,40 +90,25 @@ class FormListViewController: CommonViewController {
         return pagesController
     }()
     
+    private lazy var _presenter = FormListPresenter(view: self)
+    var isUploadingImagesAllowed = true
+    static var forceResetForms = false
+    
     private func setupViews() {
-        _pageView.delegate = self
-        _pageView.dataSource = self
+        pageView.delegate = self
+        pageView.dataSource = self
         
-        //view.addSubview(_appIconImageView)
-        //view.addSubview(_messageButton)
-        //view.addSubview(_settingsButton)
         view.addSubview(_likeButton)
+        view.addSubview(_likeLabel)
         
-        self.addChildViewController(_pageView)
-        self.view.addSubview(_pageView.view)
+        self.addChildViewController(pageView)
+        self.view.addSubview(pageView.view)
         
-        /*_messageButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 30).isActive = true
-        _messageButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25).isActive = true
-        _messageButton.widthAnchor.constraint(equalToConstant: 55).isActive = true
-        _messageButton.heightAnchor.constraint(equalToConstant: 55).isActive = true
-        _messageButton.addTarget(self, action: #selector(messagesOnClick), for: .touchUpInside)
-        
-        _settingsButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 30).isActive = true
-        _settingsButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25).isActive = true
-        _settingsButton.widthAnchor.constraint(equalToConstant: 55).isActive = true
-        _settingsButton.heightAnchor.constraint(equalToConstant: 55).isActive = true
-        _settingsButton.addTarget(self, action: #selector(settingsOnClick), for: .touchUpInside)
-        
-        _appIconImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        _appIconImageView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        _appIconImageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.2).isActive = true
-        _appIconImageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.12).isActive = true*/
-        
-        _pageView.view.translatesAutoresizingMaskIntoConstraints = false
-        _pageView.view.topAnchor.constraint(equalTo: view.topAnchor, constant: 40).isActive = true
-        _pageView.view.bottomAnchor.constraint(equalTo: _likeButton.topAnchor, constant: -40).isActive = true
-        _pageView.view.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        _pageView.view.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        pageView.view.translatesAutoresizingMaskIntoConstraints = false
+        pageView.view.topAnchor.constraint(equalTo: view.topAnchor, constant: 30).isActive = true
+        pageView.view.bottomAnchor.constraint(equalTo: _likeButton.topAnchor, constant: -30).isActive = true
+        pageView.view.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        pageView.view.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         
         _likeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 35).isActive = true
         _likeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -35).isActive = true
@@ -130,7 +116,11 @@ class FormListViewController: CommonViewController {
         _likeButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.12).isActive = true
         _likeButton.addTarget(self, action: #selector(likeOnClick), for: .touchUpInside)
         
-        _pageView.didMove(toParentViewController: self)
+        _likeLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 60).isActive = true
+        _likeLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -60).isActive = true
+        _likeLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30).isActive = true
+        
+        pageView.didMove(toParentViewController: self)
     }
     
     @objc private func messagesOnClick() {
@@ -144,20 +134,62 @@ class FormListViewController: CommonViewController {
     }
     
     @objc private func likeOnClick() {
-        print((_pageView.viewControllerForPage(at: _pageView.currentPage) as! FormImagePage).id)
+        guard let page = pageView.viewControllerForPage(at: pageView.currentPage) as? FormImagePage,
+            let user = page.user else {
+                return
+        }
+        
+        hideLikeButton()
+        print(user.name, user.id)
+    }
+    
+    private func hideLikeButton() {
+        _likeButton.fadeAnimation(toAlpha: 0, duration: 0.3)
+        _likeButton.isUserInteractionEnabled = false
+        
+        _likeLabel.fadeAnimation(toAlpha: 1, duration: 0.3)
+    }
+    
+    private func showLikeButton() {
+        _likeButton.fadeAnimation(toAlpha: 1, duration: 0.3)
+        _likeButton.isUserInteractionEnabled = true
+        
+        _likeLabel.fadeAnimation(toAlpha: 0, duration: 0.3)
+    }
+    
+    func errorNetwork() {
+        alert(message: "Не удалось загрузить анкеты. Проверьте подключение к интернету.")
+    }
+    
+    func errorNoForms() {
+        alert(message: "В вашем городе пока что нет анкет.")
+    }
+    
+    private func alert(message: String) {
+        let alert = UIAlertController(title: "Ошибка", message: message,
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ок", style: .default))
+        
+        present(alert, animated: true)
     }
 }
 
 extension FormListViewController: SCPageViewControllerDataSource, SCPageViewControllerDelegate {
     func numberOfPages(in pageViewController: SCPageViewController!) -> UInt {
-        return UInt(_controllers.count)
+        return UInt(_presenter.controllers.count)
     }
     
     func pageViewController(_ pageViewController: SCPageViewController!, viewControllerForPageAt pageIndex: UInt) -> UIViewController! {
-        return _controllers[Int(pageIndex)]
+        if (pageIndex == _presenter.controllers.count - 2 && isUploadingImagesAllowed) {
+            _presenter.loadAdditionalForms()
+            print("loaded")
+        }
+        
+        return _presenter.controllers[Int(pageIndex)]
     }
     
     func pageViewController(_ pageViewController: SCPageViewController!, didNavigateToPageAt pageIndex: UInt) {
         print(pageIndex)
+        showLikeButton()
     }
 }
