@@ -1,5 +1,6 @@
 import UIKit
 import UIView_Shake
+import PMAlertController
 
 class UsernameTextFieldDelegate: NSObject, UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -146,9 +147,8 @@ class RegistrationViewController: CommonViewController {
     }
     
     func invalidLogin(message: String) {
-        let alert = UIAlertController(title: "Ошибка", message: message,
-                                      preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ок", style: .default))
+        let alert = customizedAlertController(title: "Ошибка", description: message)
+        alert.addAction(customizedAlertAction(title: "OК"))
         
         present(alert, animated: true)
     }
@@ -168,6 +168,12 @@ class RegistrationViewController: CommonViewController {
     }
     
     private func setupViews() {
+        _maleButton.titleLabel?.font = _maleButton.titleLabel?.font.withHeightConstant(multiplier: 0.034, view: view)
+        _femaleButton.titleLabel?.font = _femaleButton.titleLabel?.font.withHeightConstant(multiplier: 0.034, view: view)
+        _sexLabel.font = _sexLabel.font.withHeightConstant(multiplier: 0.037, view: view)
+        _emailTextField.font = _emailTextField.font?.withHeightConstant(multiplier: 0.03, view: view)
+        _userPasswordTextField.font = _userPasswordTextField.font?.withHeightConstant(multiplier: 0.03, view: view)
+        _nameTextField.font = _nameTextField.font?.withHeightConstant(multiplier: 0.03, view: view)
         _registrationButton.titleLabel?.font = _registrationButton.titleLabel?.font.withSize(0.034 * view.frame.height)
         
         _userPasswordTextField.delegate = delegate

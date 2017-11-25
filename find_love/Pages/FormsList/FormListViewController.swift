@@ -18,6 +18,7 @@ class FormListViewController: CommonViewController {
         if FormListViewController.forceResetForms {
             isUploadingImagesAllowed = true
             _presenter.initialLoadForms()
+
             
             FormListViewController.forceResetForms = false
             updateLikeButtonState()
@@ -77,6 +78,8 @@ class FormListViewController: CommonViewController {
     private func setupViews() {
         pageView.delegate = self
         pageView.dataSource = self
+        _likeButton.titleLabel?.font = _likeButton.titleLabel?.font.withHeightConstant(multiplier: 0.04, view: view)
+        _likeLabel.font = _likeLabel.font.withHeightConstant(multiplier: 0.035, view: view)
         
         view.addSubview(_likeButton)
         view.addSubview(_likeLabel)
@@ -156,9 +159,8 @@ class FormListViewController: CommonViewController {
     
     
     private func alert(message: String) {
-        let alert = UIAlertController(title: "Ошибка", message: message,
-                                      preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ок", style: .default))
+        let alert = customizedAlertController(title: "Ошибка", description: message)
+        alert.addAction(customizedAlertAction(title: "ОK"))
         
         present(alert, animated: true)
     }

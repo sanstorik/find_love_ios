@@ -144,13 +144,9 @@ class NewFormViewController: CommonViewController {
     }
     
     func errorRegister() {
-        let alert = PMAlertController(title: "Ошибка ", description: "Не удалось получить данные. Проверьте подключение к интернету и попробуйте снова.", image: nil, style: .alert)
-        alert.alertTitle.font = alert.alertTitle.font.withHeightConstant(multiplier: 0.03, view: view)
-        alert.alertDescription.font = alert.alertTitle.font.withHeightConstant(multiplier: 0.03, view: view)
-        alert.alertViewWidthConstraint.constant = view.frame.width * 0.85
+        let alert = customizedAlertController(title: "Ошибка", description: "Не удалось получить данные. Проверьте подключение к интернету и попробуйте снова.")
         
-        let action = PMAlertAction(title: "ОК", style: .cancel)
-        action.titleLabel?.font = action.titleLabel?.font.withHeightConstant(multiplier: 0.03, view: view)
+        let action = customizedAlertAction(title: "ОК")
         alert.addAction(action)
         
         present(alert, animated: true)
@@ -168,15 +164,11 @@ class NewFormViewController: CommonViewController {
     }
     
     func errorLoadingData() {
-        let alert = PMAlertController(title: "Ошибка ", description: "Не удалось получить данные. Проверьте подключение к интернету и попробуйте снова.", image: nil, style: .alert)
-        alert.alertTitle.font = alert.alertTitle.font.withHeightConstant(multiplier: 0.03, view: view)
-        alert.alertDescription.font = alert.alertTitle.font.withHeightConstant(multiplier: 0.03, view: view)
-        alert.alertViewWidthConstraint.constant = view.frame.width * 0.85
-        
-        let action = PMAlertAction(title: "ОК", style: .default, action:  { [unowned self] () -> Void in
+        let alert = customizedAlertController(title: "Ошибка", description: "Не удалось получить данные. Проверьте подключение к интернету и попробуйте снова.")
+
+        let action = customizedAlertAction(title: "ОК") { [unowned self] () -> Void in
             self.navigationController?.popViewController(animated: true)
-        })
-        action.titleLabel?.font = action.titleLabel?.font.withHeightConstant(multiplier: 0.03, view: view)
+        }
         
         alert.addAction(action)
         
@@ -262,15 +254,10 @@ class NewFormViewController: CommonViewController {
     }
     
     private func alertTurnInternetOn() {
-        let alert = PMAlertController(title: "Ошибка", description: "Подключите интернет и нажмите на кнопку продолжить.", image: nil,  style: .alert)
-        alert.alertTitle.font = alert.alertTitle.font.withHeightConstant(multiplier: 0.03, view: view)
-        alert.alertDescription.font = alert.alertTitle.font.withHeightConstant(multiplier: 0.03, view: view)
-        alert.alertViewWidthConstraint.constant = view.frame.width * 0.85
-        
-        let action = PMAlertAction(title: "Продолжить", style: .default, action:  { [unowned self] () -> Void in
+        let alert = customizedAlertController(title: "Ошибка", description: "Подключите интернет и нажмите на кнопку продолжить.")
+        let action = customizedAlertAction(title: "Продолжить") { [unowned self] () -> Void in
             self._presenter.loadCities(updateView: true)
-        })
-        action.titleLabel?.font = action.titleLabel?.font.withHeightConstant(multiplier: 0.03, view: view)
+        }
         
         alert.addAction(action)
         

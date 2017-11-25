@@ -68,6 +68,9 @@ class FormImagePage: UIViewController {
     }
     
     private func setupViews() {
+        _onlineLabel.font = _onlineLabel.font.withHeightConstant(multiplier: 0.025, view: view)
+        _userName.font = _userName.font.withHeightConstant(multiplier: 0.035, view: view)
+        
         view.addSubview(_avatarImage)
         view.addSubview(_bottomLine)
         _bottomLine.addSubview(_userName)
@@ -91,22 +94,21 @@ class FormImagePage: UIViewController {
         _onlineLabel.centerYAnchor.constraint(equalTo: _bottomLine.centerYAnchor).isActive = true
         
         _reportButton.trailingAnchor.constraint(equalTo: _bottomLine.trailingAnchor, constant: -15).isActive = true
-        _reportButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        _reportButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        _reportButton.heightAnchor.constraint(equalTo: _bottomLine.heightAnchor, multiplier: 0.5).isActive = true
+        _reportButton.widthAnchor.constraint(equalTo: _bottomLine.heightAnchor, multiplier: 0.5).isActive = true
         _reportButton.centerYAnchor.constraint(equalTo: _bottomLine.centerYAnchor).isActive = true
         _reportButton.addTarget(self, action: #selector(reportOnClick), for: .touchUpInside)
     }
     
     @objc private func reportOnClick() {
-        let alert = UIAlertController(title: nil, message: "Вы действительно хотите сообщить, что этот пользователь нарушает правила?"
-            , preferredStyle: .alert)
+        let alert = customizedAlertController(title: "", description: "Вы действительно хотите сообщить, что этот пользователь нарушает правила?")
         
-        alert.addAction(UIAlertAction(title: "Нет", style: .cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "Да", style: .default, handler: { [unowned self] _ -> Void in
+        alert.addAction(customizedAlertAction(title: "Нет"))
+        alert.addAction(customizedAlertAction(title: "Да") { [unowned self] () -> Void in
             if let user = self.user {
                 self.reportOnClickEvent?(user)
             }
-        }))
+        })
         
         present(alert, animated: true)
     }

@@ -52,13 +52,16 @@ class SubscribeViewController: CommonViewController  {
     
     
     private func setupViews() {
+        _topLabel.font = _topLabel.font.withHeightConstant(multiplier: 0.037, view: view)
+        _agreeButton.titleLabel?.font = _agreeButton.titleLabel?.font.withHeightConstant(multiplier: 0.034, view: view)
+        
         view.addSubview(_exitButton)
         view.addSubview(_topLabel)
         view.addSubview(_agreeButton)
 
         _exitButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
-        _exitButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
-        _exitButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        _exitButton.widthAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.07).isActive = true
+        _exitButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.07).isActive = true
         _exitButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 30).isActive = true
         _exitButton.addTarget(self, action: #selector(exitOnClick), for: .touchUpInside)
         
@@ -66,7 +69,7 @@ class SubscribeViewController: CommonViewController  {
         _topLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -60).isActive = true
         _topLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 30).isActive = true
         
-        let first = createLabelBelow(view: _topLabel, text: "Безлимитное количество анкет", offsetY: 40)
+        let first = createLabelBelow(view: _topLabel, text: "Безлимитное количество анкет", offsetY: view.frame.height * 0.06)
         let second = createLabelBelow(view: first, text: "Безлимитное продление заявки")
         let third = createLabelBelow(view: second, text: "Безлимитное количество лайков")
         let fourth = createLabelBelow(view: third, text: "Безлимитное продление сообщений")
@@ -74,7 +77,7 @@ class SubscribeViewController: CommonViewController  {
         
         _agreeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40).isActive = true
         _agreeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40).isActive = true
-        _agreeButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        _agreeButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.1).isActive = true
         _agreeButton.topAnchor.constraint(equalTo: fifth.bottomAnchor, constant: 40).isActive = true
         _agreeButton.addTarget(self, action: #selector(buyOnClick), for: .touchUpInside)
     }
@@ -87,14 +90,15 @@ class SubscribeViewController: CommonViewController  {
         self.view.addSubview(heart)
         
         heart.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 38).isActive = true
-        heart.widthAnchor.constraint(equalToConstant: 28).isActive = true
-        heart.heightAnchor.constraint(equalToConstant: 25).isActive = true
+        heart.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.042).isActive = true
+        heart.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.035).isActive = true
         heart.topAnchor.constraint(equalTo: view.bottomAnchor, constant: offsetY - 3).isActive = true
         
         let label = UILabel()
         self.view.addSubview(label)
         
         label.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight(0.2))
+        label.font = label.font.withHeightConstant(multiplier: 0.028, view: self.view)
         label.text = text
         label.textColor = UIColor.white
         label.numberOfLines = 1

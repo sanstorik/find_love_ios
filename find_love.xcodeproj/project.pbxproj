@@ -17,6 +17,7 @@
 		896D623D1FBCC00700E264E3 /* UnderlinedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896D623C1FBCC00700E264E3 /* UnderlinedTextField.swift */; };
 		896D62401FBCC58600E264E3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896D623F1FBCC58600E264E3 /* User.swift */; };
 		896D62421FBCD78B00E264E3 /* RulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896D62411FBCD78B00E264E3 /* RulesViewController.swift */; };
+		897535F81FC9B4C200453903 /* CustomizedAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897535F71FC9B4C200453903 /* CustomizedAlertController.swift */; };
 		8995D9781FBB7CE80015EF61 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8995D9771FBB7CE80015EF61 /* AppDelegate.swift */; };
 		8995D97A1FBB7CE80015EF61 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8995D9791FBB7CE80015EF61 /* LoginViewController.swift */; };
 		8995D97F1FBB7CE80015EF61 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8995D97E1FBB7CE80015EF61 /* Assets.xcassets */; };
@@ -74,6 +75,7 @@
 		896D623C1FBCC00700E264E3 /* UnderlinedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlinedTextField.swift; sourceTree = "<group>"; };
 		896D623F1FBCC58600E264E3 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		896D62411FBCD78B00E264E3 /* RulesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesViewController.swift; sourceTree = "<group>"; };
+		897535F71FC9B4C200453903 /* CustomizedAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizedAlertController.swift; sourceTree = "<group>"; };
 		8995D9741FBB7CE80015EF61 /* find_love.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = find_love.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8995D9771FBB7CE80015EF61 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8995D9791FBB7CE80015EF61 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -251,6 +253,7 @@
 				896D623C1FBCC00700E264E3 /* UnderlinedTextField.swift */,
 				89BFDEAC1FBF23D2003F9601 /* CommonViewController.swift */,
 				89E33E411FBF690F00FA9065 /* ProgressLoader.swift */,
+				897535F71FC9B4C200453903 /* CustomizedAlertController.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -546,6 +549,7 @@
 				89DEB8611FC4652000A851B4 /* LikeCell.swift in Sources */,
 				896C92C11FC5BDF800F70506 /* RegistrationPresenter.swift in Sources */,
 				896D62401FBCC58600E264E3 /* User.swift in Sources */,
+				897535F81FC9B4C200453903 /* CustomizedAlertController.swift in Sources */,
 				89DEC61A1FBDBFF500BA851A /* NewFormViewController.swift in Sources */,
 				89DEB85F1FC4643D00A851B4 /* LikesCollectionView.swift in Sources */,
 			);

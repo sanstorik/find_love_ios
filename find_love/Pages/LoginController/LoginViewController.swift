@@ -174,9 +174,8 @@ class LoginViewController: CommonViewController {
     }
     
     func errorLogin(message: String) {
-        let alert = UIAlertController(title: "Ошибка", message: message,
-                                      preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ок", style: .default))
+        let alert = customizedAlertController(title: "Ошибка", description: message)
+        alert.addAction(customizedAlertAction(title: "OK"))
         
         present(alert, animated: true)
     }

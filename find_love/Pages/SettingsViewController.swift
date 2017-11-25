@@ -82,8 +82,8 @@ class SettingsViewController: CommonViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3)) { [unowned self] () -> Void in
             self.navigationController?.setNavigationBarHidden(false, animated: true)
             self.view.removeLoader {
-                let alert = UIAlertController(title: nil, message: "Активность вашей подписки подтверджена", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Oк", style: .default, handler: nil))
+                let alert = self.customizedAlertController(title: "", description: "Активность вашей подписки подтверджена")
+                alert.addAction(self.customizedAlertAction(title: "Oк"))
                 
                 self.present(alert, animated: true)
             }

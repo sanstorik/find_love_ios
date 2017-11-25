@@ -86,6 +86,11 @@ class GiftViewController: CommonViewController {
     
 
     private func setupViews() {
+        _giftLabel.font = _giftLabel.font.withHeightConstant(multiplier: 0.037, view: view)
+        _weGiveLabel.font = _weGiveLabel.font.withHeightConstant(multiplier: 0.037, view: view)
+        _joyLabel.font = _giftLabel.font.withHeightConstant(multiplier: 0.03, view: view)
+        _freeLabel.font = _freeLabel.font.withHeightConstant(multiplier: 0.04, view: view)
+        _agreeButton.titleLabel?.font = _agreeButton.titleLabel?.font.withHeightConstant(multiplier: 0.037, view: view)
         view.addSubview(_giftLabel)
         view.addSubview(_giftImageView)
         view.addSubview(_weGiveLabel)

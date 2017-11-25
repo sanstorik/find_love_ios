@@ -2,9 +2,14 @@ import UIKit
 
 extension UIView {
     private static let loaderTag = 9999
+    private static let fullScreenTag = 1111
     
     private var loaderView: UIView? {
         return viewWithTag(UIView.loaderTag)
+    }
+    
+    private var fullScreenLoader: UIView? {
+        return viewWithTag(UIView.fullScreenTag)
     }
     
     var loaderViewIsPresented: Bool {
@@ -55,7 +60,7 @@ extension UIView {
         loaderView?.removeFromSuperview()
         
         let container = UIView()
-        container.tag = UIView.loaderTag
+        container.tag = UIView.fullScreenTag
         container.backgroundColor = UIColor.black
         isUserInteractionEnabled = false
         container.translatesAutoresizingMaskIntoConstraints = false
@@ -91,11 +96,23 @@ extension UIView {
     
     func removeLoader(_ completionHandler: (() -> ())? = nil) {
         isUserInteractionEnabled = true
+        
         UIView.animate(withDuration: 0.3, animations: {
             self.loaderView?.alpha = 0
         }) { _ in
             completionHandler?()
             self.loaderView?.removeFromSuperview()
+        }
+    }
+    
+    func removeLoaderFullScreen(_ completionHandler: (() -> ())? = nil) {
+        isUserInteractionEnabled = true
+
+        UIView.animate(withDuration: 0.3, animations: {
+            self.fullScreenLoader?.alpha = 0
+        }) { _ in
+            completionHandler?()
+            self.fullScreenLoader?.removeFromSuperview()
         }
     }
     
