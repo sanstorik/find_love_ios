@@ -16,9 +16,12 @@ class FormListPresenter {
     
     func initialLoadForms() {
         controllers.removeAll()
+        reloadPageView()
+        _view.view.showLoaderFullScreen()
+        
         _currentPage = _startingPage
         
-        loadFormsAt(page: _startingPage, perPage: _perPage) { [unowned self] forms -> Void in
+        loadFormsAt(page: _startingPage, perPage: _perPage, removeLoader: true) { [unowned self] forms -> Void in
             forms.forEach { userForm in
                 if !self.isUserReported(user: userForm) {
                     let imagePage = FormImagePage()
@@ -32,7 +35,11 @@ class FormListPresenter {
             self.reloadPageView()
             
             if forms.count == 0 {
-                self.errorNoFormsAsync()
+                self.removeLoaderAsync() { [unowned self] () -> () in
+                    self.errorNoFormsAsync()
+                }
+            } else {
+                self.removeLoaderAsync()
             }
         }
     }
@@ -77,7 +84,7 @@ class FormListPresenter {
     }
     
     
-    private func loadFormsAt(page: Int, perPage: Int, completionHandler: (([User]) -> Void)? = nil) {
+    private func loadFormsAt(page: Int, perPage: Int, removeLoader: Bool = false, completionHandler: (([User]) -> Void)? = nil) {
         let token = "Bearer " + User.token
         let headers: HTTPHeaders = ["Accept": "application/json",
                                     "Authorization": token]
@@ -85,7 +92,13 @@ class FormListPresenter {
         
         Alamofire.request(url, headers: headers).responseJSON { [unowned self] response -> Void in
             guard let json = response.result.value as? [String: Any] else {
-                self.errorLoadAsync()
+                if removeLoader {
+                    self.removeLoaderAsync() {
+                        self.errorLoadAsync()
+                    }
+                } else {
+                    self.errorLoadAsync()
+                }
                 return
             }
             
@@ -112,8 +125,20 @@ class FormListPresenter {
                     }
                 }
             } else {
-                self.errorLoadAsync()
+                if removeLoader {
+                    self.removeLoaderAsync() {
+                        self.errorLoadAsync()
+                    }
+                } else {
+                    self.errorLoadAsync()
+                }
             }
+        }
+    }
+    
+    private func removeLoaderAsync(completionHandler: (() -> ())? = nil) {
+        DispatchQueue.main.async { [unowned self] () -> Void in
+            self._view.view.removeLoader(completionHandler)
         }
     }
     
