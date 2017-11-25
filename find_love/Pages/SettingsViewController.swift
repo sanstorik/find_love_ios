@@ -16,16 +16,15 @@ class SettingsViewController: CommonViewController {
     
     private var _buttonSelectors = [Selector]()
     private var _buttonTitles = [String]()
-    
-    private var _isSoundEnabled = true
     private var _soundButton: UIButton!
+    private var _isSoundDisabled = UserDefaults.standard.bool(forKey: "sound")
     
     private func setupViews() {
         _buttonSelectors += [#selector(changeFormOnClick), #selector(recoverPurchasesOnClick),
                              #selector(termsOfUseOnClick), #selector(deleteProfileOnClick),
                              #selector(muteSoundOnClick), #selector(respondUsOnClick)]
         
-        let soundButtonTitle = _isSoundEnabled ? "Отключить звук" : "Включить звук"
+        let soundButtonTitle = _isSoundDisabled ? "Включить звук" : "Отключить звук"
         _buttonTitles += ["Изменить анкету", "Восстановить покупки", "Условия использования",
                           "Удалить профиль", soundButtonTitle, "Напишите нам"]
         
@@ -105,8 +104,9 @@ class SettingsViewController: CommonViewController {
     }
     
     @objc private func muteSoundOnClick() {
-        _isSoundEnabled = !_isSoundEnabled
-       _soundButton.setTitle(_isSoundEnabled ? "Отключить звук" : "Включить звук", for: .normal)
+        _isSoundDisabled = !_isSoundDisabled
+        UserDefaults.standard.set(_isSoundDisabled, forKey: "sound")
+       _soundButton.setTitle(_isSoundDisabled ? "Включить звук" : "Отключить звук", for: .normal)
     }
     
     @objc private func respondUsOnClick() {
