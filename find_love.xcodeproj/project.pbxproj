@@ -29,6 +29,7 @@
 		89BE4E3E1FC8C7BB004D8385 /* SubscribeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BE4E3D1FC8C7BB004D8385 /* SubscribeViewController.swift */; };
 		89BFDEAB1FBF08FB003F9601 /* TermsOfUseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BFDEAA1FBF08FB003F9601 /* TermsOfUseViewController.swift */; };
 		89BFDEAD1FBF23D2003F9601 /* CommonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BFDEAC1FBF23D2003F9601 /* CommonViewController.swift */; };
+		89D610E31FC983070064D3B4 /* GiftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D610E21FC983070064D3B4 /* GiftViewController.swift */; };
 		89DEB8581FC44B7C00A851B4 /* MessagesCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DEB8571FC44B7C00A851B4 /* MessagesCollectionView.swift */; };
 		89DEB85A1FC44DF900A851B4 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DEB8591FC44DF900A851B4 /* MessageCell.swift */; };
 		89DEB85C1FC44F2A00A851B4 /* MessageLikesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DEB85B1FC44F2A00A851B4 /* MessageLikesViewController.swift */; };
@@ -91,6 +92,7 @@
 		89BE4E3D1FC8C7BB004D8385 /* SubscribeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribeViewController.swift; sourceTree = "<group>"; };
 		89BFDEAA1FBF08FB003F9601 /* TermsOfUseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsOfUseViewController.swift; sourceTree = "<group>"; };
 		89BFDEAC1FBF23D2003F9601 /* CommonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonViewController.swift; sourceTree = "<group>"; };
+		89D610E21FC983070064D3B4 /* GiftViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftViewController.swift; sourceTree = "<group>"; };
 		89DEB8571FC44B7C00A851B4 /* MessagesCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesCollectionView.swift; sourceTree = "<group>"; };
 		89DEB8591FC44DF900A851B4 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		89DEB85B1FC44F2A00A851B4 /* MessageLikesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageLikesViewController.swift; sourceTree = "<group>"; };
@@ -267,6 +269,7 @@
 			isa = PBXGroup;
 			children = (
 				89BE4E3D1FC8C7BB004D8385 /* SubscribeViewController.swift */,
+				89D610E21FC983070064D3B4 /* GiftViewController.swift */,
 			);
 			path = SubscribeControllers;
 			sourceTree = "<group>";
@@ -536,6 +539,7 @@
 				89F98E3A1FC1AB9D002F9F2E /* ImageEditorController.swift in Sources */,
 				896D62421FBCD78B00E264E3 /* RulesViewController.swift in Sources */,
 				89F98E3E1FC1B4E0002F9F2E /* StickerCell.swift in Sources */,
+				89D610E31FC983070064D3B4 /* GiftViewController.swift in Sources */,
 				89BFDEAB1FBF08FB003F9601 /* TermsOfUseViewController.swift in Sources */,
 				89DEB8611FC4652000A851B4 /* LikeCell.swift in Sources */,
 				896C92C11FC5BDF800F70506 /* RegistrationPresenter.swift in Sources */,

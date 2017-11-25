@@ -152,9 +152,9 @@ class NewFormViewController: CommonViewController {
             FormListViewController.forceResetForms = true
             navigationController?.popViewController(animated: true)
         } else {
-            let formList = FormListViewController()
+            let subscribe = SubscribeViewController()
             
-            navigationController?.pushViewController(formList, animated: true)
+            navigationController?.pushViewController(subscribe, animated: true)
         }
     }
     
@@ -256,7 +256,6 @@ class NewFormViewController: CommonViewController {
 extension NewFormViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else {
-            NSLog("coulnt find image")
             return
         }
         

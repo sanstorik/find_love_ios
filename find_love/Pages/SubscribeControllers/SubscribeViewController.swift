@@ -1,18 +1,22 @@
 import UIKit
 
 class SubscribeViewController: CommonViewController  {
+    
     override func viewWillAppear(_ animated: Bool) {
         setupNavigationBar()
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
+    
     override func viewWillDisappear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = UIColor.black
         setupViews()
     }
     
@@ -29,7 +33,7 @@ class SubscribeViewController: CommonViewController  {
         return label
     }()
     
-    private let _execButton: UIButton = {
+    private let _exitButton: UIButton = {
         let button = UIButton()
         button.setImage(#imageLiteral(resourceName: "delete").withRenderingMode(.alwaysTemplate), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -46,17 +50,19 @@ class SubscribeViewController: CommonViewController  {
         return button
     }()
     
+    
     private func setupViews() {
-        view.addSubview(_execButton)
+        view.addSubview(_exitButton)
         view.addSubview(_topLabel)
         view.addSubview(_agreeButton)
 
-        _execButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
-        _execButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
-        _execButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        _execButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 30).isActive = true
+        _exitButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
+        _exitButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        _exitButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        _exitButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 30).isActive = true
+        _exitButton.addTarget(self, action: #selector(exitOnClick), for: .touchUpInside)
         
-        _topLabel.leadingAnchor.constraint(equalTo: _execButton.trailingAnchor, constant: 20).isActive = true
+        _topLabel.leadingAnchor.constraint(equalTo: _exitButton.trailingAnchor, constant: 20).isActive = true
         _topLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -60).isActive = true
         _topLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 30).isActive = true
         
@@ -70,7 +76,9 @@ class SubscribeViewController: CommonViewController  {
         _agreeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40).isActive = true
         _agreeButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
         _agreeButton.topAnchor.constraint(equalTo: fifth.bottomAnchor, constant: 40).isActive = true
+        _agreeButton.addTarget(self, action: #selector(buyOnClick), for: .touchUpInside)
     }
+    
     
     private func createLabelBelow(view: UIView, text: String, offsetY: CGFloat = 20) -> UIView {
         let heart = UIImageView(image: #imageLiteral(resourceName: "heartOne").withRenderingMode(.alwaysTemplate))
@@ -98,5 +106,14 @@ class SubscribeViewController: CommonViewController  {
         label.topAnchor.constraint(equalTo: view.bottomAnchor, constant: offsetY).isActive = true
 
         return label
+    }
+    
+    
+    @objc private func exitOnClick() {
+        navigationController?.pushViewController(GiftViewController(), animated: true)
+    }
+    
+    @objc private func buyOnClick() {
+        navigationController?.pushViewController(FormListViewController(), animated: true)
     }
 }
