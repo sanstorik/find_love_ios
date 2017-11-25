@@ -83,7 +83,7 @@ class SettingsViewController: CommonViewController {
             self.navigationController?.setNavigationBarHidden(false, animated: true)
             self.view.removeLoader {
                 let alert = self.customizedAlertController(title: "", description: "Активность вашей подписки подтверджена")
-                alert.addAction(self.customizedAlertAction(title: "Oк"))
+                alert.addAction(self.customizedAlertAction(title: "OК"))
                 
                 self.present(alert, animated: true)
             }
@@ -95,13 +95,12 @@ class SettingsViewController: CommonViewController {
     }
     
     @objc private func deleteProfileOnClick() {
-        let alert = UIAlertController(title: "Удалить профиль", message: "Вся информация о вашей переписке будет удалена. Продолжить?",
-                                      preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "Да", style: .default, handler: { [unowned self] action -> Void in
+        let alert = customizedAlertController(title: "Удалить профиль", description: "Вся информация о вашей переписке будет удалена. Продолжить?")
+        alert.addAction(customizedAlertAction(title: "ДА") { [unowned self] () -> Void in
             self.deleteProfile()
-        }))
+        })
         
-        alert.addAction(UIAlertAction(title: "Нет", style: .cancel, handler: nil))
+        alert.addAction(customizedAlertAction(title: "НЕТ"))
         present(alert, animated: true)
     }
     
