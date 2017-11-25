@@ -10,6 +10,7 @@ target 'find_love' do
   pod 'SCPageViewController'
   pod 'PagingMenuController'
   pod 'Alamofire'
+  pod 'PMAlertController'
  
 end
 

@@ -92,6 +92,10 @@ class ImageEditorController: CommonViewController {
     var editionSession = false
     
     private func setupViews() {
+        _chooseEffectLabel.font = _chooseEffectLabel.font.withHeightConstant(multiplier: 0.03, view: view)
+        _clearButton.titleLabel?.font = _clearButton.titleLabel?.font.withHeightConstant(multiplier: 0.03, view: view)
+        _acceptButton.titleLabel?.font = _acceptButton.titleLabel?.font.withHeightConstant(multiplier: 0.03, view: view)
+        
         view.addSubview(_avatarImageView)
         view.addSubview(_chooseEffectLabel)
         view.addSubview(_stickersViewCollection)
@@ -109,7 +113,7 @@ class ImageEditorController: CommonViewController {
         _stickersViewCollection.topAnchor.constraint(equalTo: _chooseEffectLabel.bottomAnchor, constant: 10).isActive = true
         _stickersViewCollection.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25).isActive = true
         _stickersViewCollection.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25).isActive = true
-        _stickersViewCollection.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        _stickersViewCollection.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.18).isActive = true
         _stickersViewCollection.register(StickerCell.self, forCellWithReuseIdentifier: _stickerCellId)
         _stickersViewCollection.delegate = self
         _stickersViewCollection.dataSource = self

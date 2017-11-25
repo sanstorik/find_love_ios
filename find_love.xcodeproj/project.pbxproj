@@ -487,6 +487,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-find_love/Pods-find_love-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/DynamicStickers/DynamicStickers.framework",
+				"${BUILT_PRODUCTS_DIR}/PMAlertController/PMAlertController.framework",
 				"${BUILT_PRODUCTS_DIR}/PagingMenuController/PagingMenuController.framework",
 				"${BUILT_PRODUCTS_DIR}/SCPageViewController/SCPageViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/SCScrollView/SCScrollView.framework",
@@ -497,6 +498,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DynamicStickers.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PMAlertController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PagingMenuController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SCPageViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SCScrollView.framework",
