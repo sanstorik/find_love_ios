@@ -24,7 +24,7 @@ extension NavigationBar where Self: UIViewController {
         navigationItem.title = title
         navigationController?.navigationBar.titleTextAttributes =
             [NSAttributedStringKey.foregroundColor: UIColor.white,
-             NSAttributedStringKey.font: UIFont.systemFont(ofSize: 28)]
+             NSAttributedStringKey.font: UIFont.systemFont(ofSize: 28).withSize(0.037 * view.frame.height)]
         
         
         navigationController?.navigationBar.isTranslucent = false

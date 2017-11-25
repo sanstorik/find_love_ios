@@ -18,12 +18,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="launch" translatesAutoresizingMaskIntoConstraints="NO" id="jxo-PP-j26">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch" translatesAutoresizingMaskIntoConstraints="NO" id="jxo-PP-j26">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="jxo-PP-j26" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="5oh-EI-BaM"/>
+                            <constraint firstItem="jxo-PP-j26" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="EwU-sr-h2h"/>
+                            <constraint firstAttribute="bottom" secondItem="jxo-PP-j26" secondAttribute="bottom" id="JUM-Sv-8T6"/>
+                            <constraint firstAttribute="trailing" secondItem="jxo-PP-j26" secondAttribute="trailing" id="uDm-1c-9CD"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>

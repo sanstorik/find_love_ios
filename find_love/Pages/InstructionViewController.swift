@@ -62,6 +62,9 @@ class InstructionViewController: CommonViewController {
     }
     
     private func setupViews() {
+        _instructionLabel.font = _instructionLabel.font.withHeightConstant(multiplier: 0.035, view: view)
+        _startButton.titleLabel?.font = _startButton.titleLabel?.font.withHeightConstant(multiplier: 0.035, view: view)
+        
         view.addSubview(_instructionLabel)
         view.addSubview(_startButton)
         view.addSubview(_appIconImageView)
@@ -77,13 +80,13 @@ class InstructionViewController: CommonViewController {
                                     text: "Система покажет девушек, которые хотят встретится в ближайшее время")
         
         _appIconImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        _appIconImageView.topAnchor.constraint(equalTo: secondRule.bottomAnchor, constant: 30).isActive = true
+        _appIconImageView.topAnchor.constraint(equalTo: secondRule.bottomAnchor, constant: view.frame.height * 0.07).isActive = true
         _appIconImageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.13).isActive = true
         _appIconImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 35).isActive = true
         _appIconImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -35).isActive = true
         
         let thirdRule = createRule(viewAbove: _appIconImageView,
-                                   text: "Определите кто Вам понравился и укажите симпатию", spacing: 30)
+                                   text: "Определите кто Вам понравился и укажите симпатию", spacing: view.frame.height * 0.07)
         
         let fourthRule = createRule(viewAbove: thirdRule,
                            text: "Если симпатия взаимная - договаривайтесь о встрече", numberOfLines: 2)
@@ -108,8 +111,7 @@ class InstructionViewController: CommonViewController {
         label.numberOfLines = numberOfLines
         label.text = text
         label.font = UIFont.systemFont(ofSize: 22, weight: UIFont.Weight(0.05))
-        label.font = label.font.withSize(self.view.frame.height * 0.034)
-        
+        label.font = label.font.withHeightConstant(multiplier: 0.034, view: self.view)
         label.adjustsFontSizeToFitWidth = true
         
         view.addSubview(heartImage)
@@ -117,8 +119,8 @@ class InstructionViewController: CommonViewController {
         
         heartImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 35).isActive = true
         heartImage.topAnchor.constraint(equalTo: viewAbove.bottomAnchor, constant: spacing - 5).isActive = true
-        heartImage.widthAnchor.constraint(equalToConstant: 40).isActive = true
-        heartImage.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        heartImage.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.07).isActive = true
+        heartImage.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.04).isActive = true
         
         label.leadingAnchor.constraint(equalTo: heartImage.trailingAnchor, constant: 5).isActive = true
         label.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25).isActive = true

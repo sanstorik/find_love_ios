@@ -64,6 +64,7 @@ class TermsOfUseViewController: CommonViewController {
     }()
     
     private func setupViews() {
+        _textView.font = _textView.font?.withHeightConstant(multiplier: 0.03, view: view)
         view.addSubview(_textView)
         
         _textView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25).isActive = true

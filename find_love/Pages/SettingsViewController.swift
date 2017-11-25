@@ -48,7 +48,9 @@ class SettingsViewController: CommonViewController {
         button.filledCornerInitilization(color: UIColor(red: 91, green: 93, blue: 84), title: title, cornerRadius: 30)
         button.addTarget(self, action: action, for: .touchUpInside)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 23, weight: UIFont.Weight(0.15))
+        button.titleLabel?.font = button.titleLabel?.font.withSize(0.034 * self.view.frame.height)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.titleLabel?.adjustsFontSizeToFitWidth = true
         
         self.view.addSubview(button)
         
@@ -61,7 +63,7 @@ class SettingsViewController: CommonViewController {
             button.topAnchor.constraint(equalTo: view.bottomAnchor, constant: 20).isActive = true
         }
         
-        button.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        button.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.12).isActive = true
         
         return button
     }

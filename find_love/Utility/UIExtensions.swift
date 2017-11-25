@@ -13,6 +13,12 @@ extension UITextField {
     }
 }
 
+extension UIFont{
+    func withHeightConstant(multiplier: CGFloat, view: UIView) -> UIFont {
+        return self.withSize(view.frame.height * multiplier)
+    }
+}
+
 extension UIButton {
     func filledCornerInitilization(color: UIColor, title: String, cornerRadius: CGFloat = 20) {
         backgroundColor = color

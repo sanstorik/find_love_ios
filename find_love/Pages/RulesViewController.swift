@@ -50,6 +50,9 @@ class RulesViewController: CommonViewController {
     }
     
     private func setupViews() {
+        _rulesLabel.font = _rulesLabel.font.withHeightConstant(multiplier: 0.035, view: view)
+        _agreeButton.titleLabel?.font = _agreeButton.titleLabel?.font.withHeightConstant(multiplier: 0.03, view: view)
+        
         view.addSubview(_rulesLabel)
         view.addSubview(_agreeButton)
         
@@ -72,7 +75,7 @@ class RulesViewController: CommonViewController {
         _agreeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25).isActive = true
         _agreeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25).isActive = true
         _agreeButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50).isActive = true
-        _agreeButton.heightAnchor.constraint(equalToConstant: 55).isActive = true
+        _agreeButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.085).isActive = true
         _agreeButton.addTarget(self, action: #selector(onAgreeClick), for: .touchUpInside)
     }
     
@@ -88,15 +91,16 @@ class RulesViewController: CommonViewController {
         label.numberOfLines = numberOfLines
         label.text = text
         label.font = UIFont.systemFont(ofSize: 19, weight: UIFont.Weight(0.15))
+        label.font = label.font.withHeightConstant(multiplier: 0.03, view: self.view)
         label.adjustsFontSizeToFitWidth = true
         
         view.addSubview(heartImage)
         view.addSubview(label)
         
         heartImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25).isActive = true
-        heartImage.topAnchor.constraint(equalTo: viewAbove.bottomAnchor, constant: 15).isActive = true
-        heartImage.widthAnchor.constraint(equalToConstant: 40).isActive = true
-        heartImage.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        heartImage.topAnchor.constraint(equalTo: viewAbove.bottomAnchor, constant: 20).isActive = true
+        heartImage.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.07).isActive = true
+        heartImage.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.04).isActive = true
         
         label.leadingAnchor.constraint(equalTo: heartImage.trailingAnchor, constant: 5).isActive = true
         label.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25).isActive = true

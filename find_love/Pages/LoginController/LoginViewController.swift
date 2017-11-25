@@ -34,6 +34,7 @@ class LoginViewController: CommonViewController {
         textField.defaultInitilization(hint: "Ваш email")
         textField.text = "Bin@gmail.com"
         textField.font = UIFont.systemFont(ofSize: 22, weight: UIFont.Weight(0.2))
+        textField.adjustsFontSizeToFitWidth = true
         
         return textField
     }()
@@ -43,6 +44,7 @@ class LoginViewController: CommonViewController {
         textField.defaultInitilization(hint: "Ваш пароль")
         textField.text = "123123"
         textField.font = UIFont.systemFont(ofSize: 22, weight: UIFont.Weight(0.2))
+        textField.adjustsFontSizeToFitWidth = true
         textField.isSecureTextEntry = true
         
         return textField
@@ -52,6 +54,8 @@ class LoginViewController: CommonViewController {
         let button = UIButton()
         button.filledCornerInitilization(color: UIColor.red, title: "ВХОД")
         button.titleLabel?.font = UIFont.systemFont(ofSize: 24, weight: UIFont.Weight(0.2))
+        
+        button.titleLabel?.adjustsFontSizeToFitWidth = true
         return button
     }()
     
@@ -90,7 +94,12 @@ class LoginViewController: CommonViewController {
     private lazy var _presenter = LoginPresenter(view: self)
     
     private func setupViews() {
+        _emailTextField.font = _emailTextField.font?.withSize(0.037 * view.frame.height)
+        _userPasswordTextField.font = _userPasswordTextField.font?.withSize(0.037 * view.frame.height)
         _resetPasswordButton.titleLabel?.font = _resetPasswordButton.titleLabel?.font.withSize(0.034 * view.frame.height)
+        _loginButton.titleLabel?.font = _loginButton.titleLabel?.font.withSize(0.034 * view.frame.height)
+        _forgotPassLabel.font = _forgotPassLabel.font.withSize(0.03 * view.frame.height)
+        _refreshPassLabel.font = _refreshPassLabel.font.withSize(0.02 * view.frame.height)
         
         _emailTextField.delegate = _userNameDelegate
         _userPasswordTextField.delegate = _userNameDelegate
