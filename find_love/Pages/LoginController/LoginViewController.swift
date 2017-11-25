@@ -32,7 +32,6 @@ class LoginViewController: CommonViewController {
     private let _emailTextField: UITextField = {
         let textField = UnderlinedTextField(xOffset: 0, yOffset: 7)
         textField.defaultInitilization(hint: "Ваш email")
-        textField.text = "Bin@gmail.com"
         textField.font = UIFont.systemFont(ofSize: 22, weight: UIFont.Weight(0.2))
         textField.adjustsFontSizeToFitWidth = true
         
@@ -42,7 +41,6 @@ class LoginViewController: CommonViewController {
     private let _userPasswordTextField: UITextField = {
         let textField = UnderlinedTextField(xOffset: 0, yOffset: 7)
         textField.defaultInitilization(hint: "Ваш пароль")
-        textField.text = "123123"
         textField.font = UIFont.systemFont(ofSize: 22, weight: UIFont.Weight(0.2))
         textField.adjustsFontSizeToFitWidth = true
         textField.isSecureTextEntry = true
