@@ -39,7 +39,6 @@ class FormListPresenter {
                     self.errorNoFormsAsync()
                 }
             } else {
-                print("remove")
                 self.removeLoaderAsync()
             }
         }
@@ -121,8 +120,6 @@ class FormListPresenter {
                         }
                     }
                     
-                    forms.forEach({ print($0.avatar.completeURL) })
-                    
                     DispatchQueue.main.async {
                         completionHandler?(forms)
                     }
@@ -141,7 +138,6 @@ class FormListPresenter {
     
     private func removeLoaderAsync(completionHandler: (() -> ())? = nil) {
         DispatchQueue.main.async { [unowned self] () -> Void in
-            print("remove next")
             self._view.view.removeLoaderFullScreen(completionHandler)
         }
     }
