@@ -9,14 +9,17 @@ class NewFormViewController: CommonViewController {
         
         navigationItem.hidesBackButton = !isEditingSession
         
-        registerKeyboardObservers(keyboardShowEvent: { [unowned self] _ -> Void in
-            //self.avatarImageView.fadeAnimation(toAlpha: 0, duration: 1)
-            self._emptyPlaceholder.fadeAnimation(toAlpha: 1, duration: 1)
+        registerKeyboardObservers(keyboardShowEvent: { [unowned self] keyboard -> Void in
+            self._emptyPlaceholder.transform =
+                self._emptyPlaceholder.transform.translatedBy(x: 0, y: self.calculateKeyboardHeight(notification: keyboard).height)
+            
+            self._emptyPlaceholder.fadeAnimation(toAlpha: 0.6, duration: 1)
             self.animateTitleColor(UIColor.white.withAlphaComponent(0))
-        }, keyboardHideEvent: { [unowned self] _ -> Void in
-            //self.avatarImageView.fadeAnimation(toAlpha: 1, duration: 1)
-            self._emptyPlaceholder.fadeAnimation(toAlpha: 0, duration: 1)
-            self.animateTitleColor(UIColor.white.withAlphaComponent(1))
+            }, keyboardHideEvent: { [unowned self] keyboard -> Void in
+                self._emptyPlaceholder.transform =
+                    self._emptyPlaceholder.transform.translatedBy(x: 0, y: -self.calculateKeyboardHeight(notification: keyboard).height)
+                self._emptyPlaceholder.fadeAnimation(toAlpha: 0, duration: 1)
+                self.animateTitleColor(UIColor.white.withAlphaComponent(1))
         })
         
         registerDismissingKeyboardOnTap()
@@ -43,9 +46,8 @@ class NewFormViewController: CommonViewController {
     
     private let _emptyPlaceholder: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.brown
+        view.backgroundColor = UIColor.black
         view.alpha = 0
-        view.translatesAutoresizingMaskIntoConstraints = false
         
         return view
     }()
@@ -109,6 +111,10 @@ class NewFormViewController: CommonViewController {
     var userName: String = "аноним"
     var userEmail: String = "аноним"
     var userSex: Sex = .male
+    
+    fileprivate func calculateKeyboardHeight(notification: NSNotification) -> CGRect {
+        return (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue ?? CGRect.zero
+    }
 
     private func setupViews() {
         if isEditingSession {
@@ -132,10 +138,7 @@ class NewFormViewController: CommonViewController {
         view.addSubview(_noGeoPositionLabel)
         view.bringSubview(toFront: _emptyPlaceholder)
         
-        _emptyPlaceholder.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        _emptyPlaceholder.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        _emptyPlaceholder.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        _emptyPlaceholder.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        _emptyPlaceholder.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 20)
         
         avatarImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30).isActive = true
         avatarImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30).isActive = true
