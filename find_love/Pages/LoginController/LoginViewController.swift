@@ -63,7 +63,7 @@ class LoginViewController: CommonViewController {
         return button
     }()
     
-    private let _resetPasswordButton: UIButton = {
+    let _resetPasswordButton: UIButton = {
         let button = UIButton()
         button.filledCornerInitilization(color: UIColor.red,
                                          title: "Я ЗАБЫЛ(А) ПАРОЛЬ")

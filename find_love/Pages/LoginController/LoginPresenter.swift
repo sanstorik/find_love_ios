@@ -36,6 +36,7 @@ final class LoginPresenter {
     func autoInputDataIfLoginOnce() {
         guard let password = UserDefaults.standard.string(forKey: "password"),
             let email = UserDefaults.standard.string(forKey: "email") else {
+                _login._resetPasswordButton.setTitle("РЕГИСТРАЦИЯ", for: .normal)
                 return
         }
         

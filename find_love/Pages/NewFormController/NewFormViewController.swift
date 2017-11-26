@@ -12,13 +12,14 @@ class NewFormViewController: CommonViewController {
         registerKeyboardObservers(keyboardShowEvent: { [unowned self] keyboard -> Void in
             self._emptyPlaceholder.transform =
                 self._emptyPlaceholder.transform.translatedBy(x: 0, y: self.calculateKeyboardHeight(notification: keyboard).height)
-            
             self._emptyPlaceholder.fadeAnimation(toAlpha: 0.6, duration: 1)
+            
             self.animateTitleColor(UIColor.white.withAlphaComponent(0))
             }, keyboardHideEvent: { [unowned self] keyboard -> Void in
                 self._emptyPlaceholder.transform =
                     self._emptyPlaceholder.transform.translatedBy(x: 0, y: -self.calculateKeyboardHeight(notification: keyboard).height)
                 self._emptyPlaceholder.fadeAnimation(toAlpha: 0, duration: 1)
+                
                 self.animateTitleColor(UIColor.white.withAlphaComponent(1))
         })
         

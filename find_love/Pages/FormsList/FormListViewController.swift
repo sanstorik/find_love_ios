@@ -62,9 +62,9 @@ class FormListViewController: CommonViewController {
     
     let pageView: SCPageViewController = {
         let pagesController = SCPageViewController()
-        pagesController.setLayouter(SCSlidingPageLayouter(), animated: false, completion: nil)
+        pagesController.setLayouter(SCParallaxPageLayouter(), animated: false, completion: nil)
         pagesController.easingFunction = SCEasingFunction(type: .bounceEaseIn)
-        pagesController.animationDuration = 0.1
+        pagesController.animationDuration = 1
         
         return pagesController
     }()
@@ -80,7 +80,7 @@ class FormListViewController: CommonViewController {
         pageView.delegate = self
         pageView.dataSource = self
         _likeButton.titleLabel?.font = _likeButton.titleLabel?.font.withHeightConstant(multiplier: 0.04, view: view)
-        _likeLabel.font = _likeLabel.font.withHeightConstant(multiplier: 0.035, view: view)
+        _likeLabel.font = _likeLabel.font.withHeightConstant(multiplier: 0.04, view: view)
         
         view.addSubview(_likeButton)
         view.addSubview(_likeLabel)
@@ -174,7 +174,8 @@ extension FormListViewController: SCPageViewControllerDataSource, SCPageViewCont
     }
     
     func pageViewController(_ pageViewController: SCPageViewController!, viewControllerForPageAt pageIndex: UInt) -> UIViewController! {
-        if (pageIndex == _presenter.controllers.count - 2 && isUploadingImagesAllowed) {
+        if (pageIndex == _presenter.controllers.count - 2 && isUploadingImagesAllowed)
+        {
             _presenter.loadAdditionalForms()
         }
         
