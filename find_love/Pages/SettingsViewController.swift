@@ -126,6 +126,8 @@ class SettingsViewController: CommonViewController {
     private func deleteProfile() {
         UserDefaults.standard.removeObject(forKey: "email")
         UserDefaults.standard.removeObject(forKey: "password")
+        
+        navigationController?.pushViewController(LoginViewController(), animated: true)
     }
 }
 
