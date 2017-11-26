@@ -15,16 +15,13 @@ class RegistrationViewController: CommonViewController {
         setupNavigationBar()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        unregisterKeyboardObservers()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor.black
         setupViews()
-        registerKeyboardObserversWith(offset: 60)
+        registerKeyboardObserversWith(offset: 70)
+        registerDismissingKeyboardOnTap()
     }
     
     private let _appIconImageView: UIImageView = {

@@ -39,6 +39,8 @@ class NewFormViewController: CommonViewController {
     
     private let _countryTextField: UITextField = {
         let textField = UnderlinedSearchTextField(xOffset: 0, yOffset: 7, searchHelpers: ["Россия"])
+        textField.text = "Россия"
+        textField.isUserInteractionEnabled = false
         textField.defaultInitilization(hint: "Укажите страну")
         textField.font = UIFont.systemFont(ofSize: 23)
         

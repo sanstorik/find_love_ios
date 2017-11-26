@@ -124,6 +124,8 @@ class SettingsViewController: CommonViewController {
     }
     
     private func deleteProfile() {
+        UserDefaults.standard.removeObject(forKey: "email")
+        UserDefaults.standard.removeObject(forKey: "password")
     }
 }
 

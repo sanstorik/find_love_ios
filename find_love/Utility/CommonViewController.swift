@@ -31,8 +31,14 @@ extension NavigationBar where Self: UIViewController {
         navigationController?.navigationBar.barTintColor = UIColor.black
         navigationController?.navigationBar.tintColor = UIColor.white
         
+        /*navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navigationController?.navigationBar.barStyle = .black
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.tintColor = UIColor.white*/
+        
         self.navigationController?.navigationBar.topItem?.backBarButtonItem =
             UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        setNeedsStatusBarAppearanceUpdate()
     }
 }
 
@@ -41,6 +47,15 @@ typealias KeyboardEvent = (_ :NSNotification) -> Void
 /** Keyboard observer for pushing view up
  */
 extension CommonViewController {
+    final func registerDismissingKeyboardOnTap() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc fileprivate func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
     final func registerKeyboardObservers(keyboardShowEvent: KeyboardEvent? = nil,
                                          keyboardHideEvent: KeyboardEvent? = nil) {
         _onKeyboardHideEvent = keyboardHideEvent
@@ -130,4 +145,14 @@ class CommonViewController: UIViewController, NavigationBar {
     fileprivate var _onKeyboardShownEvent: KeyboardEvent?
     fileprivate var _onKeyboardHideEvent: KeyboardEvent?
     fileprivate var _keyboardOffset: CGFloat = 50
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+}
+
+extension UINavigationController {
+    open override var preferredStatusBarStyle: UIStatusBarStyle {
+        return topViewController?.preferredStatusBarStyle ?? super.preferredStatusBarStyle
+    }
 }

@@ -32,6 +32,21 @@ final class LoginPresenter {
         }
     }
     
+    func autoInputDataIfLoginOnce() {
+        guard let password = UserDefaults.standard.string(forKey: "password"),
+            let email = UserDefaults.standard.string(forKey: "email") else {
+                return
+        }
+        
+        _login.emailTextField.text = email
+        _login.userPasswordTextField.text = password
+    }
+    
+    private func updateLoginSave() {
+        UserDefaults.standard.set(_login.emailTextField.text, forKey: "email")
+        UserDefaults.standard.set(_login.userPasswordTextField.text, forKey: "password")
+    }
+    
     private func errorLoginAsync(_ message: String) {
         DispatchQueue.main.async { [unowned self] () -> Void in
             self._login.errorLogin(message: message)
@@ -40,6 +55,7 @@ final class LoginPresenter {
     
     private func loginAsync(token: String) {
         User.token = token
+        updateLoginSave()
         
         DispatchQueue.main.async { [unowned self] () -> Void in
             self._login.validLogin()

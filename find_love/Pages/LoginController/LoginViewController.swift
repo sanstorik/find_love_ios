@@ -9,7 +9,6 @@ class LoginViewController: CommonViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        unregisterKeyboardObservers()
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
@@ -18,7 +17,8 @@ class LoginViewController: CommonViewController {
         
         view.backgroundColor = UIColor.black
         setupViews()
-        registerKeyboardObserversWith(offset: 50)
+        registerKeyboardObserversWith(offset: 150)
+        _presenter.autoInputDataIfLoginOnce()
     }
     
     private let _appIconImageView: UIImageView = {
@@ -29,7 +29,7 @@ class LoginViewController: CommonViewController {
         return imageView
     }()
     
-    private let _emailTextField: UITextField = {
+    let emailTextField: UITextField = {
         let textField = UnderlinedTextField(xOffset: 0, yOffset: 7)
         textField.defaultInitilization(hint: "Ваш email")
         textField.font = UIFont.systemFont(ofSize: 22, weight: UIFont.Weight(0.2))
@@ -38,7 +38,7 @@ class LoginViewController: CommonViewController {
         return textField
     }()
     
-    private let _userPasswordTextField: UITextField = {
+    let userPasswordTextField: UITextField = {
         let textField = UnderlinedTextField(xOffset: 0, yOffset: 7)
         textField.defaultInitilization(hint: "Ваш пароль")
         textField.font = UIFont.systemFont(ofSize: 22, weight: UIFont.Weight(0.2))
@@ -92,19 +92,19 @@ class LoginViewController: CommonViewController {
     private lazy var _presenter = LoginPresenter(view: self)
     
     private func setupViews() {
-        _emailTextField.font = _emailTextField.font?.withSize(0.037 * view.frame.height)
-        _userPasswordTextField.font = _userPasswordTextField.font?.withSize(0.037 * view.frame.height)
+        emailTextField.font = emailTextField.font?.withSize(0.037 * view.frame.height)
+        userPasswordTextField.font = userPasswordTextField.font?.withSize(0.037 * view.frame.height)
         _resetPasswordButton.titleLabel?.font = _resetPasswordButton.titleLabel?.font.withSize(0.034 * view.frame.height)
         _loginButton.titleLabel?.font = _loginButton.titleLabel?.font.withSize(0.034 * view.frame.height)
         _forgotPassLabel.font = _forgotPassLabel.font.withSize(0.03 * view.frame.height)
         _refreshPassLabel.font = _refreshPassLabel.font.withSize(0.02 * view.frame.height)
         
-        _emailTextField.delegate = _userNameDelegate
-        _userPasswordTextField.delegate = _userNameDelegate
+        emailTextField.delegate = _userNameDelegate
+        userPasswordTextField.delegate = _userNameDelegate
         
         view.addSubview(_appIconImageView)
-        view.addSubview(_emailTextField)
-        view.addSubview(_userPasswordTextField)
+        view.addSubview(emailTextField)
+        view.addSubview(userPasswordTextField)
         view.addSubview(_loginButton)
         view.addSubview(_resetPasswordButton)
         view.addSubview(_forgotPassLabel)
@@ -118,13 +118,13 @@ class LoginViewController: CommonViewController {
         _appIconImageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.6).isActive = true
         _appIconImageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.3).isActive = true
         
-        _emailTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: leftOffset).isActive = true
-        _emailTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: rightOffset).isActive = true
-        _emailTextField.bottomAnchor.constraint(equalTo: _userPasswordTextField.topAnchor, constant: -30).isActive = true
+        emailTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: leftOffset).isActive = true
+        emailTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: rightOffset).isActive = true
+        emailTextField.bottomAnchor.constraint(equalTo: userPasswordTextField.topAnchor, constant: -30).isActive = true
         
-        _userPasswordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: leftOffset).isActive = true
-        _userPasswordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: rightOffset).isActive = true
-        _userPasswordTextField.bottomAnchor.constraint(equalTo: _loginButton.topAnchor, constant: -45).isActive = true
+        userPasswordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: leftOffset).isActive = true
+        userPasswordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: rightOffset).isActive = true
+        userPasswordTextField.bottomAnchor.constraint(equalTo: _loginButton.topAnchor, constant: -45).isActive = true
         
         _loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: leftOffset).isActive = true
         _loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: rightOffset).isActive = true
@@ -148,16 +148,16 @@ class LoginViewController: CommonViewController {
     @objc private func loginOnClick() {
         var loginAllowed = true
 
-        let loginEmail = _emailTextField.text
+        let loginEmail = emailTextField.text
         if loginEmail == nil || loginEmail!.isEmpty {
             loginAllowed = false
-            _emailTextField.shake(3, withDelta: 8, speed: 0.05)
+            emailTextField.shake(3, withDelta: 8, speed: 0.05)
         }
         
-        let password = _userPasswordTextField.text
+        let password = userPasswordTextField.text
         if password == nil || password!.isEmpty {
             loginAllowed = false
-            _userPasswordTextField.shake(3, withDelta: 8, speed: 0.05)
+            userPasswordTextField.shake(3, withDelta: 8, speed: 0.05)
         }
         
         if loginAllowed {

@@ -25,6 +25,7 @@ final class RegistrationPresenter {
             
             if let data = json["data"] as? [String: Any],
                 let token = data["token"] as? String {
+                self.updateLoginSave(email: email, password: password)
                 self.validLogin(token: token)
             } else if
                 let error = json["errors"] as? NSArray,
@@ -57,6 +58,11 @@ final class RegistrationPresenter {
         DispatchQueue.main.async { [unowned self] () -> Void in
             self._view.invalidLogin(message: message)
         }
+    }
+    
+    private func updateLoginSave(email: String, password: String) {
+        UserDefaults.standard.set(email, forKey: "email")
+        UserDefaults.standard.set(password, forKey: "password")
     }
     
     private func validLogin(token: String) {
