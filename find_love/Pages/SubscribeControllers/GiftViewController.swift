@@ -98,7 +98,7 @@ class GiftViewController: CommonViewController {
         view.addSubview(_joyLabel)
         view.addSubview(_agreeButton)
         
-        _giftLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 40).isActive = true
+        _giftLabel.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor, constant: 40).isActive = true
         _giftLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
         _giftImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true

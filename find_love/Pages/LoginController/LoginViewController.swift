@@ -34,6 +34,7 @@ class LoginViewController: CommonViewController {
         textField.defaultInitilization(hint: "Ваш email")
         textField.font = UIFont.systemFont(ofSize: 22, weight: UIFont.Weight(0.2))
         textField.adjustsFontSizeToFitWidth = true
+        textField.keyboardType = .emailAddress
         
         return textField
     }()
@@ -114,7 +115,7 @@ class LoginViewController: CommonViewController {
         let rightOffset: CGFloat = -40
         
         _appIconImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        _appIconImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 30).isActive = true
+        _appIconImageView.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor, constant: 30).isActive = true
         _appIconImageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.6).isActive = true
         _appIconImageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.3).isActive = true
         

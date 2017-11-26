@@ -69,7 +69,7 @@ class TermsOfUseViewController: CommonViewController {
         
         _textView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25).isActive = true
         _textView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25).isActive = true
-        _textView.topAnchor.constraint(equalTo: view.topAnchor, constant: 25).isActive = true
+        _textView.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor, constant: 25).isActive = true
         _textView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40).isActive = true
     }
 }

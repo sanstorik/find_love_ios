@@ -27,14 +27,14 @@ extension NavigationBar where Self: UIViewController {
              NSAttributedStringKey.font: UIFont.systemFont(ofSize: 28).withSize(0.037 * view.frame.height)]
         
         
-        navigationController?.navigationBar.isTranslucent = false
+        /*navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.barTintColor = UIColor.black
-        navigationController?.navigationBar.tintColor = UIColor.white
+        navigationController?.navigationBar.tintColor = UIColor.white*/
         
-        /*navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navigationController?.navigationBar.barStyle = .black
         navigationController?.navigationBar.shadowImage = UIImage()
-        navigationController?.navigationBar.tintColor = UIColor.white*/
+        navigationController?.navigationBar.tintColor = UIColor.white
         
         self.navigationController?.navigationBar.topItem?.backBarButtonItem =
             UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)

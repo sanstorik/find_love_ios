@@ -62,15 +62,15 @@ class InstructionViewController: CommonViewController {
     }
     
     private func setupViews() {
-        _instructionLabel.font = _instructionLabel.font.withHeightConstant(multiplier: 0.035, view: view)
-        _startButton.titleLabel?.font = _startButton.titleLabel?.font.withHeightConstant(multiplier: 0.035, view: view)
+        _instructionLabel.font = _instructionLabel.font.withHeightConstant(multiplier: 0.032, view: view)
+        _startButton.titleLabel?.font = _startButton.titleLabel?.font.withHeightConstant(multiplier: 0.032, view: view)
         
         view.addSubview(_instructionLabel)
         view.addSubview(_startButton)
         view.addSubview(_appIconImageView)
         
         _instructionLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        _instructionLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 30).isActive = true
+        _instructionLabel.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor, constant: 30).isActive = true
         
         let firstRule = createRule(viewAbove: _instructionLabel,
                                    text: "Разместите анкету!",
@@ -111,7 +111,7 @@ class InstructionViewController: CommonViewController {
         label.numberOfLines = numberOfLines
         label.text = text
         label.font = UIFont.systemFont(ofSize: 22, weight: UIFont.Weight(0.05))
-        label.font = label.font.withHeightConstant(multiplier: 0.034, view: self.view)
+        label.font = label.font.withHeightConstant(multiplier: 0.03, view: self.view)
         label.adjustsFontSizeToFitWidth = true
         
         view.addSubview(heartImage)

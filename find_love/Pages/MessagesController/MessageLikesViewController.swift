@@ -32,7 +32,7 @@ class MessageLikesViewController: CommonViewController {
         
         _pageView.view.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         _pageView.view.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        _pageView.view.topAnchor.constraint(equalTo: view.topAnchor, constant: 7).isActive = true
+        _pageView.view.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor, constant: 7).isActive = true
         _pageView.view.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
     

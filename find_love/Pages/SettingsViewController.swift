@@ -58,12 +58,12 @@ class SettingsViewController: CommonViewController {
         button.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -25).isActive = true
         
         if view === self.view {
-            button.topAnchor.constraint(equalTo: view.topAnchor, constant: 40).isActive = true
+            button.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor, constant: 40).isActive = true
         } else {
             button.topAnchor.constraint(equalTo: view.bottomAnchor, constant: 20).isActive = true
         }
         
-        button.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.12).isActive = true
+        button.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.105).isActive = true
         
         return button
     }

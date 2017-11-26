@@ -68,7 +68,7 @@ class NewFormViewController: CommonViewController {
         let button = UIButton()
         button.filledCornerInitilization(color: UIColor.darkGray,
                                          title: "Начать",
-                                         cornerRadius: 30)
+                                         cornerRadius: 27)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 31, weight: UIFont.Weight(0.5))
         
         return button
@@ -106,10 +106,10 @@ class NewFormViewController: CommonViewController {
         
         cityTextField.delegate = _textDelegate
         _countryTextField.delegate = _textDelegate
-        cityTextField.font = cityTextField.font?.withSize(view.frame.height * 0.033)
-        _countryTextField.font = _countryTextField.font?.withSize(view.frame.height * 0.033)
-        _noGeoPositionLabel.font = _noGeoPositionLabel.font?.withHeightConstant(multiplier: 0.02, view: view)
-        _createButton.titleLabel?.font = _createButton.titleLabel?.font.withHeightConstant(multiplier: 0.03, view: view)
+        cityTextField.font = cityTextField.font?.withSize(view.frame.height * 0.03)
+        _countryTextField.font = _countryTextField.font?.withSize(view.frame.height * 0.03)
+        _noGeoPositionLabel.font = _noGeoPositionLabel.font?.withHeightConstant(multiplier: 0.017, view: view)
+        _createButton.titleLabel?.font = _createButton.titleLabel?.font.withHeightConstant(multiplier: 0.032, view: view)
         
         view.addSubview(avatarImageView)
         view.addSubview(_countryTextField)
@@ -119,8 +119,8 @@ class NewFormViewController: CommonViewController {
         
         avatarImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30).isActive = true
         avatarImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30).isActive = true
-        avatarImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.height * 0.05).isActive = true
-        avatarImageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.52).isActive = true
+        avatarImageView.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor, constant: view.frame.height * 0.04).isActive = true
+        avatarImageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.45).isActive = true
         
         _countryTextField.leadingAnchor.constraint(equalTo: avatarImageView.leadingAnchor).isActive = true
         _countryTextField.trailingAnchor.constraint(equalTo: avatarImageView.trailingAnchor).isActive = true
@@ -133,7 +133,7 @@ class NewFormViewController: CommonViewController {
         _createButton.leadingAnchor.constraint(equalTo: avatarImageView.leadingAnchor).isActive = true
         _createButton.trailingAnchor.constraint(equalTo: avatarImageView.trailingAnchor).isActive = true
         _createButton.topAnchor.constraint(equalTo: cityTextField.bottomAnchor, constant: 30).isActive = true
-        _createButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.1).isActive = true
+        _createButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.085).isActive = true
         _createButton.addTarget(self, action: #selector(createOnClick), for: .touchUpInside)
         
         _noGeoPositionLabel.leadingAnchor.constraint(equalTo: avatarImageView.leadingAnchor).isActive = true

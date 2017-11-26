@@ -88,7 +88,7 @@ class FormListViewController: CommonViewController {
         self.view.addSubview(pageView.view)
         
         pageView.view.translatesAutoresizingMaskIntoConstraints = false
-        pageView.view.topAnchor.constraint(equalTo: view.topAnchor, constant: 30).isActive = true
+        pageView.view.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor, constant: 30).isActive = true
         pageView.view.bottomAnchor.constraint(equalTo: _likeButton.topAnchor, constant: -30).isActive = true
         pageView.view.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         pageView.view.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true

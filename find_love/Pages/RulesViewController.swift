@@ -57,7 +57,7 @@ class RulesViewController: CommonViewController {
         view.addSubview(_agreeButton)
         
         _rulesLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        _rulesLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 50).isActive = true
+        _rulesLabel.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor, constant: 50).isActive = true
         
         let firstRule = createRule(viewAbove: _rulesLabel,
                    text: "Мы не считаем СЕКС изменой, это приятная физиологическая необходимость, как вкусная еда или сладкий сон.",

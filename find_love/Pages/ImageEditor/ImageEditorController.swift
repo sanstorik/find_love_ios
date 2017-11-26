@@ -104,8 +104,8 @@ class ImageEditorController: CommonViewController {
         
         _avatarImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30).isActive = true
         _avatarImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30).isActive = true
-        _avatarImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 45).isActive = true
-        _avatarImageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.51).isActive = true
+        _avatarImageView.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor, constant: 45).isActive = true
+        _avatarImageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.47).isActive = true
         
         _chooseEffectLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         _chooseEffectLabel.topAnchor.constraint(equalTo: _avatarImageView.bottomAnchor, constant: view.frame.height * 0.020).isActive = true

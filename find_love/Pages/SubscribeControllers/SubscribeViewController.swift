@@ -62,7 +62,7 @@ class SubscribeViewController: CommonViewController  {
         _exitButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
         _exitButton.widthAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.07).isActive = true
         _exitButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.07).isActive = true
-        _exitButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 30).isActive = true
+        _exitButton.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor, constant: 30).isActive = true
         _exitButton.addTarget(self, action: #selector(exitOnClick), for: .touchUpInside)
         
         _topLabel.leadingAnchor.constraint(equalTo: _exitButton.trailingAnchor, constant: 20).isActive = true
