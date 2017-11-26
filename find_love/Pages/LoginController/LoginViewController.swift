@@ -17,8 +17,13 @@ class LoginViewController: CommonViewController {
         
         view.backgroundColor = UIColor.black
         setupViews()
-        registerKeyboardObserversWith(offset: 150)
         _presenter.autoInputDataIfLoginOnce()
+        
+        registerKeyboardObserversWith(offset: 150, keyboardShowEvent: { [unowned self] _ -> Void in
+            self._appIconImageView.fadeAnimation(toAlpha: 0, duration: 1)
+            }, keyboardHideEvent: { [unowned self] _ -> Void in
+                self._appIconImageView.fadeAnimation(toAlpha: 1, duration: 1)
+        })
     }
     
     private let _appIconImageView: UIImageView = {

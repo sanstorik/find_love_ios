@@ -33,6 +33,7 @@ class FormListPresenter {
             
             self._view.isUploadingImagesAllowed = forms.count >= self._perPage
             self.reloadPageView()
+            self._view.updateLikeButtonState()
             
             if forms.count == 0 {
                 self.removeLoaderAsync() { [unowned self] () -> () in

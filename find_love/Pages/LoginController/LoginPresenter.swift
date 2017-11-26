@@ -61,9 +61,8 @@ final class LoginPresenter {
         updateLoginSave()
         
         DispatchQueue.main.async { [unowned self] () -> Void in
-            self._login.view.removeLoaderFullScreen {
-                self._login.validLogin()
-            }
+            self._login.view.removeLoaderFullScreen ()
+            self._login.validLogin()
         }
     }
 }

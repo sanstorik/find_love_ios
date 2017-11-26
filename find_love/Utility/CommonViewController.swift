@@ -26,11 +26,6 @@ extension NavigationBar where Self: UIViewController {
             [NSAttributedStringKey.foregroundColor: UIColor.white,
              NSAttributedStringKey.font: UIFont.systemFont(ofSize: 28).withSize(0.037 * view.frame.height)]
         
-        
-        /*navigationController?.navigationBar.isTranslucent = false
-        navigationController?.navigationBar.barTintColor = UIColor.black
-        navigationController?.navigationBar.tintColor = UIColor.white*/
-        
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navigationController?.navigationBar.barStyle = .black
         navigationController?.navigationBar.shadowImage = UIImage()

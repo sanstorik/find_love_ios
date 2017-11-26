@@ -9,6 +9,7 @@ final class RegistrationPresenter {
     }
     
     func registerUser(email: String, password: String, name: String) {
+        _view.view.showLoaderFullScreen()
         let params: Parameters = ["email": email, "password": password, "name": name]
         
         
@@ -56,7 +57,9 @@ final class RegistrationPresenter {
         }
         
         DispatchQueue.main.async { [unowned self] () -> Void in
-            self._view.invalidLogin(message: message)
+            self._view.view.removeLoaderFullScreen {
+                self._view.invalidLogin(message: message)
+            }
         }
     }
     
@@ -69,6 +72,7 @@ final class RegistrationPresenter {
         User.token = token
         
         DispatchQueue.main.async { [unowned self] () -> Void in
+            self._view.view.removeLoaderFullScreen()
             self._view.validLogin()
         }
     }

@@ -204,9 +204,8 @@ class NewFormPresenter {
     
     private func validLoginAsync() {
         DispatchQueue.main.async { [unowned self] () -> Void in
-            self._view.view.removeLoaderFullScreen() {
-                self._view.validRegister()
-            }
+            self._view.view.removeLoaderFullScreen()
+            self._view.validRegister()
         }
     }
     

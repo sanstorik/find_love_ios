@@ -37,6 +37,7 @@ class RegistrationViewController: CommonViewController {
         
         textField.defaultInitilization(hint: "Ваш email")
         textField.font = UIFont.systemFont(ofSize: 20)
+        textField.keyboardType = .emailAddress
         
         return textField
     }()
@@ -46,7 +47,6 @@ class RegistrationViewController: CommonViewController {
         
         textField.defaultInitilization(hint: "Укажите имя")
         textField.font = UIFont.systemFont(ofSize: 20)
-        textField.keyboardType = .emailAddress
         
         return textField
     }()

@@ -19,10 +19,10 @@ class FormListViewController: CommonViewController {
             isUploadingImagesAllowed = true
             _presenter.initialLoadForms()
 
-            
-            FormListViewController.forceResetForms = false
             updateLikeButtonState()
+            FormListViewController.forceResetForms = false
         }
+
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -64,6 +64,7 @@ class FormListViewController: CommonViewController {
         let pagesController = SCPageViewController()
         pagesController.setLayouter(SCSlidingPageLayouter(), animated: false, completion: nil)
         pagesController.easingFunction = SCEasingFunction(type: .bounceEaseIn)
+        pagesController.animationDuration = 0.1
         
         return pagesController
     }()
@@ -131,19 +132,19 @@ class FormListViewController: CommonViewController {
     
     
     private func hideLikeButton() {
-        _likeButton.fadeAnimation(toAlpha: 0, duration: 0.3)
+        _likeButton.fadeAnimation(toAlpha: 0, duration: 0.1)
         _likeButton.isUserInteractionEnabled = false
         
-        _likeLabel.fadeAnimation(toAlpha: 1, duration: 0.3)
+        _likeLabel.fadeAnimation(toAlpha: 1, duration: 0.1)
         _isLikeButtonActive = false
     }
     
     
     private func showLikeButton() {
-        _likeButton.fadeAnimation(toAlpha: 1, duration: 0.3)
+        _likeButton.fadeAnimation(toAlpha: 1, duration: 0.1)
         _likeButton.isUserInteractionEnabled = true
         
-        _likeLabel.fadeAnimation(toAlpha: 0, duration: 0.3)
+        _likeLabel.fadeAnimation(toAlpha: 0, duration: 0.1)
         _isLikeButtonActive = true
     }
     
@@ -187,16 +188,17 @@ extension FormListViewController: SCPageViewControllerDataSource, SCPageViewCont
         return controller
     }
     
+    
     func pageViewController(_ pageViewController: SCPageViewController!, didNavigateToPageAt pageIndex: UInt) {
         updateLikeButtonState()
     }
     
-    private func updateLikeButtonState() {
+    func updateLikeButtonState() {
         guard let page = pageView.viewControllerForPage(at: pageView.currentPage) as? FormImagePage,
             let user = page.user else {
                 return
         }
-        
+
         if !_presenter.didUserLike(user: user) && !_isLikeButtonActive {
             showLikeButton()
         } else if _presenter.didUserLike(user: user) && _isLikeButtonActive {

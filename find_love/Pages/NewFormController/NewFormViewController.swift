@@ -10,12 +10,16 @@ class NewFormViewController: CommonViewController {
         navigationItem.hidesBackButton = !isEditingSession
         
         registerKeyboardObservers(keyboardShowEvent: { [unowned self] _ -> Void in
-            self.avatarImageView.fadeAnimation(toAlpha: 0, duration: 1)
+            //self.avatarImageView.fadeAnimation(toAlpha: 0, duration: 1)
+            self._emptyPlaceholder.fadeAnimation(toAlpha: 1, duration: 1)
             self.animateTitleColor(UIColor.white.withAlphaComponent(0))
         }, keyboardHideEvent: { [unowned self] _ -> Void in
-            self.avatarImageView.fadeAnimation(toAlpha: 1, duration: 1)
+            //self.avatarImageView.fadeAnimation(toAlpha: 1, duration: 1)
+            self._emptyPlaceholder.fadeAnimation(toAlpha: 0, duration: 1)
             self.animateTitleColor(UIColor.white.withAlphaComponent(1))
         })
+        
+        registerDismissingKeyboardOnTap()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -36,6 +40,15 @@ class NewFormViewController: CommonViewController {
         setupImageTap()
     }
     
+    
+    private let _emptyPlaceholder: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.brown
+        view.alpha = 0
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        return view
+    }()
     
     private let _countryTextField: UITextField = {
         let textField = UnderlinedSearchTextField(xOffset: 0, yOffset: 7, searchHelpers: ["Россия"])
@@ -111,11 +124,18 @@ class NewFormViewController: CommonViewController {
         _noGeoPositionLabel.font = _noGeoPositionLabel.font?.withHeightConstant(multiplier: 0.017, view: view)
         _createButton.titleLabel?.font = _createButton.titleLabel?.font.withHeightConstant(multiplier: 0.032, view: view)
         
+        view.addSubview(_emptyPlaceholder)
         view.addSubview(avatarImageView)
         view.addSubview(_countryTextField)
         view.addSubview(cityTextField)
         view.addSubview(_createButton)
         view.addSubview(_noGeoPositionLabel)
+        view.bringSubview(toFront: _emptyPlaceholder)
+        
+        _emptyPlaceholder.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        _emptyPlaceholder.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        _emptyPlaceholder.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        _emptyPlaceholder.heightAnchor.constraint(equalToConstant: 20).isActive = true
         
         avatarImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30).isActive = true
         avatarImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30).isActive = true
