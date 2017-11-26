@@ -11,6 +11,7 @@ final class LoginPresenter {
     }
     
     func checkAccount(email: String, password: String) {
+        _login.view.showLoaderFullScreen()
         let params: Parameters = ["email": email, "password": password]
         
         Alamofire.request(_loginURL, method: .post, parameters: params).responseJSON { [unowned self] response -> Void in
@@ -49,7 +50,9 @@ final class LoginPresenter {
     
     private func errorLoginAsync(_ message: String) {
         DispatchQueue.main.async { [unowned self] () -> Void in
-            self._login.errorLogin(message: message)
+            self._login.view.removeLoaderFullScreen {
+                self._login.errorLogin(message: message)
+            }
         }
     }
     
@@ -58,7 +61,9 @@ final class LoginPresenter {
         updateLoginSave()
         
         DispatchQueue.main.async { [unowned self] () -> Void in
-            self._login.validLogin()
+            self._login.view.removeLoaderFullScreen {
+                self._login.validLogin()
+            }
         }
     }
 }

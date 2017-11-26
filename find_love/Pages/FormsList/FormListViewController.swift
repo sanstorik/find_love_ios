@@ -40,7 +40,7 @@ class FormListViewController: CommonViewController {
     
     private let _likeButton: UIButton = {
         let button = UIButton()
-        button.filledCornerInitilization(color: UIColor.red, title: "Мне нравится", cornerRadius: 33)
+        button.filledCornerInitilization(color: UIColor.red, title: "Мне нравится", cornerRadius: 37)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 25, weight: UIFont.Weight(0.5))
         
         return button

@@ -72,7 +72,7 @@ class RegistrationViewController: CommonViewController {
     
     private let _maleButton: UIButton = {
         let button = UIButton()
-        button.filledCornerInitilization(color: UIColor.darkGray, title: "♂M", cornerRadius: 20)
+        button.filledCornerInitilization(color: UIColor.darkGray, title: "♂M", cornerRadius: 24)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: UIFont.Weight(0.2))
         
         return button
@@ -80,7 +80,7 @@ class RegistrationViewController: CommonViewController {
     
     private let _femaleButton: UIButton = {
         let button = UIButton()
-        button.filledCornerInitilization(color: UIColor.darkGray, title: "♀Ж", cornerRadius: 20)
+        button.filledCornerInitilization(color: UIColor.darkGray, title: "♀Ж", cornerRadius: 24)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: UIFont.Weight(0.2))
         
         return button
@@ -90,7 +90,7 @@ class RegistrationViewController: CommonViewController {
         let button = UIButton()
         button.filledCornerInitilization(color: UIColor.darkGray,
                                          title: "Зарегистрироваться",
-                                         cornerRadius: 30)
+                                         cornerRadius: 34)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 25, weight: UIFont.Weight(0.2))
         button.titleLabel?.adjustsFontSizeToFitWidth = true
         

@@ -67,6 +67,8 @@ class NewFormPresenter {
     
     
     func createProfile() {
+        _view.view.showLoaderFullScreen()
+        
         if _cities.isEmpty {
             uploadImage(_view.avatarImageView.image!)
         } else {
@@ -76,11 +78,7 @@ class NewFormPresenter {
     
     
     func updateProfile() {
-        if _cities.isEmpty {
-            uploadImage(_view.avatarImageView.image!)
-        } else {
-            loadCities(updateView: false, avatar: _view.avatarImageView.image)
-        }
+        createProfile()
     }
     
     
@@ -197,14 +195,18 @@ class NewFormPresenter {
     
     private func errorRegisterAsync() {
         DispatchQueue.main.async { [unowned self] () -> Void in
-            self._view.errorRegister()
+            self._view.view.removeLoaderFullScreen() {
+                self._view.errorRegister()
+            }
         }
     }
     
     
     private func validLoginAsync() {
         DispatchQueue.main.async { [unowned self] () -> Void in
-            self._view.validRegister()
+            self._view.view.removeLoaderFullScreen() {
+                self._view.validRegister()
+            }
         }
     }
     

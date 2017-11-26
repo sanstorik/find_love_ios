@@ -4,7 +4,7 @@ import PagingMenuController
 class MessageLikesViewController: CommonViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setupNavigationBar()
+        setupNavigationBar(title: "Общение")
         
         let settings = UIBarButtonItem(image: UIImage(named: "settings"), style: .plain,
                                        target: self, action: #selector(settingsOnClick))
