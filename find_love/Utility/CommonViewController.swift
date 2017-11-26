@@ -16,7 +16,7 @@ extension NavigationBar where Self: UIViewController {
         UIView.animate(withDuration: duration) { [unowned self] () -> Void in
             self.navigationController?.navigationBar.titleTextAttributes =
                 [NSAttributedStringKey.foregroundColor: color,
-                 NSAttributedStringKey.font: UIFont.systemFont(ofSize: 28)]
+                 NSAttributedStringKey.font: UIFont.systemFont(ofSize: 28).withSize(0.037 * self.view.frame.height)]
         }
     }
     
